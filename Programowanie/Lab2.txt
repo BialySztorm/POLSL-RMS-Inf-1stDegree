@@ -1,0 +1,78 @@
+Andrzej Manderla Laboratorium 2
+Zad 1.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	char c;
+	printf("Wprowadź znakdo  sprawdzenia: ");
+	scanf("%c", &c);
+
+	if (c >= 65 && c <= 90) {
+		printf("znak \"%c\" jest dużą literą angielskiego alfabetu", c);
+	}
+	else {
+		printf("znak \"%c\" nie jest dużą literą angielskiego alfabetu", c);
+	}
+
+	_getch();
+}
+
+Zad  2.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double a, b;
+	printf("Podaj a:");
+	scanf("%le", &a);
+	printf("Podaj b(różne od zera):");
+	scanf("%le", &b);
+	if (b == 0) {
+		printf("Błędne B, Podaj b(różne od zera) :");
+		scanf("%le", &b);
+	}
+	printf("%g + %g = %g\n", a, b, (a + b));
+	printf("%g / %g = %g", a, b, (a / b));
+
+	_getch();
+}
+
+Zad 3.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double a, b;
+	printf("Podaj a(różne od zera):");
+	scanf("%le", &a);
+	if (a == 0) {
+		printf("Błędne a, Podaj a(różne od zera) :");
+		scanf("%le", &a);
+	}
+	printf("Podaj b:");
+	scanf("%le", &b);
+	printf("%g", ((0 - b) / a));
+
+	_getch();
+}
+
+Zad 4.

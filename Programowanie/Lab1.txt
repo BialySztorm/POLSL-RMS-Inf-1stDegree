@@ -1,0 +1,167 @@
+Andrzej Manderla Laboratorium 1
+Zad 1.
+#include <stdio.h>
+#include <conio.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+int main()
+{
+	printf("Andrzej Manderla");
+	_getch();
+}
+
+Zad 2.
+#include <stdio.h>
+#include <conio.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+int main()
+{
+	printf("X X\n");
+	printf(" X\n");
+	printf("X X\n");
+	_getch();
+}
+
+Zad 3.
+#include <stdio.h>
+#include <conio.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+int main()
+{
+	double a, b;
+	scanf("%le", &a);
+	scanf("%le", &b);
+
+	printf("%g + %g = %g\n", a, b, (a + b));
+	printf("%g - %g = %g\n", a, b, (a - b));
+	printf("%g * %g = %g\n", a, b, (a * b));
+	printf("%g / %g = %g\n", a, b, (a / b));
+	_getch();
+}
+
+Zad 4.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#define M_PI 3.14159265358979323846
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double a;
+	printf("Podaj promień koła: ");
+	scanf("%le", &a);
+
+	printf("Powierzhnia koła wynosi: %g", (M_PI * (a * a)));
+	_getch();
+}
+
+Zad 5.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#define M_PI 3.14159265358979323846
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double a;
+	printf("Podaj kąt w stopniach: ");
+	scanf("%le", &a);
+
+	printf("Kąt w radianach: %g", ((M_PI / 180) * a));
+	_getch();
+}
+
+Zad 6.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double x;
+	double a = 1, b = 2, c = 4, d = 7;
+	printf("Wskaż wartość x: ");
+	scanf("%le", &x);
+
+	printf("A(%g) = %g*%g^2 + %g*%g + %g = %g\n", x, a, x, b, x, c, (a * pow(x, 2) + b * x + c));
+	printf("B(%g) = %g*%g^3 + %g*%g^2 + %g*%g + %g = %g", x, a, x, b, x, c, x, d, (a * pow(x, 3) + b * pow(x, 2) + c * x + d));
+
+	_getch();
+}
+
+Zad 7.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+double horner(double wsp[], int st, int x)
+{
+	double wynik = wsp[0];
+
+	for (int i = 1; i <= st; i++)
+		wynik = wynik * x + wsp[i];
+
+	return wynik;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double x;
+	double y[] = { 1, 2, 4, 7 };
+	printf("Wskaż wartość x: ");
+	scanf("%le", &x);
+
+	printf("A(%g)=%g\n", x, horner(y, 2, x));
+	printf("B(%g)=%g", x, horner(y, 3, x));
+
+	_getch();
+}
+Zad 8.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double r, h;
+	printf("Podaj r: ");
+	scanf("%le", &r);
+	printf("Podaj h: ");
+	scanf("%le", &h);
+
+	printf("Pole powierzchni bocznej: %g\n", (2 * M_PI * r * h));
+	printf("Objętość: %g", (M_PI * pow(r, 2) * h));
+
+	_getch();
+}
