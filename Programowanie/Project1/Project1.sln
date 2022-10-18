@@ -9,6 +9,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Answers", "Answers", "{AB43
 	ProjectSection(SolutionItems) = preProject
 		..\Rozwiązania\Lab1.txt = ..\Rozwiązania\Lab1.txt
 		..\Rozwiązania\Lab2.txt = ..\Rozwiązania\Lab2.txt
+		..\Rozwiązania\Lab3.txt = ..\Rozwiązania\Lab3.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasks", "Tasks", "{CAF050FF-3BA3-4DBA-9BED-AA7168424AB2}"
+	ProjectSection(SolutionItems) = preProject
+		..\Zadania\lab1.pdf = ..\Zadania\lab1.pdf
+		..\Zadania\lab2.pdf = ..\Zadania\lab2.pdf
+		..\Zadania\lab3.pdf = ..\Zadania\lab3.pdf
 	EndProjectSection
 EndProject
 Global

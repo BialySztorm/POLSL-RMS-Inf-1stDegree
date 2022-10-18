@@ -1,3 +1,26 @@
+Andrzej Manderla Laboratorium 2
+Zad 1.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	char ch;
+	printf("Wypisywanie znaków mo¿na zakoñczyæ CTRL + Z\n");
+	while (ch != 26)
+	{
+		ch = getch();
+		printf("%c", ch);
+	}
+}
+
+Zad 2.
 #include <stdio.h>
 #include <conio.h>
 #include <locale.h>
@@ -23,3 +46,5 @@ int main()
 
 	_getch();
 }
+
+Zad 3.

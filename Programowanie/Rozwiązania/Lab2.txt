@@ -11,7 +11,7 @@ int main()
 {
 	setlocale(LC_ALL, "");
 	char c;
-	printf("Wprowadź znakdo  sprawdzenia: ");
+	printf("Wprowadź znak do sprawdzenia: ");
 	scanf("%c", &c);
 
 	if (c >= 65 && c <= 90) {
@@ -97,3 +97,104 @@ int main()
 }
 
 Zad 5.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double r = 0, h = 0;
+	int return_value = 0;
+	while (!return_value) {
+		printf("Podaj r : ");
+		return_value = scanf("%le", &r);
+		while (getchar() != '\n');
+	}
+	return_value = 0;
+	while (!return_value) {
+		printf("Podaj h: ");
+		return_value = scanf("%le", &h);
+		while (getchar() != '\n');
+	}
+	//printf("r: %g, h: %g", r, h);
+
+	printf("Pole powierzchni bocznej: %g\n", (2 * M_PI * r * h));
+	printf("Objętość: %g", (M_PI * pow(r, 2) * h));
+
+	_getch();
+}
+
+Zad 6.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double a, b, c, x;
+	bool correct = 0;
+	while (!correct)
+	{
+		printf("Podaj współczynnik a: ");
+		scanf("%le", &a);
+		if (a != 0)
+			correct = 1;
+	}
+	printf("Podaj współczynnik b: ");
+	scanf("%le", &b);
+	printf("Podaj współczynnik c: ");
+	scanf("%le", &c);
+	printf("Podaj wartość x:");
+	scanf("%le", &x);
+
+	printf("wynik: %g", (a * pow(x, 2) + b * x + c));
+	_getch();
+}
+
+Zad 7.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	printf("Układ równań:\nax + by = c\ndx + ey = f\n");
+	double a, b, c, d, e, f, x, y, a1, c1, d1, f1;
+	printf("Podaj współczynnik a: ");
+	scanf("%le", &a);
+	printf("Podaj współczynnik b: ");
+	scanf("%le", &b);
+	printf("Podaj współczynnik c: ");
+	scanf("%le", &c);
+	printf("Podaj współczynnik d: ");
+	scanf("%le", &d);
+	printf("Podaj współczynnik e: ");
+	scanf("%le", &e);
+	printf("Podaj współczynnik f: ");
+	scanf("%le", &f);
+	a1 = a/b;
+	c1 = c/b;
+	d1 = d/e;
+	f1 = f/e;
+
+	x = (c1 - f1) / (a1 - d1);
+	y = (a * x - c) / (-b);
+
+	printf("x: %g, y: %g", x, y);
+	_getch();
+}
