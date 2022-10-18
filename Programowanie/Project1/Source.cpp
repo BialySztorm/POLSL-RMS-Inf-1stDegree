@@ -10,16 +10,23 @@ int main()
 {
 	setlocale(LC_ALL, "");
 	const int n = 100;
-	char text[n];
+	char text[n] = "";
 	int i = 0;
+	bool isNewLine = 1;
 	printf("WprowadŸ tekst do sprawdzenia(maks %i znaków)\n", n);
 	fgets(text, n, stdin);
 
 	for (int j = 0; j < n; j++)
-		if (text[j] == 'a' || text[j] == 'A')
-			i++;
-
-	printf("W tekœcie znajodwa³o siê %i znaków 'a'", i);
+	{
+		if (isNewLine && (text[j] == '	' || text[j] == ' '))
+			continue;
+		else if (text[j] == '\n')
+			isNewLine = 1;
+		else {
+			isNewLine = 0;
+			printf("%c", text[j]);
+		}
+	}
 
 	_getch();
 }

@@ -1,4 +1,4 @@
-Andrzej Manderla Laboratorium 2
+Andrzej Manderla Laboratorium 3
 Zad 1.
 #include <stdio.h>
 #include <conio.h>
@@ -48,3 +48,166 @@ int main()
 }
 
 Zad 3.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	char ch;
+	bool isSpace = 0;
+	printf("Wypisywanie znaków mo¿na zakoñczyæ CTRL + Z\n");
+	while (ch != 26)
+	{
+		ch = getch();
+		if (isSpace && ch == ' ')
+			continue;
+		if (ch == ' ')
+			isSpace = 1;
+		else
+			isSpace = 0;
+		printf("%c", ch);
+	}
+}
+
+Zad 4. 
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	const int n = 100;
+	char text[n];
+	int i = 0;
+	bool isA = 0;
+	printf("WprowadŸ tekst do sprawdzenia(maks %i znaków)\n", n);
+	fgets(text, n, stdin);
+
+	for (int j = 0; j < n; j++)
+		if (text[j] == 'a' || text[j] == 'A')
+			isA = 1;
+		else if (text[j] == 'b' || text[j] == 'B')
+		{
+			if (isA)
+				i++;
+			isA = 0;
+		}
+
+	printf("W tekœcie znajodwa³o siê %i wyst¹pieñ 'ab'", i);
+
+	_getch();
+}
+
+Zad 5.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	const int n = 100;
+	char text[n];
+	int i = 0;
+	bool isWhitespace = 0;
+	printf("WprowadŸ tekst do sprawdzenia(maks %i znaków)\n", n);
+	fgets(text, n, stdin);
+
+	for (int j = 0; j < n; j++)
+		if (text[j] == ' ' || text[j] == '\n')
+			isWhitespace = 1;
+		else if (isWhitespace && text[j] != ' ' && text[j] != '\n')
+		{
+			i++;
+			isWhitespace = 0;
+		}
+
+	printf("W tekœcie znajodwa³o siê %i s³ów", i);
+
+	_getch();
+}
+
+Zad 6.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	const int n = 100;
+	char text[n] = "";
+	int i = 0;
+	bool isWhitespace = 0;
+	printf("WprowadŸ tekst do sprawdzenia(maks %i znaków)\n", n);
+	fgets(text, n, stdin);
+
+	for (int j = 0; j < n; j++)
+	{
+		if (text[j] == ' ' || text[j] == '\n')
+			isWhitespace = 1;
+		else if (isWhitespace && text[j] != ' ' && text[j] != '\n')
+		{
+			printf("\n%c", text[j]);
+			isWhitespace = 0;
+		}
+		else {
+			printf("%c", text[j]);
+		}
+	}
+
+	_getch();
+}
+
+Zad 7.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	const int n = 100;
+	char text[n] = "";
+	int i = 0;
+	bool isNewLine = 1;
+	printf("WprowadŸ tekst do sprawdzenia(maks %i znaków)\n", n);
+	fgets(text, n, stdin);
+
+	for (int j = 0; j < n; j++)
+	{
+		if (isNewLine && (text[j] == '	' || text[j] == ' '))
+			continue;
+		else if (text[j] == '\n')
+			isNewLine = 1;
+		else {
+			isNewLine = 0;
+			printf("%c", text[j]);
+		}
+	}
+
+	_getch();
+}
