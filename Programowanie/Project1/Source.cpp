@@ -9,23 +9,24 @@
 int main()
 {
 	setlocale(LC_ALL, "");
-	double r = 0, h = 0;
-	while (!r && !h)
+	const int n = 100;
+	char text[n] = "";
+	int i = 0;
+	bool isNewLine = 1;
+	printf("WprowadŸ tekst do sprawdzenia(maks %i znaków)\n", n);
+	fgets(text, n, stdin);
+
+	for (int j = 0; j < n; j++)
 	{
-		printf("Podaj r: ");
-		scanf("%le", &r);
-		printf("Podaj h: ");
-		scanf("%le", &h);
-		if (!r || !h)
-		{
-			printf("\nB³¹d! WprowadŸ dane ponownie\n");
-			_getch;
+		if (isNewLine && (text[j] == '	' || text[j] == ' '))
+			continue;
+		else if (text[j] == '\n')
+			isNewLine = 1;
+		else {
+			isNewLine = 0;
+			printf("%c", text[j]);
 		}
 	}
-	//printf("r: %g, h: %g", r, h);
-
-	printf("Pole powierzchni bocznej: %g\n", (2 * M_PI * r * h));
-	printf("Objêtoœæ: %g", (M_PI * pow(r, 2) * h));
 
 	_getch();
 }
