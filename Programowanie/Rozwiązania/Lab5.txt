@@ -1,0 +1,184 @@
+Andrzej Manderla Laboratorium 5
+Zad 1.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+double sum(double a, double b) {
+	return a + b;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double a, b;
+
+	printf("Podaj a: ");
+	scanf("%le", &a);
+	printf("Podaj b: ");
+	scanf("%le", &b);
+
+	printf("%g +  %g = %g", a, b, sum(a, b));
+
+	_getch();
+}
+
+Zad 2.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+double avg(double tab[], int n) {
+	double tmp = 0;
+	for (int i = 0; i < n; i++) {
+		tmp += tab[i];
+	}
+
+	return tmp / n;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	const int n = 10;
+	double tab[n];
+
+	for (int i = 0; i < 10; i++) {
+		printf("podaj %i liczbê: ", i + 1);
+		scanf("%le", &tab[i]);
+	}
+
+	printf("avg: %g", avg(tab, n));
+
+	_getch();
+}
+
+Zad 3. 
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+double avg(double tab[], int n) {
+	double tmp = 0;
+	double j = 0;
+	for (int i = 0; i < n; i++) {
+		if (tmp < tab[i]) {
+			tmp = tab[i];
+			j = i;
+		}
+	}
+	return j;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	const int n = 10;
+	double tab[n];
+
+	for (int i = 0; i < 10; i++) {
+		printf("podaj %i liczbê: ", i + 1);
+		scanf("%le", &tab[i]);
+	}
+
+	printf("max index: %g", avg(tab, n));
+
+	_getch();
+}
+
+Zad 4.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+double avg(double tab[], int imin, int imax) {
+	double tmp = 0;
+	double j = 0;
+	for (int i = imin; i < imax; i++) {
+		if (tmp < tab[i]) {
+			tmp = tab[i];
+			j = i;
+		}
+	}
+	return j;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	const int n = 10;
+	double tab[n];
+
+	for (int i = 0; i < 10; i++) {
+		printf("podaj %i liczbê: ", i + 1);
+		scanf("%le", &tab[i]);
+	}
+
+	printf("max index: %g", avg(tab, 2, 6));
+
+	_getch();
+}
+
+Zad 6.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+void insertion_sort(int* tab, int n) {
+	int tmp, j;
+	for (int i = 1; i < n; i++)
+	{
+		tmp = tab[i];
+		j = i - 1;
+
+		while (j >= 0 && tab[j] > tmp)
+		{
+			tab[j + 1] = tab[j];
+			--j;
+		}
+		tab[j + 1] = tmp;
+	}
+}
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	const int n = 10;
+	int* tab;
+	tab = new int[n];
+
+	for (int i = 0; i < n; i++) {
+		printf("podaj %i liczbê: ", i + 1);
+		scanf("%i", &tab[i]);
+	}
+
+	insertion_sort(tab, n);
+	for (int i = 0; i < n; i++) {
+		printf("%i, ", tab[i]);
+	}
+
+	_getch();
+}
+
+Zad 7.
+?

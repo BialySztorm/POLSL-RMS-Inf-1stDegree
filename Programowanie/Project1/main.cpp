@@ -13,6 +13,7 @@ int main() {
 
 main::main()
 {
+	// max char[] size  2 ^ 32 -1
 	Obj.Check();
 	printf(Obj.Encrypt("lol"));
 	_getch();

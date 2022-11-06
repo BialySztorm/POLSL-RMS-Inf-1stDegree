@@ -6,26 +6,37 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+void insertion_sort(int* tab, int n) {
+	int tmp, j;
+	for (int i = 1; i < n; i++)
+	{
+		tmp = tab[i];
+		j = i - 1;
+
+		while (j >= 0 && tab[j] > tmp)
+		{
+			tab[j + 1] = tab[j];
+			--j;
+		}
+		tab[j + 1] = tmp;
+	}
+}
+
 int main()
 {
 	setlocale(LC_ALL, "");
-	const int n = 100;
-	char text[n] = "";
-	int i = 0;
-	bool isNewLine = 1;
-	printf("WprowadŸ tekst do sprawdzenia(maks %i znaków)\n", n);
-	fgets(text, n, stdin);
+	const int n = 10;
+	int* tab;
+	tab = new int[n];
 
-	for (int j = 0; j < n; j++)
-	{
-		if (isNewLine && (text[j] == '	' || text[j] == ' '))
-			continue;
-		else if (text[j] == '\n')
-			isNewLine = 1;
-		else {
-			isNewLine = 0;
-			printf("%c", text[j]);
-		}
+	for (int i = 0; i < n; i++) {
+		printf("podaj %i liczbê: ", i + 1);
+		scanf("%i", &tab[i]);
+	}
+
+	insertion_sort(tab, n);
+	for (int i = 0; i < n; i++) {
+		printf("%i, ", tab[i]);
 	}
 
 	_getch();

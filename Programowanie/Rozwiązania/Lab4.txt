@@ -1,0 +1,173 @@
+Andrzej Manderla Laboratorium 4
+Zad 1.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	printf("podaj maksymaln¹  liczbê: ");
+	int max;
+	scanf("%i", &max);
+	for (int i = 0; i <= max; i++) {
+		printf("%i, ", i);
+	}
+
+	_getch();
+}
+
+Zad 2.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	printf("podaj maksymaln¹  liczbê: ");
+	int max;
+	scanf("%i", &max);
+	for (int i = 1; i <= max; i++) {
+		for (int j = 1; j <= max; j++) {
+			printf("%4d, ", i * j);
+		}
+		printf("\n");
+	}
+
+	_getch();
+}
+
+Zad 3.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	const int n = 10;
+	int tab[n], min, max = 0;
+	for (int i = 0; i < 10; i++) {
+		printf("podaj %i liczbê: ", i+1);
+		scanf("%i", &tab[i]);
+	}
+
+	min = tab[0];
+	for (int i = 0; i < n; i++) {
+		if (min > tab[i])
+			min = tab[i];
+		if (max < tab[i])
+			max = tab[i];
+	}
+
+	printf("min: %d, max: %d", min, max);
+
+	_getch();
+}
+
+Zad 4.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	const int n = 10;
+	int tab[n], avg = 0;
+	for (int i = 0; i < 10; i++) {
+		printf("podaj %i liczbê: ", i + 1);
+		scanf("%i", &tab[i]);
+	}
+
+	for (int i = 0; i < n; i++) {
+		avg += tab[i];
+	}
+	avg /= n;
+
+	printf("avg: %d", avg);
+
+	_getch();
+}
+
+Zad 5.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	int n, a, b, sum = 0;
+	printf("Podaj  n: ");
+	scanf("%i", &n);
+	printf("Podaj  a: ");
+	scanf("%i", &a);
+	printf("Podaj  b: ");
+	scanf("%i", &b);
+
+	for (int i = 0; i < n; i++)
+	{
+		sum += (a * i * b * i);
+	}
+	printf("iloczyn skalarny wynosi: %d", sum);
+
+	_getch();
+}
+
+Zad 6.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	const int n = 10;
+	int tab[n], tmp;
+	for (int i = 0; i < 10; i++) {
+		printf("podaj %i liczbê: ", i + 1);
+		scanf("%i", &tab[i]);
+	}
+
+	for (int i = n; i > 1; i--) {
+		for (int j = 0; j < i; j++) {
+			if (tab[j] > tab[j + 1]) {
+				tmp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = tmp;
+			}
+		}
+	}
+
+	for (int i = 0; i < 10; i++) {
+		printf("%d, ", tab[i]);
+	}
+
+	_getch();
+}
