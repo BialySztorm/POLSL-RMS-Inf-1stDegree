@@ -1,15 +1,13 @@
 #pragma once
-#include "data.h"
 
 class Translator {
 public:
 	Translator();
 	void Check();
 
-	char* Encrypt(char* Text);
-	char* Decrypt(char* Text);
+	char* Encrypt(char* Text, int TabLen);
+	char* Decrypt(char* Text, int TabLen);
 
 private:
-	Data Obj;
 	char* Elements;
 };

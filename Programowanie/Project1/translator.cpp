@@ -2,23 +2,26 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <locale.h>
 #include "translator.h"
-#include "colors.h"
+#include "data.h"
+
+#include "stdio.h"
 
 void Translator::Check()
 {
-	textcolor(3);
-	printf("Hello World!\n");
+	Elements = new char[sizeof(elements)];
+	Elements = elements;
+	printf("%s", Elements[1]);
 }
 
-char* Translator::Encrypt(char* Text)
+char* Translator::Encrypt(char* Text, int TabLen)
 {
-	for (int i = 0; i < sizeof(Text) - 1; i++) {
+	/*for (int i = 0; i < TabLen; i++) {
 		printf("%c\n", *(Text + i));
-	}
+	}*/
 	return Text;
 }
 
-char* Translator::Decrypt(char* Text)
+char* Translator::Decrypt(char* Text, int TabLen)
 {
 	return Text;
 }
