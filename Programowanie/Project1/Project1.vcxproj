@@ -111,15 +111,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="data.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="translator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="colors.h" />
     <ClInclude Include="data.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="translator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Periodic_Table_of_Elements.csv">

@@ -1,20 +1,26 @@
 #include <stdio.h>
 #include <conio.h>
+#include <locale.h>
 #pragma warning(disable : 4996)
 #define _CRT_SECURE_NO_WARNINGS
-#include "main.h"
 #include "colors.h"
-#include "locale.h"
+#include "data.h"
+
+#define InputColor    15
+
+void ShowGui();
+int GetInput(char** Text);
+void Encrypt(char* Text, int InputLen);
+void Decrypt(char* Text, int InputLen);
 
 int main() {
 	setlocale(LC_ALL, "");
+	bool IsRunning = 1;
+	char Option = 0;
+	int InputLen;
+	char* String = nullptr;
+	char GetChar;
 
-	class Main Obj;
-	return 0;
-};
-
-Main::Main()
-{
 	while (IsRunning) {
 		ShowGui();
 		// max char[] size  2 ^ 32 -1
@@ -24,20 +30,20 @@ Main::Main()
 		if (Option == '0')
 			IsRunning = 0;
 		else if (Option == '1') {
-			GetInput();
+			InputLen = GetInput(&String);
+
+			Encrypt(String, InputLen);
 
 			textcolor(InputColor);
-			printf("%s", Obj.Encrypt(String, InputLen));
-
 			printf("Press something to continue.");
 			GetChar = _getch();
 		}
 		else if (Option == '2') {
-			GetInput();
+			InputLen = GetInput(&String);
+
+			Decrypt(String, InputLen);
 
 			textcolor(InputColor);
-			printf("%s", Obj.Decrypt(String, InputLen));
-
 			printf("Press something to continue.");
 			GetChar = _getch();
 		}
@@ -47,9 +53,11 @@ Main::Main()
 			GetChar = _getch();
 		}
 	}
-}
 
-void Main::ShowGui()
+	return 0;
+};
+
+void ShowGui()
 {
 	system("cls");
 	textcolor(5);
@@ -65,27 +73,39 @@ void Main::ShowGui()
 	printf("<--------------------------------->\n\n\n");
 }
 
-void Main::GetInput()
+int GetInput(char** Text)
 {
+	const int TabLen = 10000;
+	char Input[TabLen];
 	textcolor(3);
 	printf("\nSet input: ");
 	textcolor(InputColor);
 	fgets(Input, TabLen, stdin);
-	InputLen = 0;
+	int InputLen = 0;
 	for (int i = 0; i < TabLen; i++) {
 		if (Input[i] == 0 || Input[i] == 10)
 		{
 			break;
 		}
-		printf("%c, ", Input[i]);
+		//printf("%c, ", Input[i]);
 		InputLen++;
 	}
 	//printf("\nlen: %d\n", InputLen);
 
-	InputLen += 2;
-	String = (char*)malloc(InputLen * 8);
+	//InputLen += 2;
+	*Text = (char*)malloc(InputLen);
 	for (int i = 0; i < InputLen; i++) {
-		String[i] = Input[i];
+		(*Text)[i] = Input[i];
 	}
-	InputLen -= 2;
+	//InputLen -= 2;
+
+	return InputLen;
+}
+
+void Encrypt(char* Text, int InputLen) {
+	printf("%s", Text);
+}
+
+void Decrypt(char* Text, int InputLen) {
+	printf("%s", Text);
 }
