@@ -17,3 +17,7 @@ Niektóre teksty nie mogą być zaszyfrowane za pomocą tego algorytmu, w takim 
 
 ![App Screenshot](https://raw.githubusercontent.com/BialySztorm/Studia/master/Programowanie/Project1/PrintScreen_13_11_2022.png)
 
+## Links
+
+- [Block scheme](https://polslpl-my.sharepoint.com/:u:/g/personal/am305303_student_polsl_pl/ERJuhPZykthGkGuDxxxPou0BPFmR0rWmMqeSchDLREi78A?e=1PXQ6W)
+
