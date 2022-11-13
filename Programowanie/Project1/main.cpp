@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <conio.h>
 #include <locale.h>
+#include <math.h>
 #pragma warning(disable : 4996)
 #define _CRT_SECURE_NO_WARNINGS
 #include "colors.h"
 #include "data.h"
 
-#define InputColor    15
-
+#define InputColor 15
+;
 void ShowGui();
 int GetInput(char** Text);
 void Encrypt(char* Text, int InputLen);
@@ -55,7 +56,7 @@ int main() {
 	}
 
 	return 0;
-};
+}
 
 void ShowGui()
 {
@@ -63,7 +64,7 @@ void ShowGui()
 	textcolor(5);
 	printf("<--------------------------------->\n");
 	textcolor(13);
-	printf("Mendeleev's Cipher v1.0.1\n");
+	printf("Mendeleev's Cipher v1.0.2\n");
 	printf("by Andrzej Manderla\n\n");
 	printf("Select option:\n");
 	printf("[1] - Encrypt\n");
@@ -92,12 +93,14 @@ int GetInput(char** Text)
 	}
 	//printf("\nlen: %d\n", InputLen);
 
-	//InputLen += 2;
+	InputLen += 2;
 	*Text = (char*)malloc(InputLen);
-	for (int i = 0; i < InputLen; i++) {
-		(*Text)[i] = Input[i];
+	if (*Text) {
+		for (int i = 0; i < InputLen; i++) {
+			(*Text)[i] = Input[i];
+		}
 	}
-	//InputLen -= 2;
+	InputLen -= 2;
 
 	return InputLen;
 }
@@ -107,5 +110,48 @@ void Encrypt(char* Text, int InputLen) {
 }
 
 void Decrypt(char* Text, int InputLen) {
-	printf("%s", Text);
+	int TabLen = 1;
+	char* Decrypted;
+	int tmp[4] = { 0,0,0,0 };
+	int tmp1 = 0;
+	int CurrIndex = 0;
+	for (int i = 0; i < InputLen; i++) {
+		if (Text[i] == '*') {
+			TabLen++;
+		}
+	}
+	TabLen *= 2;
+	//printf("%d", TabLen);
+	Decrypted = (char*)malloc(TabLen);
+	if (Decrypted) {
+		for (int i = 0; i < TabLen; i++) {
+			Decrypted[i] = NULL;
+		}
+		for (int i = 0; i <= InputLen; i++) {
+			if (Text[i] >= '0' && Text[i] <= '9') {
+				tmp[0]++;
+				tmp[tmp[0]] = (int)Text[i] - 48;
+			}
+			if (Text[i] == '*' || i == InputLen - 1) {
+				if (tmp[0] > 0) {
+					for (int j = 1; j <= tmp[0]; j++) {
+						tmp1 += (int)pow(10, tmp[0] - j) * tmp[j];
+					}
+					//printf("%d\n", tmp1);
+					for (int j = 0; j < ElementsLen[tmp1]; j++) {
+						Decrypted[CurrIndex] = Elements[tmp1][j];
+						CurrIndex++;
+					}
+				}
+				tmp[0] = 0;
+				tmp1 = 0;
+				if (Text[i - 1] == '*') {
+					Decrypted[CurrIndex] = ' ';
+					CurrIndex++;
+				}
+			}
+		}
+
+		printf("%s\n", Decrypted);
+	}
 }
