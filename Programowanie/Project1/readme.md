@@ -20,4 +20,5 @@ Niektóre teksty nie mogą być zaszyfrowane za pomocą tego algorytmu, w takim 
 ## Links
 
 - [Block scheme](https://polslpl-my.sharepoint.com/:u:/g/personal/am305303_student_polsl_pl/ERJuhPZykthGkGuDxxxPou0BPFmR0rWmMqeSchDLREi78A?e=1PXQ6W)
+- [Documentation](https://polslpl-my.sharepoint.com/:w:/g/personal/am305303_student_polsl_pl/EWDRh_Soo7VDkSwZxLeePEEBCFTmf2JAlZrTrBYjw5mFpw?e=2QCSab)
 
