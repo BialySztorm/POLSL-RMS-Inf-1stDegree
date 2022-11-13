@@ -1,6 +1,8 @@
 #include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-void textcolor(int color)
+void textcolor(int Color)
 {
 	static int __BACKGROUND;
 
@@ -10,7 +12,7 @@ void textcolor(int color)
 	GetConsoleScreenBufferInfo(h, &csbiInfo);
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-		color + (__BACKGROUND << 4));
+		Color + (__BACKGROUND << 4));
 }
 
 /*

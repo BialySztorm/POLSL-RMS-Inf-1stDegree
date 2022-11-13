@@ -7,15 +7,16 @@
 #include "colors.h"
 #include "data.h"
 
-#define InputColor 15
+int InputColor = 0;
 
+void GetOptions();
 void ShowGui();
 int GetInput(char** Text);
 void Encrypt(char* Text, int InputLen);
 void Decrypt(char* Text, int InputLen);
 
 int main() {
-	setlocale(LC_ALL, "");
+	GetOptions();
 	bool IsRunning = 1;
 	char Option = 0;
 	int InputLen;
@@ -31,6 +32,8 @@ int main() {
 		if (Option == '0')
 			IsRunning = 0;
 		else if (Option == '1') {
+			textcolor(14);
+			printf("\nEncrypting...\n");
 			InputLen = GetInput(&String);
 
 			Encrypt(String, InputLen);
@@ -40,6 +43,8 @@ int main() {
 			GetChar = _getch();
 		}
 		else if (Option == '2') {
+			textcolor(14);
+			printf("\nDecrypting...\n");
 			InputLen = GetInput(&String);
 
 			Decrypt(String, InputLen);
@@ -56,6 +61,49 @@ int main() {
 	}
 
 	return 0;
+}
+
+void GetOptions() {
+	const char* FileName = "options.txt";
+	FILE* FileToRead;
+	char Znak[5];
+	FileToRead = fopen(FileName, "r");
+	if (FileToRead == NULL) {
+		printf("The options file is empty or does not exist.\n");
+
+		FILE* FileToWrite;
+		char Option[5];
+
+		printf("Is your editor in light(1) or dark(0) mode?\nPlease enter: ");
+		fgets(Option, 2, stdin);
+		FileToWrite = fopen(FileName, "w");
+		fprintf(FileToWrite, "%s   - Console theme 0 - dark, 1 - light\n", Option);
+		fprintf(FileToWrite, "     - Locale\n");
+
+		fclose(FileToWrite);
+
+		FileToRead = fopen(FileName, "r");
+		fgets(Znak, 5, FileToRead);
+		if ((int)Znak[0] == '0')
+			InputColor = 15;
+		else
+			InputColor = 0;
+		fgets(Znak, 5, FileToRead);
+		setlocale(LC_ALL, "");
+
+		fclose(FileToRead);
+	}
+	else {
+		fgets(Znak, 5, FileToRead);
+		if ((int)Znak[0] == '0')
+			InputColor = 15;
+		else
+			InputColor = 0;
+		fgets(Znak, 5, FileToRead);
+		setlocale(LC_ALL, "");
+
+		fclose(FileToRead);
+	}
 }
 
 void ShowGui()
@@ -111,10 +159,9 @@ int GetInput(char** Text)
 void Encrypt(char* Text, int InputLen) {
 	//printf("%s", Text);
 	int TabLen = InputLen * 4;
-	char* Encrypted = (char*)malloc(TabLen);
+	char* Encrypted = (char*)malloc(TabLen * 2);
 	int* Code = (int*)malloc(InputLen);
 	int CurrIndex = 0, CurrElement = 1, CurrCode = 0, tmp[] = { 0,0 };
-	// zaprogramoaæ spacjê, i wracanie jeœli nie pasuje
 	if (Encrypted) {
 		for (int i = 0; i < TabLen; i++) {
 			Encrypted[i] = NULL;
@@ -175,20 +222,34 @@ void Encrypt(char* Text, int InputLen) {
 			for (int i = 0; i < TabLen; i++) {
 				//printf("C%d\n", Code[i]);
 				while (Code[i] >= 1) {
-					if (Code[i] > 100) {
+					if (Code[i] >= 100) {
 						tmp[0] = Code[i] / 100;
 						tmp[1] = tmp[0] * 100;
+						Encrypted[CurrIndex] = tmp[0] + 48;
+						Code[i] -= tmp[1];
+						if (Code[i] < 1) {
+							Encrypted[++CurrIndex] = 48;
+						}
+						if (Code[i] < 10) {
+							Encrypted[++CurrIndex] = 48;
+						}
 					}
-					else if (Code[i] > 10) {
+					else if (Code[i] >= 10) {
 						tmp[0] = Code[i] / 10;
 						tmp[1] = tmp[0] * 10;
+						Encrypted[CurrIndex] = tmp[0] + 48;
+						Code[i] -= tmp[1];
+						if (Code[i] < 1) {
+							Encrypted[++CurrIndex] = 48;
+						}
 					}
 					else {
 						tmp[0] = Code[i];
 						tmp[1] = tmp[0];
+						Encrypted[CurrIndex] = tmp[0] + 48;
+						Code[i] -= tmp[1];
 					}
-					Encrypted[CurrIndex] = tmp[0] + 48;
-					Code[i] -= tmp[1];
+
 					CurrIndex++;
 				}
 				if (i != TabLen - 1)
@@ -208,7 +269,7 @@ void Decrypt(char* Text, int InputLen) {
 	//printf("%s", Text);
 	int TabLen = 1;
 	char* Decrypted;
-	int tmp[4] = { 0,0,0,0 };
+	int tmp[5] = { 0,0,0,0,0 };
 	int tmp1 = 0;
 	int CurrIndex = 0;
 	for (int i = 0; i < InputLen; i++) {
@@ -216,7 +277,7 @@ void Decrypt(char* Text, int InputLen) {
 			TabLen++;
 		}
 	}
-	TabLen *= 2;
+	TabLen *= 8;
 	//printf("%d", TabLen);
 	Decrypted = (char*)malloc(TabLen);
 	if (Decrypted) {
@@ -228,10 +289,18 @@ void Decrypt(char* Text, int InputLen) {
 				tmp[0]++;
 				tmp[tmp[0]] = (int)Text[i] - 48;
 			}
+			else if (Text[i] >= 32 && Text[i] <= 126 && Text[i] != '*') {
+				Decrypted = "no possibility";
+				break;
+			}
 			if (Text[i] == '*' || i == InputLen - 1) {
 				if (tmp[0] > 0) {
 					for (int j = 1; j <= tmp[0]; j++) {
 						tmp1 += (int)pow(10, tmp[0] - j) * tmp[j];
+					}
+					if (tmp1 > 118) {
+						Decrypted = "no possibility";
+						break;
 					}
 					//printf("%d\n", tmp1);
 					for (int j = 0; j < ElementsLen[tmp1]; j++) {
