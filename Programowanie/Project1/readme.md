@@ -16,6 +16,8 @@ Some texts cannot be encrypted using this algorithm, in which case the program p
 ## Screenshots
 
 ![App Screenshot](https://raw.githubusercontent.com/BialySztorm/Studia/master/Programowanie/Project1/PrintScreen_13_11_2022.png)
+![App Screenshot](https://raw.githubusercontent.com/BialySztorm/Studia/master/Programowanie/Project1/PrintScreen_14_11_2022.png)
+
 
 ## Links
 
