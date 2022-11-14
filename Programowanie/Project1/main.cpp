@@ -5,7 +5,6 @@
 #include <string.h>
 #pragma warning(disable : 4996)
 #define _CRT_SECURE_NO_WARNINGS
-#include "colors.h"
 #include "data.h"
 
 #ifdef _WIN32
@@ -24,7 +23,7 @@ int GetColumnWidth()
 int GetColumnWidth() { return 80; }
 #endif
 
-int InputColor = 0;
+char* InputColor;
 
 void GetOptions();
 int GetPadding(int TotalWidth, char* s);
@@ -46,35 +45,35 @@ int main() {
 		TotalWidth = GetColumnWidth();
 		ShowGui();
 		// max char[] size  2 ^ 32 -1
-		textcolor(InputColor);
+		printf(InputColor);
 		Option = _getch();
 
 		if (Option == '0')
 			IsRunning = 0;
 		else if (Option == '1') {
-			textcolor(14);
+			printf("\033[0;33m");
 			printf("\n%*s", TotalWidth / 2 + 7, "Szyfrowanie...\n");
 			InputLen = GetInput(&String);
 
 			Encrypt(String, InputLen);
 
-			textcolor(InputColor);
+			printf(InputColor);
 			printf("\n%*s", TotalWidth / 2 + 15, "Naciœnij cokolwiek aby kontynuowaæ.");
 			GetChar = _getch();
 		}
 		else if (Option == '2') {
-			textcolor(14);
+			printf("\033[0;33m");
 			printf("\n%*s", TotalWidth / 2 + 7, "Deszyfrowanie...\n");
 			InputLen = GetInput(&String);
 
 			Decrypt(String, InputLen);
 
-			textcolor(InputColor);
+			printf(InputColor);
 			printf("\n%*s", TotalWidth / 2 + 15, "Naciœnij cokolwiek aby kontynuowaæ.");
 			GetChar = _getch();
 		}
 		else {
-			textcolor(4);
+			printf("\033[0;31m");
 			printf("%*s", TotalWidth / 2 + 6, "B³êdne dane!");
 			GetChar = _getch();
 		}
@@ -105,18 +104,18 @@ void GetOptions() {
 		FileToRead = fopen(FileName, "r");
 		fgets(Znak, 5, FileToRead);
 		if ((int)Znak[0] == '0')
-			InputColor = 15;
+			InputColor = "\033[0; 37m";
 		else
-			InputColor = 0;
+			InputColor = "\033[0;30m";
 
 		fclose(FileToRead);
 	}
 	else {
 		fgets(Znak, 5, FileToRead);
 		if ((int)Znak[0] == '0')
-			InputColor = 15;
+			InputColor = "\033[0; 37m";
 		else
-			InputColor = 0;
+			InputColor = "\033[0;30m";
 
 		fclose(FileToRead);
 	}
@@ -134,18 +133,14 @@ void ShowGui()
 	char* s;
 
 	system("cls");
-	textcolor(5);
+	printf("\033[0;35m");
 	printf("\n\n\n");
 	s = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
-	textcolor(13);
 	s = "|S|z|y|f|r|a|t|o|r| |M|e|n|d|e|l|e|j|e|w|a|   |v|1|.|0|.|2|\n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
-	textcolor(5);
 	s = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
-	textcolor(13);
-
 	s = "Stworzony przez Andrzej Manderla\n\n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
 	s = "Wybierz opcjê:\n";
@@ -156,7 +151,6 @@ void ShowGui()
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
 	s = "[0] - Zakoñcz  \n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
-	textcolor(5);
 	s = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
 }
@@ -166,9 +160,9 @@ int GetInput(char** Text)
 	const int TotalWidth = GetColumnWidth();
 	const int TabLen = 10000;
 	char Input[TabLen];
-	textcolor(3);
+	printf("\033[0;34m");
 	printf("\n%*s", TotalWidth / 2, "Dane wejœciowe: ");
-	textcolor(InputColor);
+	printf(InputColor);
 	fgets(Input, TabLen, stdin);
 	int InputLen = 0;
 	for (int i = 0; i < TabLen; i++) {
@@ -299,9 +293,9 @@ void Encrypt(char* Text, int InputLen) {
 			}
 		}
 
-		textcolor(3);
+		printf("\033[0;34m");
 		printf("%*s", TotalWidth / 2, "Dane wyjœciowe: ");
-		textcolor(InputColor);
+		printf(InputColor);
 		printf("%s\n", Encrypted);
 	}
 }
@@ -358,9 +352,9 @@ void Decrypt(char* Text, int InputLen) {
 				}
 			}
 		}
-		textcolor(3);
+		printf("\033[0;34m");
 		printf("%*s", TotalWidth / 2, "Dane wyjœciowe: ");
-		textcolor(InputColor);
+		printf(InputColor);
 		printf("%s\n", Decrypted);
 	}
 }

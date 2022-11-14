@@ -114,7 +114,6 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="colors.h" />
     <ClInclude Include="data.h" />
   </ItemGroup>
   <ItemGroup>
