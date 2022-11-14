@@ -104,7 +104,7 @@ void GetOptions() {
 		FileToRead = fopen(FileName, "r");
 		fgets(Znak, 5, FileToRead);
 		if ((int)Znak[0] == '0')
-			InputColor = "\033[0; 37m";
+			InputColor = "\033[0;37m";
 		else
 			InputColor = "\033[0;30m";
 
@@ -113,7 +113,7 @@ void GetOptions() {
 	else {
 		fgets(Znak, 5, FileToRead);
 		if ((int)Znak[0] == '0')
-			InputColor = "\033[0; 37m";
+			InputColor = "\033[0;37m";
 		else
 			InputColor = "\033[0;30m";
 
