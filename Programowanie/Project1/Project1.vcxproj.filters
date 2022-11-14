@@ -28,8 +28,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Periodic_Table_of_Elements.csv">
+    <Text Include="pl.txt">
       <Filter>Resource Files</Filter>
-    </None>
+    </Text>
+    <Text Include="en.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

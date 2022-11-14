@@ -1,0 +1,16 @@
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n
+|M|e|n|d|e|l|e|e|v|'|s| |C|i|p|h|e|r|   |v|1|.|0|.|2|\n
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n
+by Andrzej Manderla\n\n
+Select option:\n
+[1] - Encrypt\n
+[2] - Decrypt\n
+[0] - Exit   \n
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n
+Set input: 
+No possibility
+Output is: 
+Press something to continue.
+Encrypting...\n
+Decrypting...\n
+Wrong data!

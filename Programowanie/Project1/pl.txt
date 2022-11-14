@@ -1,0 +1,16 @@
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n
+|S|z|y|f|r|a|t|o|r| |M|e|n|d|e|l|e|j|e|w|a|   |v|1|.|0|.|2|\n
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n
+Stworzony przez Andrzej Manderla\n\n
+Wybierz opcjê:\n
+[1] - Szyfruj  \n
+[2] - Deszyfruj\n
+[0] - Zakoñcz  \n
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n
+Dane wejœciowe: 
+Nie ma mo¿liwoœci
+Dane wyjœciowe: 
+Naciœnij cokolwiek aby kontynuowaæ.
+Szyfrowanie...\n
+Deszyfrowanie...\n
+B³êdne dane!

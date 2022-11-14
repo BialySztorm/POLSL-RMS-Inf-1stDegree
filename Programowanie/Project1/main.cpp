@@ -2,14 +2,32 @@
 #include <conio.h>
 #include <locale.h>
 #include <math.h>
+#include <string.h>
 #pragma warning(disable : 4996)
 #define _CRT_SECURE_NO_WARNINGS
 #include "colors.h"
 #include "data.h"
 
+#ifdef _WIN32
+#include <Windows.h>
+int GetColumnWidth()
+{
+	CONSOLE_SCREEN_BUFFER_INFO info;
+	HANDLE out;
+
+	if (!(out = GetStdHandle(STD_OUTPUT_HANDLE)) ||
+		!GetConsoleScreenBufferInfo(out, &info))
+		return 80;
+	return info.dwSize.X;
+}//GetColumnWidth
+#else
+int GetColumnWidth() { return 80; }
+#endif
+
 int InputColor = 0;
 
 void GetOptions();
+int GetPadding(int TotalWidth, char* s);
 void ShowGui();
 int GetInput(char** Text);
 void Encrypt(char* Text, int InputLen);
@@ -22,8 +40,10 @@ int main() {
 	int InputLen;
 	char* String = nullptr;
 	char GetChar;
+	int TotalWidth;
 
 	while (IsRunning) {
+		TotalWidth = GetColumnWidth();
 		ShowGui();
 		// max char[] size  2 ^ 32 -1
 		textcolor(InputColor);
@@ -33,29 +53,29 @@ int main() {
 			IsRunning = 0;
 		else if (Option == '1') {
 			textcolor(14);
-			printf("\nEncrypting...\n");
+			printf("\n%*s", TotalWidth / 2 + 7, "Szyfrowanie...\n");
 			InputLen = GetInput(&String);
 
 			Encrypt(String, InputLen);
 
 			textcolor(InputColor);
-			printf("\nPress something to continue.");
+			printf("\n%*s", TotalWidth / 2 + 15, "Naciœnij cokolwiek aby kontynuowaæ.");
 			GetChar = _getch();
 		}
 		else if (Option == '2') {
 			textcolor(14);
-			printf("\nDecrypting...\n");
+			printf("\n%*s", TotalWidth / 2 + 7, "Deszyfrowanie...\n");
 			InputLen = GetInput(&String);
 
 			Decrypt(String, InputLen);
 
 			textcolor(InputColor);
-			printf("\nPress something to continue.");
+			printf("\n%*s", TotalWidth / 2 + 15, "Naciœnij cokolwiek aby kontynuowaæ.");
 			GetChar = _getch();
 		}
 		else {
 			textcolor(4);
-			printf("Wrong data!");
+			printf("%*s", TotalWidth / 2 + 6, "B³êdne dane!");
 			GetChar = _getch();
 		}
 	}
@@ -106,28 +126,52 @@ void GetOptions() {
 	}
 }
 
+int GetPadding(int TotalWidth, char* s) {
+	int sWidth = strlen(s);
+	int FieldWidth = (TotalWidth - sWidth) / 2 + sWidth;
+	return FieldWidth;
+}
+
 void ShowGui()
 {
+	const int TotalWidth = GetColumnWidth();
+	char* s;
+
 	system("cls");
 	textcolor(5);
-	printf("<--------------------------------->\n");
+	printf("\n\n\n");
+	s = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n";
+	printf("%*s\n", GetPadding(TotalWidth, s), s);
 	textcolor(13);
-	printf("Mendeleev's Cipher v1.0.2\n");
-	printf("by Andrzej Manderla\n\n");
-	printf("Select option:\n");
-	printf("[1] - Encrypt\n");
-	printf("[2] - Decrypt\n");
-	printf("[0] - Exit\n");
+	s = "|S|z|y|f|r|a|t|o|r| |M|e|n|d|e|l|e|j|e|w|a|   |v|1|.|0|.|2|\n";
+	printf("%*s\n", GetPadding(TotalWidth, s), s);
 	textcolor(5);
-	printf("<--------------------------------->\n\n\n");
+	s = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n";
+	printf("%*s\n", GetPadding(TotalWidth, s), s);
+	textcolor(13);
+
+	s = "Stworzony przez Andrzej Manderla\n\n";
+	printf("%*s\n", GetPadding(TotalWidth, s), s);
+	s = "Wybierz opcjê:\n";
+	printf("%*s\n", GetPadding(TotalWidth, s), s);
+	s = "[1] - Szyfruj  \n";
+	printf("%*s\n", GetPadding(TotalWidth, s), s);
+	s = "[2] - Deszyfruj\n";
+	printf("%*s\n", GetPadding(TotalWidth, s), s);
+	s = "[0] - Zakoñcz  \n";
+	printf("%*s\n", GetPadding(TotalWidth, s), s);
+	textcolor(5);
+	s = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n";
+	printf("%*s\n", GetPadding(TotalWidth, s), s);
 }
 
 int GetInput(char** Text)
 {
+	const int TotalWidth = GetColumnWidth();
 	const int TabLen = 10000;
 	char Input[TabLen];
 	textcolor(3);
-	printf("\nSet input: ");
+	printf("\n%*s", TotalWidth / 2, "Dane wejœciowe: ");
 	textcolor(InputColor);
 	fgets(Input, TabLen, stdin);
 	int InputLen = 0;
@@ -157,6 +201,7 @@ int GetInput(char** Text)
 }
 
 void Encrypt(char* Text, int InputLen) {
+	const int TotalWidth = GetColumnWidth();
 	//printf("%s", Text);
 	int TabLen = InputLen * 4;
 	char* Encrypted = (char*)malloc(TabLen * 2);
@@ -168,16 +213,16 @@ void Encrypt(char* Text, int InputLen) {
 		}
 		for (int i = 0; i <= InputLen; i++) {
 			if (Text[i] == 'j' || Text[i] == 'q')
-				Encrypted = "no possibility";
+				Encrypted = "Nie ma mo¿liwoœci";
 		}
-		if (Encrypted[0] != 'n') {
+		if (Encrypted[0] != 'N') {
 			while (CurrIndex < InputLen) {
 				//printf("E%d\n", CurrElement);
 				if (Elements[CurrElement][0] == Text[CurrIndex]) {
 					//printf("I%d\n", CurrIndex);
 					CurrIndex++;
 					if (ElementsLen[CurrElement] > 1) {
-						if (Elements[CurrElement][1] == Text[CurrIndex]) {
+						if (Elements[CurrElement][1] == Text[CurrIndex] && CurrIndex != InputLen) {
 							Code[CurrCode] = CurrElement;
 							CurrCode++;
 							CurrElement = 1;
@@ -206,7 +251,7 @@ void Encrypt(char* Text, int InputLen) {
 				if (CurrElement >= sizeof(ElementsLen) / 4) {
 					//printf("sizeof\n");
 					if (CurrIndex == 0 || Code[CurrCode - 1] >= sizeof(ElementsLen) / 4 - 1 || Code[CurrCode - 1] == 0) {
-						Encrypted = "no possibility";
+						Encrypted = "Nie ma mo¿liwoœci";
 						break;
 					}
 					else {
@@ -216,7 +261,7 @@ void Encrypt(char* Text, int InputLen) {
 				}
 			}
 		}
-		if (Encrypted[0] != 'n') {
+		if (Encrypted[0] != 'N') {
 			TabLen = CurrCode;
 			CurrIndex = 0;
 			for (int i = 0; i < TabLen; i++) {
@@ -259,13 +304,14 @@ void Encrypt(char* Text, int InputLen) {
 		}
 
 		textcolor(3);
-		printf("Output is: ");
+		printf("%*s", TotalWidth / 2, "Dane wyjœciowe: ");
 		textcolor(InputColor);
 		printf("%s\n", Encrypted);
 	}
 }
 
 void Decrypt(char* Text, int InputLen) {
+	const int TotalWidth = GetColumnWidth();
 	//printf("%s", Text);
 	int TabLen = 1;
 	char* Decrypted;
@@ -290,7 +336,7 @@ void Decrypt(char* Text, int InputLen) {
 				tmp[tmp[0]] = (int)Text[i] - 48;
 			}
 			else if (Text[i] >= 32 && Text[i] <= 126 && Text[i] != '*') {
-				Decrypted = "no possibility";
+				Decrypted = "Nie ma mo¿liwoœci";
 				break;
 			}
 			if (Text[i] == '*' || i == InputLen - 1) {
@@ -299,7 +345,7 @@ void Decrypt(char* Text, int InputLen) {
 						tmp1 += (int)pow(10, tmp[0] - j) * tmp[j];
 					}
 					if (tmp1 > 118) {
-						Decrypted = "no possibility";
+						Decrypted = "Nie ma mo¿liwoœci";
 						break;
 					}
 					//printf("%d\n", tmp1);
@@ -317,7 +363,7 @@ void Decrypt(char* Text, int InputLen) {
 			}
 		}
 		textcolor(3);
-		printf("Output is: ");
+		printf("%*s", TotalWidth / 2, "Dane wyjœciowe: ");
 		textcolor(InputColor);
 		printf("%s\n", Decrypted);
 	}
