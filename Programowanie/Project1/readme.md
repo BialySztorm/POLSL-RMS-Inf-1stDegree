@@ -1,11 +1,11 @@
 
-# Szyfr Mendelewa
+# Mendeleev cipher
 
-Program szyfrujący podany tekst w taki sposób, że zamiast kolejnych liter program wpisywał będzie liczbę atomową pierwiastka, którego symbolem chemicznym są szyfrowane litery (nie uwzględniając wielkości liter). Odstęp miedzt literami zastępuje symbol '*', a odstęp między wyrazami symbol '**'.
+The program encrypts the given text in such a way that instead of successive letters, the program will enter the atomic number of the element whose chemical symbol is the encrypted letters (not taking into account the case of the letters). Letter spacing is replaced by '*' and word spacing by '**'.
 
-Niektóre teksty mogą być szyfrowane na kilka sposobów, ale szyfrator wybierze pierwszą możliwą opcję.
+Some texts can be encrypted in several ways, but the encryptor will choose the first possible option.
 
-Niektóre teksty nie mogą być zaszyfrowane za pomocą tego algorytmu, w takim przypadku program wypisuje stosowny komunikat.
+Some texts cannot be encrypted using this algorithm, in which case the program prints an appropriate message.
 
 
 ## Authors
@@ -20,4 +20,5 @@ Niektóre teksty nie mogą być zaszyfrowane za pomocą tego algorytmu, w takim 
 ## Links
 
 - [Block scheme](https://polslpl-my.sharepoint.com/:u:/g/personal/am305303_student_polsl_pl/ERJuhPZykthGkGuDxxxPou0BPFmR0rWmMqeSchDLREi78A?e=1PXQ6W)
+- [Documentation](https://polslpl-my.sharepoint.com/:w:/g/personal/am305303_student_polsl_pl/EWDRh_Soo7VDkSwZxLeePEEBCFTmf2JAlZrTrBYjw5mFpw?e=2QCSab)
 
