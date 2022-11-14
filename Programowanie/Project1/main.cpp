@@ -84,6 +84,7 @@ int main() {
 }
 
 void GetOptions() {
+	setlocale(LC_ALL, "");
 	const char* FileName = "options.txt";
 	FILE* FileToRead;
 	char Znak[5];
@@ -98,7 +99,6 @@ void GetOptions() {
 		fgets(Option, 2, stdin);
 		FileToWrite = fopen(FileName, "w");
 		fprintf(FileToWrite, "%s   - Console theme 0 - dark, 1 - light\n", Option);
-		fprintf(FileToWrite, "     - Locale\n");
 
 		fclose(FileToWrite);
 
@@ -108,8 +108,6 @@ void GetOptions() {
 			InputColor = 15;
 		else
 			InputColor = 0;
-		fgets(Znak, 5, FileToRead);
-		setlocale(LC_ALL, "");
 
 		fclose(FileToRead);
 	}
@@ -119,8 +117,6 @@ void GetOptions() {
 			InputColor = 15;
 		else
 			InputColor = 0;
-		fgets(Znak, 5, FileToRead);
-		setlocale(LC_ALL, "");
 
 		fclose(FileToRead);
 	}
