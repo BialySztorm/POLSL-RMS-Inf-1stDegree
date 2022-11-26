@@ -5,39 +5,34 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <malloc.h>
 
-void insertion_sort(int* tab, int n) {
-	int tmp, j;
-	for (int i = 1; i < n; i++)
-	{
-		tmp = tab[i];
-		j = i - 1;
-
-		while (j >= 0 && tab[j] > tmp)
-		{
-			tab[j + 1] = tab[j];
-			--j;
-		}
-		tab[j + 1] = tmp;
+int polynomial(int tab[], int n, int x) {
+	double tmp;
+	for (int i = 0; i < n; i++) {
+		tmp += tab[i] * pow(x, i);
 	}
+
+	return tmp;
 }
 
 int main()
 {
 	setlocale(LC_ALL, "");
-	const int n = 10;
+
 	int* tab;
-	tab = new int[n];
+	int n, x;
+	printf("Podaj n: ");
+	scanf("%d", &n);
+	printf("Podaj x: ");
+	scanf("%d", &x);
 
-	for (int i = 0; i < n; i++) {
-		printf("podaj %i liczbê: ", i + 1);
-		scanf("%i", &tab[i]);
+	tab = (int*)malloc(sizeof(int) * (n + 1));
+	for (int i = 0; i < n + 1; i++) {
+		tab[i] = pow(x, i);
 	}
 
-	insertion_sort(tab, n);
-	for (int i = 0; i < n; i++) {
-		printf("%i, ", tab[i]);
-	}
+	printf("Wartoœæ tego wielomianu to: %d", polynomial(tab, n, x));
 
 	_getch();
 }

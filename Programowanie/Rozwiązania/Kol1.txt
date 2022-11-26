@@ -1,0 +1,115 @@
+============= 01 =============
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double h = 0, r = 0, l;
+
+	printf("Podaj promieñ sto¿ka");
+	scanf("%le", &r);
+	printf("Podaj wysokoœæ sto¿ka");
+	scanf("%le", &h);
+
+	if (h > 0 && r > 0) {
+		l = sqrt(pow(h, 2) + pow(r, 2));
+		printf("Pole powierzchni bocznej sto¿ka wynosi: %g\n", (M_PI * r * l));
+		printf("Objêtoœæ sto¿ka wynosi: %g\n", (M_PI * pow(r, 2) * h) / 3);
+	}
+	else {
+		printf("\nB³êdne dane\n");
+	}
+
+	_getch();
+}
+
+============= 02 =============
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <malloc.h>
+
+int polynomial(int tab[], int n, int x) {
+	double tmp;
+	for (int i = 0; i < n; i++) {
+		tmp += tab[i] * pow(x, i);
+	}
+
+	return tmp;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "");
+
+	int* tab;
+	int n, x;
+	printf("Podaj n: ");
+	scanf("%d", &n);
+	printf("Podaj x: ");
+	scanf("%d", &x);
+
+	tab = (int*)malloc(sizeof(int) * (n + 1));
+	for (int i = 0; i < n + 1; i++) {
+		tab[i] = pow(x, i);
+	}
+
+	printf("Wartoœæ tego wielomianu to: %d", polynomial(tab, n, x));
+
+	_getch();
+}
+
+============= 03 =============
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <malloc.h>
+
+void BubbleSort(int tab[], int len) {
+	for (int i = 0; i < len - 1; i++) {
+		for (int j = 0; j < len - i - 1; j++) {
+			if (tab[j] < tab[j + 1]) {
+				int temp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = temp;
+			}
+		}
+	}
+}
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	int* tab;
+	int len;
+	printf("Podaj wymiar zadania: ");
+	scanf("%d", &len);
+	tab = (int*)malloc(sizeof(int) * len);
+	for (int i = 0; i < len; i++) {
+		printf("Podaj %d element: ", i + 1);
+		scanf("%d", &tab[i]);
+	}
+
+	BubbleSort(tab, len);
+
+	for (int i = 0; i < len; i++) {
+		printf("%d, ", tab[i]);
+	}
+	_getch();
+}
