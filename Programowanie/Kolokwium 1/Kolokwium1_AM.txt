@@ -1,3 +1,5 @@
+Andrzej Manderla Gr 1/2
+Kolokwium 1 z Programowanie I
 ============= 01 =============
 
 #include <stdio.h>
@@ -13,9 +15,9 @@ int main()
 	setlocale(LC_ALL, "");
 	double h = 0, r = 0, l;
 
-	printf("Podaj promieñ sto¿ka");
+	printf("Podaj promieñ sto¿ka: ");
 	scanf("%le", &r);
-	printf("Podaj wysokoœæ sto¿ka");
+	printf("Podaj wysokoœæ sto¿ka: ");
 	scanf("%le", &h);
 
 	if (h > 0 && r > 0) {
@@ -24,7 +26,7 @@ int main()
 		printf("Objêtoœæ sto¿ka wynosi: %g\n", (M_PI * pow(r, 2) * h) / 3);
 	}
 	else {
-		printf("\nB³êdne dane\n");
+		printf("\nB³êdne dane!\n");
 	}
 
 	_getch();
@@ -41,34 +43,39 @@ int main()
 #include <math.h>
 #include <malloc.h>
 
-int polynomial(int tab[], int n, int x) {
-	double tmp;
-	for (int i = 0; i < n; i++) {
-		tmp += tab[i] * pow(x, i);
-	}
-
-	return tmp;
-}
+double polynomial(int tab[], int n, int x);
 
 int main()
 {
 	setlocale(LC_ALL, "");
 
-	int* tab;
-	int n, x;
+	double* tab;
+	double n, x;
 	printf("Podaj n: ");
 	scanf("%d", &n);
 	printf("Podaj x: ");
 	scanf("%d", &x);
 
-	tab = (int*)malloc(sizeof(int) * (n + 1));
+	tab = (double*)malloc(sizeof(double) * (n + 1));
 	for (int i = 0; i < n + 1; i++) {
-		tab[i] = pow(x, i);
+		double tmp;
+		printf("Podaj %d wspó³czynnik: ", i + 1);
+		scanf("%le", &tmp);
+		tab[i] = tmp;
 	}
 
 	printf("Wartoœæ tego wielomianu to: %d", polynomial(tab, n, x));
 
 	_getch();
+}
+
+double polynomial(double tab[], double n, double x) {
+	double tmp = 0;
+	for (int i = 0; i < n; i++) {
+		tmp += tab[i] * pow(x, i);
+	}
+
+	return tmp;
 }
 
 ============= 03 =============
@@ -81,17 +88,7 @@ int main()
 #define _USE_MATH_DEFINES
 #include <malloc.h>
 
-void BubbleSort(int tab[], int len) {
-	for (int i = 0; i < len - 1; i++) {
-		for (int j = 0; j < len - i - 1; j++) {
-			if (tab[j] < tab[j + 1]) {
-				int temp = tab[j];
-				tab[j] = tab[j + 1];
-				tab[j + 1] = temp;
-			}
-		}
-	}
-}
+void BubbleSort(int tab[], int len);
 
 int main()
 {
@@ -111,5 +108,18 @@ int main()
 	for (int i = 0; i < len; i++) {
 		printf("%d, ", tab[i]);
 	}
+	printf("\n");
 	_getch();
+}
+
+void BubbleSort(int tab[], int len) {
+	for (int i = 0; i < len - 1; i++) {
+		for (int j = 0; j < len - i - 1; j++) {
+			if (tab[j] < tab[j + 1]) {
+				int tmp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = tmp;
+			}
+		}
+	}
 }
