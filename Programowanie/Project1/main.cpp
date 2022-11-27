@@ -23,8 +23,6 @@ int GetColumnWidth()
 int GetColumnWidth() { return 80; }
 #endif
 
-char* InputColor;
-
 void GetOptions();
 int GetPadding(int TotalWidth, char* s);
 void ShowGui();
@@ -34,7 +32,7 @@ void Decrypt(char* Text, int InputLen);
 
 int main() {
 	GetOptions();
-	bool IsRunning = 1;
+	int IsRunning = 1;
 	char Option = 0;
 	int InputLen;
 	char* String = nullptr;
@@ -45,7 +43,7 @@ int main() {
 		TotalWidth = GetColumnWidth();
 		ShowGui();
 		// max char[] size  2 ^ 32 -1
-		printf(InputColor);
+		printf("\033[0m");
 		Option = _getch();
 
 		if (Option == '0')
@@ -57,7 +55,7 @@ int main() {
 
 			Encrypt(String, InputLen);
 
-			printf(InputColor);
+			printf("\033[0m");
 			printf("\n%*s", TotalWidth / 2 + 15, "Naciœnij cokolwiek aby kontynuowaæ.");
 			GetChar = _getch();
 		}
@@ -68,7 +66,7 @@ int main() {
 
 			Decrypt(String, InputLen);
 
-			printf(InputColor);
+			printf("\033[0m");
 			printf("\n%*s", TotalWidth / 2 + 15, "Naciœnij cokolwiek aby kontynuowaæ.");
 			GetChar = _getch();
 		}
@@ -94,28 +92,18 @@ void GetOptions() {
 		FILE* FileToWrite;
 		char Option[5];
 
-		printf("Is your editor in light(1) or dark(0) mode?\nPlease enter: ");
-		fgets(Option, 2, stdin);
 		FileToWrite = fopen(FileName, "w");
-		fprintf(FileToWrite, "%s   - Console theme 0 - dark, 1 - light\n", Option);
+		fprintf(FileToWrite, "");
 
 		fclose(FileToWrite);
 
 		FileToRead = fopen(FileName, "r");
 		fgets(Znak, 5, FileToRead);
-		if ((int)Znak[0] == '0')
-			InputColor = "\033[0;37m";
-		else
-			InputColor = "\033[0;30m";
 
 		fclose(FileToRead);
 	}
 	else {
 		fgets(Znak, 5, FileToRead);
-		if ((int)Znak[0] == '0')
-			InputColor = "\033[0;37m";
-		else
-			InputColor = "\033[0;30m";
 
 		fclose(FileToRead);
 	}
@@ -162,7 +150,7 @@ int GetInput(char** Text)
 	char Input[TabLen];
 	printf("\033[0;34m");
 	printf("\n%*s", TotalWidth / 2, "Dane wejœciowe: ");
-	printf(InputColor);
+	printf("\033[0m");
 	fgets(Input, TabLen, stdin);
 	int InputLen = 0;
 	for (int i = 0; i < TabLen; i++) {
@@ -174,9 +162,10 @@ int GetInput(char** Text)
 		InputLen++;
 	}
 	//printf("\nlen: %d\n", InputLen);
-
-	InputLen += 2;
-	*Text = (char*)malloc(InputLen);
+	*Text = (char*)malloc(InputLen * sizeof(char));
+	for (int i = 0; i < InputLen * sizeof(char); i++) {
+		(*Text)[i] = NULL;
+	}
 	if (*Text) {
 		for (int i = 0; i < InputLen; i++) {
 			if (Input[i] >= 65 && Input[i] <= 90)
@@ -185,7 +174,6 @@ int GetInput(char** Text)
 				(*Text)[i] = Input[i];
 		}
 	}
-	InputLen -= 2;
 
 	return InputLen;
 }
@@ -193,110 +181,116 @@ int GetInput(char** Text)
 void Encrypt(char* Text, int InputLen) {
 	const int TotalWidth = GetColumnWidth();
 	//printf("%s", Text);
-	int TabLen = InputLen * 4;
-	char* Encrypted = (char*)malloc(TabLen * 2);
-	int* Code = (int*)malloc(InputLen);
-	int CurrIndex = 0, CurrElement = 1, CurrCode = 0, tmp[] = { 0,0 };
-	if (Encrypted) {
-		for (int i = 0; i < TabLen; i++) {
-			Encrypted[i] = NULL;
-		}
-		for (int i = 0; i <= InputLen; i++) {
-			if (Text[i] == 'j' || Text[i] == 'q')
-				Encrypted = "Nie ma mo¿liwoœci";
-		}
-		if (Encrypted[0] != 'N') {
-			while (CurrIndex < InputLen) {
-				//printf("E%d\n", CurrElement);
-				if (Elements[CurrElement][0] == Text[CurrIndex]) {
-					//printf("I%d\n", CurrIndex);
-					CurrIndex++;
-					if (ElementsLen[CurrElement] > 1) {
-						if (Elements[CurrElement][1] == Text[CurrIndex] && CurrIndex != InputLen) {
+	if (InputLen) {
+		int TabLen = InputLen * 4;
+		char* Encrypted = (char*)malloc(TabLen * sizeof(char));
+		int* Code = (int*)malloc(InputLen * sizeof(int));
+		int CurrIndex = 0, CurrElement = 1, CurrCode = 0, tmp[] = { 0,0 };
+		if (Encrypted) {
+			for (int i = 0; i < TabLen; i++) {
+				Encrypted[i] = NULL;
+			}
+			for (int i = 0; i <= InputLen; i++) {
+				if (Text[i] == 'j' || Text[i] == 'q')
+					Encrypted = "Nie ma mo¿liwoœci";
+			}
+			if (Encrypted[0] != 'N') {
+				while (CurrIndex < InputLen) {
+					//printf("E%d\n", CurrElement);
+					if (Elements[CurrElement][0] == Text[CurrIndex]) {
+						//printf("I%d\n", CurrIndex);
+						CurrIndex++;
+						if (ElementsLen[CurrElement] > 1) {
+							if (Elements[CurrElement][1] == Text[CurrIndex] && CurrIndex != InputLen) {
+								Code[CurrCode] = CurrElement;
+								CurrCode++;
+								CurrElement = 1;
+								CurrIndex++;
+							}
+							else {
+								CurrElement++;
+								CurrIndex--;
+							}
+						}
+						else {
 							Code[CurrCode] = CurrElement;
 							CurrCode++;
 							CurrElement = 1;
-							CurrIndex++;
-						}
-						else {
-							CurrElement++;
-							CurrIndex--;
 						}
 					}
-					else {
-						Code[CurrCode] = CurrElement;
+					else if (Text[CurrIndex] == ' ') {
+						CurrIndex++;
+						Code[CurrCode] = 0;
 						CurrCode++;
 						CurrElement = 1;
 					}
-				}
-				else if (Text[CurrIndex] == ' ') {
-					CurrIndex++;
-					Code[CurrCode] = 0;
-					CurrCode++;
-					CurrElement = 1;
-				}
-				else {
-					CurrElement++;
-				}
-				if (CurrElement >= sizeof(ElementsLen) / 4) {
-					//printf("sizeof\n");
-					if (CurrIndex == 0 || Code[CurrCode - 1] >= sizeof(ElementsLen) / 4 - 1 || Code[CurrCode - 1] == 0) {
-						Encrypted = "Nie ma mo¿liwoœci";
-						break;
-					}
 					else {
-						CurrIndex -= ElementsLen[Code[--CurrCode]];
-						CurrElement = Code[CurrCode] + 1;
+						CurrElement++;
+					}
+					if (CurrElement >= sizeof(ElementsLen) / 4) {
+						//printf("sizeof\n");
+						if (CurrIndex == 0 || Code[CurrCode - 1] >= sizeof(ElementsLen) / 4 - 1 || Code[CurrCode - 1] == 0) {
+							Encrypted = "Nie ma mo¿liwoœci";
+							break;
+						}
+						else {
+							CurrIndex -= ElementsLen[Code[--CurrCode]];
+							CurrElement = Code[CurrCode] + 1;
+						}
 					}
 				}
 			}
-		}
-		if (Encrypted[0] != 'N') {
-			TabLen = CurrCode;
-			CurrIndex = 0;
-			for (int i = 0; i < TabLen; i++) {
-				//printf("C%d\n", Code[i]);
-				while (Code[i] >= 1) {
-					if (Code[i] >= 100) {
-						tmp[0] = Code[i] / 100;
-						tmp[1] = tmp[0] * 100;
-						Encrypted[CurrIndex] = tmp[0] + 48;
-						Code[i] -= tmp[1];
-						if (Code[i] < 1) {
-							Encrypted[++CurrIndex] = 48;
+			if (Encrypted[0] != 'N') {
+				TabLen = CurrCode;
+				CurrIndex = 0;
+				for (int i = 0; i < TabLen; i++) {
+					//printf("C%d\n", Code[i]);
+					while (Code[i] >= 1) {
+						if (Code[i] >= 100) {
+							tmp[0] = Code[i] / 100;
+							tmp[1] = tmp[0] * 100;
+							Encrypted[CurrIndex] = tmp[0] + 48;
+							Code[i] -= tmp[1];
+							if (Code[i] < 1) {
+								Encrypted[++CurrIndex] = 48;
+							}
+							if (Code[i] < 10) {
+								Encrypted[++CurrIndex] = 48;
+							}
 						}
-						if (Code[i] < 10) {
-							Encrypted[++CurrIndex] = 48;
+						else if (Code[i] >= 10) {
+							tmp[0] = Code[i] / 10;
+							tmp[1] = tmp[0] * 10;
+							Encrypted[CurrIndex] = tmp[0] + 48;
+							Code[i] -= tmp[1];
+							if (Code[i] < 1) {
+								Encrypted[++CurrIndex] = 48;
+							}
 						}
-					}
-					else if (Code[i] >= 10) {
-						tmp[0] = Code[i] / 10;
-						tmp[1] = tmp[0] * 10;
-						Encrypted[CurrIndex] = tmp[0] + 48;
-						Code[i] -= tmp[1];
-						if (Code[i] < 1) {
-							Encrypted[++CurrIndex] = 48;
+						else {
+							tmp[0] = Code[i];
+							tmp[1] = tmp[0];
+							Encrypted[CurrIndex] = tmp[0] + 48;
+							Code[i] -= tmp[1];
 						}
-					}
-					else {
-						tmp[0] = Code[i];
-						tmp[1] = tmp[0];
-						Encrypted[CurrIndex] = tmp[0] + 48;
-						Code[i] -= tmp[1];
-					}
 
+						CurrIndex++;
+					}
+					if (i != TabLen - 1)
+						Encrypted[CurrIndex] = '*';
 					CurrIndex++;
 				}
-				if (i != TabLen - 1)
-					Encrypted[CurrIndex] = '*';
-				CurrIndex++;
 			}
-		}
 
+			printf("\033[0;34m");
+			printf("%*s", TotalWidth / 2, "Dane wyjœciowe: ");
+			printf("\033[0m");
+			printf("%s\n", Encrypted);
+		}
+	}
+	else {
 		printf("\033[0;34m");
 		printf("%*s", TotalWidth / 2, "Dane wyjœciowe: ");
-		printf(InputColor);
-		printf("%s\n", Encrypted);
 	}
 }
 
@@ -313,9 +307,9 @@ void Decrypt(char* Text, int InputLen) {
 			TabLen++;
 		}
 	}
-	TabLen *= 8;
+	TabLen *= 2;
 	//printf("%d", TabLen);
-	Decrypted = (char*)malloc(TabLen);
+	Decrypted = (char*)malloc(TabLen * sizeof(char));
 	if (Decrypted) {
 		for (int i = 0; i < TabLen; i++) {
 			Decrypted[i] = NULL;
@@ -354,7 +348,7 @@ void Decrypt(char* Text, int InputLen) {
 		}
 		printf("\033[0;34m");
 		printf("%*s", TotalWidth / 2, "Dane wyjœciowe: ");
-		printf(InputColor);
+		printf("\033[0m");
 		printf("%s\n", Decrypted);
 	}
 }

@@ -24,12 +24,4 @@
       <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="pl.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="en.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-  </ItemGroup>
 </Project>
