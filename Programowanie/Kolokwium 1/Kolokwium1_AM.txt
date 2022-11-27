@@ -64,7 +64,7 @@ int main()
 		tab[i] = tmp;
 	}
 
-	printf("Wartoœæ tego wielomianu to: %d", polynomial(tab, n, x));
+	printf("Wartoœæ tego wielomianu to: %g", polynomial(tab, n, x));
 
 	_getch();
 }
