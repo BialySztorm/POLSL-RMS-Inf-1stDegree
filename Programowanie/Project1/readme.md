@@ -22,5 +22,5 @@ Some texts cannot be encrypted using this algorithm, in which case the program p
 ## Links
 
 - [Block scheme](https://polslpl-my.sharepoint.com/:u:/g/personal/am305303_student_polsl_pl/ERJuhPZykthGkGuDxxxPou0BPFmR0rWmMqeSchDLREi78A?e=1PXQ6W)
-- [Documentation](https://polslpl-my.sharepoint.com/:w:/g/personal/am305303_student_polsl_pl/ESvNgnPlQ8tIvUoCtr2kHLwBAN-YzwKCJNVgngDM2kH3qw?e=01pMZ5)
+- [Documentation](https://polslpl-my.sharepoint.com/:b:/g/personal/am305303_student_polsl_pl/EeaqxrejGTdEuskPbORWyFgBUsJ_H4LfZVTu2-eY194raA?e=gjqibH)
 
