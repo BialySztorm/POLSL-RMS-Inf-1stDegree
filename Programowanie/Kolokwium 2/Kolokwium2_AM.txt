@@ -1,0 +1,136 @@
+Andrzej Manderla Gr 1/2
+Kolokwium 2 z Programowanie I
+============= 01 =============
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <malloc.h>
+
+double VectorProduct(double vector1[2], double vector2[2]);
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	double vector1[2], vector2[2];
+
+	printf("Obliczanie iloczyna skalarnego dwóch wektorów.\n");
+	printf("Podaj a1:");
+	scanf("%le", &vector1[0]);
+	printf("Podaj a2:");
+	scanf("%le", &vector1[1]);
+	printf("Podaj b1:");
+	scanf("%le", &vector2[0]);
+	printf("Podaj b2:");
+	scanf("%le", &vector2[1]);
+
+	printf("\nIloczyn skalarnych tych dwóch wektorów wynosi: %g", VectorProduct(vector1, vector2));
+
+	_getch();
+	return 0;
+}
+
+double VectorProduct(double vector1[2], double vector2[2]) {
+	return vector1[0]*vector2[0]+vector1[1]*vector2[1];
+}
+
+============= 02 =============
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <malloc.h>
+#include <stdlib.h>
+
+double textToNumber(char text[100]) {
+	int len = 0, tmp = 0, power = 1;
+	char tmpC;
+	for (int i = 0; i < 100; i++) 
+	{
+		if(text[i]<'0'||text[i]>'9')
+			break;
+		len++;
+	}
+	for (int i = len-1; i >= 0; i--) {
+		tmp+=((int)text[i] - (int)'0') * power;
+		//printf("%c", text[i]);
+		power*=10.;
+	}
+	return tmp;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	FILE * fRef;
+	double tmp = 0., min = 0, max= 0, avg=0;
+	char currentLine[100] = "";
+	int isFirst = 1, len = 0;
+	
+
+	fRef = fopen("dane.txt", "r");
+	if (fRef == NULL)
+	{
+		printf("Nie mo¿na otworzyæ pliku!");
+		return 0;
+	}
+
+	while (fgets(currentLine, sizeof(currentLine), fRef) != NULL) {
+		tmp = textToNumber(currentLine);
+		if (isFirst) {
+			min = tmp;
+			max = tmp;
+			avg = tmp;
+			isFirst = 0;
+		}
+		else {
+			if(min>tmp)
+				min = tmp;
+			if(max<tmp)
+				max = tmp;
+			avg+=tmp;
+		}
+		fprintf(stderr, "got line: %g\n", tmp);
+		len++;
+	}
+	fclose(fRef);
+	printf("Min: %g\n", min);
+	printf("Max: %g\n", max);
+	printf("Avg: %g\n", avg/len);
+	_getch();
+	return 0;
+}
+
+
+============= 03 =============
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+int main()
+{
+	setlocale(LC_ALL, "");
+    double x[2], y[2];
+
+    printf("Enter the real and imaginary parts of the first complex number: ");
+    scanf("%lf %lf", &x[0], &x[1]);
+
+    printf("Enter the real and imaginary parts of the second complex number: ");
+    scanf("%lf %lf", &y[0], &y[1]);
+
+    printf("(x*x + y*y) = %lf + %lfi\n", x[0] * x[0] + y[0] * y[0] - x[1] * x[1] - y[1] * y[1], 2 * x[0] * x[1] + 2 * y[0] * y[1]);
+	_getch();
+	return 0;
+}
