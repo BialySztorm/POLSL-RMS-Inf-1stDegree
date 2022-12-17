@@ -170,23 +170,14 @@ void QuickSort(int* Tab, int Left, int Right)
 	if (Right <= Left) return;
 
 	int i = Left - 1, j = Right + 1,
-		Pivot = Tab[(Left + Right) / 2]; //wybieramy punkt odniesienia
+		Pivot = Tab[(Left + Right) / 2];
 
 	while (1)
 	{
-		//szukam elementu wiekszego lub rownego piwot stojacego
-		//po prawej stronie wartosci Pivot
 		while (Pivot > Tab[++i]);
-
-		//szukam elementu mniejszego lub rownego Pivot stojacego
-		//po lewej stronie wartosci Pivot
 		while (Pivot < Tab[--j]);
-
-		//jesli liczniki sie nie minely to zamieñ elementy ze soba
-		//stojace po niewlasciwej stronie elementu Pivot
 		if (i <= j)
 		{
-			//funkcja swap zamienia wartosciami Tab[i] z Tab[j]
 			tmp = Tab[i];
 			Tab[i]=Tab[j];
 			Tab[j]=tmp;
