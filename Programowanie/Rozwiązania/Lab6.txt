@@ -1,2 +1,340 @@
 Andrzej Manderla Laboratorium 6
 Zad 1.
+#include<stdio.h>
+#include<conio.h>
+#include<locale.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <time.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include<math.h>
+
+double** CreateTab(int m, int n);
+double* CreateTab_b(int m);
+void Show(double** tab, double* tab_1, int m, int n);
+void Calculate(double** tab, double* tab_1, int m, int n);
+
+int main()
+{
+	setlocale(LC_ALL, "");
+
+	double** tab_a, * tab_b;
+	tab_a = CreateTab(2, 2);
+
+	tab_b = CreateTab_b(2);
+	Show(tab_a, tab_b, 2, 2);
+
+	Calculate(tab_a, tab_b, 2, 2);
+
+	for (int i = 0; i < 2; i++)
+		free(tab_a[i]);
+
+	free(tab_a);
+	free(tab_b);
+
+	_getch();
+}
+
+double** CreateTab(int m, int n)
+{
+	double** tab;
+
+	tab = (double**)malloc(sizeof(double*) * m);
+
+	for (int i = 0; i < m; i++)
+		tab[i] = (double*)malloc(sizeof(double) * n);
+
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			printf("Podaj a[%d][%d]: ", i, j);
+			scanf("%le", &tab[i][j]);
+		}
+	}
+
+	return tab;
+}
+double* CreateTab_b(int m)
+{
+	double* tab_1 = (double*)malloc(sizeof(double) * m);
+	for (int i = 0; i < m; i++)
+	{
+		printf("Podaj b[%d]: ", i);
+		scanf("%le", &tab_1[i]);
+	}
+	return tab_1;
+}
+void Show(double** tab, double* tab_1, int m, int n)
+{
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			printf("%3g ", tab[i][j]);
+		}
+		printf("%3g", tab_1[i]);
+		printf("\n");
+	}
+}
+void Calculate(double** tab, double* tab_1, int m, int n)
+{
+	double W, Wx, Wy;
+	W = tab[0][0] * tab[1][1] - tab[0][1] * tab[1][0];
+	Wx = tab_1[0] * tab[1][1] - tab_1[1] * tab[0][1];
+	Wy = tab_1[1] * tab[0][0] - tab_1[0] * tab[1][0];
+
+	if (W != 0)
+	{
+		printf("x[0]=%g\n", Wx / W);
+		printf("x[1]=%g\n", Wy / W);
+	}
+	else
+	{
+		if (Wx != 0) {
+			printf("Uk³ad równañ jest sprzeczny\n");
+		}
+		else {
+			printf("Uk³ad równañ jest nieoznaczony\n");
+		}
+	}
+}
+
+Zad 2.
+#include<stdio.h>
+#include<conio.h>
+#include<locale.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <time.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include<math.h>
+
+void Change(double* tmp, double* tmp1);
+
+int main()
+{
+	setlocale(LC_ALL, "");
+
+	double* a, * b;
+	printf("Podaj a: ");
+	scanf("%le", a);
+	printf("Podaj b: ");
+	scanf("%le", b);
+
+	Change(a, b);
+
+	printf("a: %g, b: %g", *a, *b);
+
+	_getch();
+}
+
+void Change(double* tmp, double* tmp1) {
+	*tmp += 1;
+	*tmp1 += 3;
+}
+
+Zad  3.
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<locale.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <time.h>
+
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#define M_PI 3.14159265358979
+
+double* CreateVector(int n, char ch)
+{
+	double* wektor_a = (double*)malloc(sizeof(double) * n);
+
+	for (int i = 0; i < n; i++)
+	{
+		printf("Podaj %c[%d]: ", ch, i);
+		scanf("%le", &wektor_a[i]);
+	}
+
+	return wektor_a;
+}
+void Show(double* a, double* b, int n)
+{
+	printf("Wektor a:");
+	for (int i = 0; i < n; i++)
+	{
+		printf("%3g,", a[i]);
+	}
+	printf("\nWektor b:");
+	for (int i = 0; i < n; i++)
+	{
+		printf("%3g,", b[i]);
+	}
+}
+double Calculate(double* a, double* b, int n)
+{
+	double result;
+
+	for (int i = 0; i < n; i++)
+	{
+		result += (a[i] * b[i]);
+	}
+
+	return result;
+}
+int main()
+{
+	setlocale(LC_ALL, "");
+
+	double* a, * b;
+	int n = 0;
+
+	printf("Podaj wymair wektorów");
+	scanf("%i", &n);
+
+	if (n > 0)
+
+	{
+		a = CreateVector(n, 'a');
+		b = CreateVector(n, 'b');
+		Show(a, b, n);
+
+		printf("\n\nIloczyn skalarny werkota a i wektora b wynosi %g", Calculate(a, b, n));
+
+		free(a);
+		free(b);
+	}
+	else
+	{
+		printf("Podano b³êdne dane.");
+	}
+
+	_getch();
+}
+
+Zad 4.
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<locale.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <time.h>
+
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#define M_PI 3.14159265358979
+
+double** CreateMatrix(int n)
+{
+	double** matrix_a = (double**)malloc(sizeof(double*) * n);
+
+	for (int i = 0; i < n; i++)
+		matrix_a[i] = (double*)malloc(sizeof(double) * n);
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			printf("Podaj a[%d][%d]: ", i, j);
+			scanf("%le", &matrix_a[i][j]);
+		}
+	}
+	return matrix_a;
+}
+double* CreateVector(int n)
+{
+	double* vector_b = (double*)malloc(sizeof(double) * n);
+
+	for (int i = 0; i < n; i++)
+	{
+		printf("Podaj a[%d]: ", i);
+		scanf("%le", &vector_b[i]);
+	}
+
+	return vector_b;
+}
+double* Calculate(double** matrix_a, double* vector_b, int n)
+{
+	double* vectorResult = (double*)malloc(sizeof(double) * n);
+	double result;
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			result += matrix_a[i][j] * vector_b[j];
+		}
+		vectorResult[i] = result;
+		result = 0;
+	}
+
+	return vectorResult;
+}
+void ShowM(double** matrix_a, int n)
+{
+	printf("Macierz:\n");
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			printf("%3g,", matrix_a[i][j]);
+		}
+		printf("\n");
+	}
+}
+void ShowW(double* wektor_b, int n)
+{
+	printf("\n\nWektor:\n");
+	for (int i = 0; i < n; i++)
+	{
+		printf("%3g,", wektor_b[i]);
+	}
+}
+
+int main()
+{
+	setlocale(LC_ALL, "");
+
+	int n = 0;
+	double** matrix;
+	double* vector, * result;
+
+	printf("Podaj rozmiar macierzy i wektora: \n");
+	scanf("%i", &n);
+
+	if (n > 0)
+	{
+		matrix = CreateMatrix(n);
+		vector = CreateVector(n);
+
+		ShowM(matrix, n);
+		ShowW(vector, n);
+
+		printf("\n\nWynikiem mno¿enia macierzy z wektorem jest wektor:");
+		result = (Calculate(matrix, vector, n));
+		ShowW(result, n);
+
+		for (int i = 0; i < n; i++)
+			free(matrix[i]);
+
+		free(matrix);
+		free(vector);
+		free(result);
+	}
+	else
+	{
+		printf("Podano b³êdne dane.");
+	}
+
+	_getch();
+}
+
+Zad 5.
