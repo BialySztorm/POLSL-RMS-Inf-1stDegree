@@ -11,31 +11,40 @@ Kolokwium 2 z Programowanie I
 #include <math.h>
 #include <malloc.h>
 
-double VectorProduct(double vector1[2], double vector2[2]);
+double VectorProduct(double vector1[2], double vector2[2], int n);
 
 int main()
 {
 	setlocale(LC_ALL, "");
-	double vector1[2], vector2[2];
-
+	int n;
+	double *vector1, *vector2;
 	printf("Obliczanie iloczyna skalarnego dwóch wektorów.\n");
-	printf("Podaj a1:");
-	scanf("%le", &vector1[0]);
-	printf("Podaj a2:");
-	scanf("%le", &vector1[1]);
-	printf("Podaj b1:");
-	scanf("%le", &vector2[0]);
-	printf("Podaj b2:");
-	scanf("%le", &vector2[1]);
+	printf("Podaj wymiar wektorów n:");
+	scanf("%d", &n);
+	
+	vector1 = (double*)malloc(sizeof(double)*n);
+	vector2 = (double*)malloc(sizeof(double)*n);
+	for (int i = 0; i < n; i++) {
+		printf("Podaj a%d:",i+1);
+		scanf("%le", &vector1[i]);
+	}
+	for (int i = 0; i < n; i++) {
+		printf("Podaj b%d:", i + 1);
+		scanf("%le", &vector2[i]);
+	}
 
-	printf("\nIloczyn skalarnych tych dwóch wektorów wynosi: %g", VectorProduct(vector1, vector2));
+	printf("\nIloczyn skalarnych tych dwóch wektorów wynosi: %g", VectorProduct(vector1, vector2, n));
 
 	_getch();
 	return 0;
 }
 
-double VectorProduct(double vector1[2], double vector2[2]) {
-	return vector1[0]*vector2[0]+vector1[1]*vector2[1];
+double VectorProduct(double vector1[2], double vector2[2], int n) {
+	double tmp = 0;
+	for (int i = 0; i < n; i++) {
+		tmp+=vector1[i]*vector2[i];
+	}
+	return tmp;
 }
 
 ============= 02 =============
@@ -119,18 +128,22 @@ int main()
 #define _CRT_SECURE_NO_WARNINGS
 #define _USE_MATH_DEFINES
 
+struct Complex {
+    double real, img;
+};
+
 int main()
 {
-	setlocale(LC_ALL, "");
-    double x[2], y[2];
+    setlocale(LC_ALL, "");
+    Complex x,y;
 
     printf("Enter the real and imaginary parts of the first complex number: ");
-    scanf("%lf %lf", &x[0], &x[1]);
+    scanf("%lf %lf", &x.real, &x.img);
 
     printf("Enter the real and imaginary parts of the second complex number: ");
-    scanf("%lf %lf", &y[0], &y[1]);
+    scanf("%lf %lf", &y.real, &y.img);
 
-    printf("(x*x + y*y) = %lf + %lfi\n", x[0] * x[0] + y[0] * y[0] - x[1] * x[1] - y[1] * y[1], 2 * x[0] * x[1] + 2 * y[0] * y[1]);
-	_getch();
-	return 0;
+    printf("(x*x + y*y) = %lf + %lfi\n", x.real * x.real + y.real * y.real - x.img * x.img - y.img * y.img, 2 * x.real * x.img + 2 * y.real * y.img);
+    _getch();
+    return 0;
 }
