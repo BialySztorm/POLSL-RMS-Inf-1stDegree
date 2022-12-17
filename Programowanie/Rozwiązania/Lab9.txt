@@ -1,0 +1,288 @@
+Andrzej Manderla Laboratorium 9
+Zad 1.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#include <math.h>
+
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+
+int main()
+{
+	setlocale(LC_ALL, "");
+
+	FILE* f1, * f2;
+	double x1, x2, y1, y2, d, d1, d2;
+
+	if ((f1 = fopen("dane.txt", "r")) == NULL)
+	{
+		printf("Plik dane.txt nie zosta³ otwarty.\n");
+
+		_getch();
+		return -1;
+	}
+
+	if (fscanf(f1, "%lf %lf", &x1, &y1) != 2)
+	{
+		printf("Nie wczytano pierwszego punktu.\n");
+		_getch();
+		return -1;
+	}
+
+	printf("%g %g\n", x1, y1);
+
+	if (fscanf(f1, "%lf %lf", &x2, &y2) != 2)
+	{
+		printf("Nie wczytano drugiego punktu.\n");
+		_getch();
+		return -1;
+	}
+
+	printf("%g %g\n", x2, y2);
+
+	fclose(f1);
+
+	d1 = x2 - x1;
+	d2 = y2 - y1;
+	d = sqrt(d1 * d1 + d2 * d2);
+
+	if ((f2 = fopen("wynik.txt", "w")) == NULL)
+	{
+		printf("Problem z otwarciem pliku wynik.txt.\n");
+		_getch();
+		return -1;
+	}
+
+	fprintf(f2, "%g\n", d);
+	printf("Zapisano wynik w pliku wynik.txt\n");
+
+	fclose(f2);
+
+	_getch();
+	return 0;
+}
+
+Zad 2.
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<locale.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <time.h>
+
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#define M_PI 3.14159265358979
+
+
+int main()
+{
+	setlocale(LC_ALL, "");
+
+	FILE* f1;
+	int n = 0;
+
+	printf("Podaj liczbê wiêksz¹ od 0: ");
+	scanf("%d", &n);
+
+	if (n > 0)
+	{
+		if ((f1 = fopen("wynik.txt", "w")) == NULL)
+		{
+			printf("Plik losowe.txt nie zosta³ otwarty.\n");
+
+			_getch();
+			return -1;
+		}
+
+		srand(time(NULL));
+
+		for (int i = 0; i < n; i++)
+		{
+			fprintf(f1, "%d\n", rand());
+		}
+
+		fclose(f1);
+		printf("Zapisywanie zakoñczone pomyœlnie.\n");
+	}
+	else
+	{
+
+		printf("Podano z³e dane.\n");
+	}
+
+	_getch();
+
+}
+
+Zad 3.
+#include<stdio.h>
+#include<conio.h>
+#include<locale.h>
+#include <stdlib.h>
+
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+
+int main()
+{
+    setlocale(LC_ALL,"");
+    char filename[100];
+    printf("Podaj nazwê pliku ze œcie¿k¹ dostêpu: ");
+    scanf("%s", filename);
+
+    FILE* fp = fopen(filename, "w"); 
+
+    if (fp == NULL) { 
+        printf("Nie mo¿na otworzyæ pliku!\n");
+        return -1;
+    }
+    printf("Wypisano polskie znaki\n");
+    fprintf(fp, "Polskie znaki: ¹æ³óœ¿Ÿ\n");
+
+    fclose(fp); 
+
+    _getch();
+    return 0;
+}
+
+Zad 4.
+#include<stdio.h>
+#include<conio.h>
+#include<locale.h>
+#include <stdlib.h>
+
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+
+int main()
+{
+    setlocale(LC_ALL,"");
+    char filename[100];
+    printf("Podaj nazwê pliku ze œcie¿k¹ dostêpu: ");
+    scanf("%s", filename);
+
+    FILE* fp = fopen(filename, "r");
+
+    if (fp == NULL) {
+        printf("Nie mo¿na otworzyæ pliku!\n");
+        return 1;
+    }
+
+    char buffer[100];
+    fgets(buffer, 100, fp); 
+    printf("Pierwsza linia: %s", buffer);
+
+    fclose(fp);
+
+    _getch();
+    return 0;
+}
+
+Zad 5.
+#include<stdio.h>
+#include<conio.h>
+#include<locale.h>
+#include <stdlib.h>
+
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#define MAX_SIZE 100
+
+
+int main()
+{
+    setlocale(LC_ALL,"");
+    int numbers[MAX_SIZE];
+    int size = 0;
+
+    // Otwórz plik we.txt do odczytu
+    FILE* input_file = fopen("we.txt", "r");
+    if (input_file == NULL) { 
+        printf("Nie mo¿na otworzyæ pliku we.txt!\n");
+        return 1;
+    }
+
+    while (fscanf(input_file, "%d", &numbers[size]) == 1) {
+        size++;
+    }
+
+    fclose(input_file); // Zamykamy plik we.txt
+
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = i + 1; j < size; j++) {
+            if (numbers[i] > numbers[j]) {
+                int temp = numbers[i];
+                numbers[i] = numbers[j];
+                numbers[j] = temp;
+            }
+        }
+    }
+
+    FILE* output_file = fopen("wy.txt", "w");
+    if (output_file == NULL) { 
+        printf("Nie mo¿na otworzyæ pliku wy.txt!\n");
+        return 1;
+    }
+
+    for (int i = 0; i < size; i++) {
+        fprintf(output_file, "%d\n", numbers[i]);
+    }
+
+    fclose(output_file);
+    printf("Uporz¹dkowano.");
+    _getch();
+    return 0;
+}
+
+Zad 6.
+#include<stdio.h>
+#include<conio.h>
+#include<locale.h>
+#include <stdlib.h>
+
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+
+int main()
+{
+    setlocale(LC_ALL,"");
+    char tmp[100];
+    printf("Podaj nazwê pliku wejœcia: ");
+    scanf("%s", tmp);
+    FILE* in_file = fopen(tmp, "r");
+    printf("Podaj nazwê pliku wyjœcia: ");
+    scanf("%s", tmp);
+    FILE* out_file = fopen(tmp, "w");
+
+    // SprawdŸ, czy uda³o siê otworzyæ pliki
+    if (in_file == NULL || out_file == NULL) {
+        printf("Nie uda³o siê otworzyæ plików!\n");
+        return 1;
+    }
+
+    // Przepisz znaki z pliku wejœciowego do pliku wyjœciowego
+    char c;
+    while ((c = fgetc(in_file)) != EOF) {
+        fputc(c, out_file);
+    }
+
+    // Zamykamy pliki
+    fclose(in_file);
+    fclose(out_file);
+    printf("Przepisano dane");
+    _getch();
+    return 0;
+}

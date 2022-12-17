@@ -1,0 +1,221 @@
+Andrzej Manderla Laboratorium 8
+Zad 1.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+unsigned long long int CalculateFactorial(int n)
+{
+	unsigned long long int Factorial = 1;
+	for (int i = 0; i < n; i++)
+	{
+		Factorial *= (n - i);
+		printf("%d\n", Factorial);
+	}
+	return Factorial;
+}
+
+
+int main()
+{
+    setlocale(LC_ALL, "");
+	int n = 0;
+	unsigned long long int Factorial = 1;
+	printf("Podaj n by obliczyæ silniê: ");
+	scanf("%i", &n);
+
+	if (n >= 0)
+	{
+
+		printf("Silnia dla %d! = %d", n, CalculateFactorial(n));
+	}
+	else
+	{
+		printf("Podano b³edne dane.");
+	}
+    _getch();
+    return 0;
+}
+
+Zad2.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+unsigned long long int CalculateFactorial(int n)
+{
+	if (n < 2)
+		return 1;
+
+	return n * CalculateFactorial(n - 1);
+}
+
+
+int main()
+{
+    setlocale(LC_ALL, "");
+	int n = 0;
+	unsigned long long int Factorial = 1;
+	printf("Podaj n by obliczyæ silniê: ");
+	scanf("%i", &n);
+
+	if (n >= 0)
+	{
+
+		printf("Silnia dla %d! = %d", n, CalculateFactorial(n));
+	}
+	else
+	{
+		printf("Podano b³edne dane.");
+	}
+    _getch();
+    return 0;
+}
+
+Zad 3.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+int Power(int n)
+{
+	if (n < 2)
+		return 2;
+	return 2 * Power(n - 1);
+}
+
+
+int main()
+{
+    setlocale(LC_ALL, "");
+	int n = 0;
+	printf("Podaj n: ");
+	scanf("%d", &n);
+
+	if (n >= 0)
+	{
+		printf("Liczba 2 do potêgi %d = %d", n, Power(n));
+	}
+	else
+	{
+		printf("\nPodano b³êdne dane.");
+	}
+    _getch();
+    return 0;
+}
+
+Zad 4.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#include <stdlib.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+int Compare(const void* i, const void* j)
+{
+	return (*(int*)i) - (*(int*)j);
+}
+
+
+int main()
+{
+    setlocale(LC_ALL, "");
+	int n;
+	printf("Podaj n: ");
+	scanf("%d", &n);
+
+	int* a = (int*)malloc(sizeof(int) * n);
+
+	for (int i = 0; i < n; i++)//pêtla wczytuj¹ca elementy do tablicy
+	{
+		printf("Podaj a[%d]: ", i);
+		scanf("%d", &a[i]);
+	}
+
+	qsort(a, n, sizeof(int), Compare);//wywo³anie procedury sortowania
+
+	printf("\n");
+	for (int i = 0; i < n; i++)
+	{
+		printf("%5d", a[i]);
+	}
+	printf("\n");
+    _getch();
+    return 0;
+}
+
+Zad 5.
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#include <stdlib.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+void QuickSort(int* Tab, int Left, int Right)
+{
+	int tmp;
+	if (Right <= Left) return;
+
+	int i = Left - 1, j = Right + 1,
+		Pivot = Tab[(Left + Right) / 2];
+
+	while (1)
+	{
+		while (Pivot > Tab[++i]);
+		while (Pivot < Tab[--j]);
+		if (i <= j)
+		{
+			tmp = Tab[i];
+			Tab[i]=Tab[j];
+			Tab[j]=tmp;
+		}
+		else
+			break;
+	}
+
+	if (j > Left)
+		QuickSort(Tab, Left, j);
+	if (i < Right)
+		QuickSort(Tab, i, Right);
+}
+
+
+int main()
+{
+    setlocale(LC_ALL, "");
+	int n;
+	printf("Podaj n: ");
+	scanf("%d", &n);
+
+	int* a = (int*)malloc(sizeof(int) * n);
+
+	for (int i = 0; i < n; i++)//pêtla wczytuj¹ca elementy do Tablicy
+	{
+		printf("Podaj a[%d]: ", i);
+		scanf("%d", &a[i]);
+	}
+
+	QuickSort(a, 0,n-1);//wywo³anie procedury sortowania
+
+	printf("\n");
+	for (int i = 0; i < n; i++)
+	{
+		printf("%5d", a[i]);
+	}
+	printf("\n");
+    _getch();
+    return 0;
+}
