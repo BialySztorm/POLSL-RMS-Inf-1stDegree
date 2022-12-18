@@ -107,7 +107,7 @@ int main()
 				max = tmp;
 			avg+=tmp;
 		}
-		fprintf(stderr, "got line: %g\n", tmp);
+		printf("Mam linie: %g\n", tmp);
 		len++;
 	}
 	fclose(fRef);
@@ -128,22 +128,38 @@ int main()
 #define _CRT_SECURE_NO_WARNINGS
 #define _USE_MATH_DEFINES
 
-struct Complex {
-    double real, img;
+struct complex {
+	double real;
+	double imag;
 };
+
+struct complex add(struct complex a, struct complex b) {
+	struct complex result;
+	result.real = a.real + b.real;
+	result.imag = a.imag + b.imag;
+	return result;
+}
+struct complex multiply(struct complex a, struct complex b) {
+	struct complex result;
+	result.real = a.real * b.real - a.imag * b.imag;
+	result.imag = a.real * b.imag + a.imag * b.real;
+	return result;
+}
 
 int main()
 {
-    setlocale(LC_ALL, "");
-    Complex x,y;
+	setlocale(LC_ALL, "");
+	complex x, y;
 
-    printf("Enter the real and imaginary parts of the first complex number: ");
-    scanf("%lf %lf", &x.real, &x.img);
+	printf("Enter the real and imaginary parts of the first complex number: ");
+	scanf("%lf %lf", &x.real, &x.imag);
 
-    printf("Enter the real and imaginary parts of the second complex number: ");
-    scanf("%lf %lf", &y.real, &y.img);
+	printf("Enter the real and imaginary parts of the second complex number: ");
+	scanf("%lf %lf", &y.real, &y.imag);
 
-    printf("(x*x + y*y) = %lf + %lfi\n", x.real * x.real + y.real * y.real - x.img * x.img - y.img * y.img, 2 * x.real * x.img + 2 * y.real * y.img);
-    _getch();
-    return 0;
+	complex result = add(multiply(x, x), multiply(y, y));
+
+	printf("(x*x + y*y) = %lf + %lfi\n", result.real, result.imag);
+	_getch();
+	return 0;
 }
