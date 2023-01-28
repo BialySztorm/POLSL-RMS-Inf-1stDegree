@@ -1,26 +1,52 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <conio.h>
-#include <locale.h>
 #pragma warning(disable : 4996)
 #define _CRT_SECURE_NO_WARNINGS
 #define _USE_MATH_DEFINES
+#define N 10
 
-struct Complex {
-    double real, img;
-};
+int main(void) {
+	int a[N][N];
+	int i, j, k = 1;
+	int row_start = 0;
+	int row_end = N - 1;
+	int col_start = 0;
+	int col_end = N - 1;
 
-int main()
-{
-    setlocale(LC_ALL, "");
-    Complex x,y;
+	while (k <= N * N) {
+		// Wpisywanie liczb do górnej kolumny
+		for (i = row_start; i <= row_end; i++) {
+			a[i][col_start] = k++;
+		}
+		col_start++;
 
-    printf("Enter the real and imaginary parts of the first complex number: ");
-    scanf("%lf %lf", &x.real, &x.img);
+		// Wpisywanie liczb do prawej kolumny
+		for (i = col_start; i <= col_end; i++) {
+			a[row_end][i] = k++;
+		}
+		row_end--;
 
-    printf("Enter the real and imaginary parts of the second complex number: ");
-    scanf("%lf %lf", &y.real, &y.img);
+		// Wpisywanie liczb do dolnej kolumny
+		for (i = row_end; i >= row_start; i--) {
+			a[i][col_end] = k++;
+		}
+		col_end--;
 
-    printf("(x*x + y*y) = %lf + %lfi\n", x.real * x.real + y.real * y.real - x.img * x.img - y.img * y.img, 2 * x.real * x.img + 2 * y.real * y.img);
-    _getch();
-    return 0;
+		// Wpisywanie liczb do lewej kolumny
+		for (i = col_end; i >= col_start; i--) {
+			a[row_start][i] = k++;
+		}
+		row_start++;
+	}
+
+	// Wypisywanie tablicy
+	for (i = 0; i < N; i++) {
+		for (j = 0; j < N; j++) {
+			printf("%d\t", a[j][i]);
+		}
+		printf("\n");
+	}
+	_getch();
+	return 0;
 }
