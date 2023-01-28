@@ -1,0 +1,279 @@
+Egzamin z programowania I nst Andrzej Manderla 29.01.2023
+
+Zadanie 1
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#include <stdlib.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+void flushKeyBoard();
+double CalculateConeVolume(double r, double l);
+double CalculateConeSurfaceArea(double r, double l);
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	//Dodaæ printf z zasadami dzia³ania programu
+	double r, l;
+	int i = 0;
+	do {
+		if (i)
+			printf("\nWprowadzono b³êdne dane!\n");
+		i++;
+		printf("Podaj tworz¹c¹ sto¿ka: ");
+		while (!scanf("%le", &l))
+		{
+			flushKeyBoard();
+			printf("\nWprowadzono b³êdne dane!\nPodaj tworz¹c¹ sto¿ka: ");
+		}
+		printf("Podaj promieñ sto¿ka: ");
+		while (!scanf("%le", &r))
+		{
+			flushKeyBoard();
+			printf("\nWprowadzono b³êdne dane!\nPodaj promieñ sto¿ka: ");
+		}
+	} while (r >= l && l > 0 && r > 0);
+
+	printf("Pole powierzchni tego sto¿ka wynosi: %f\n", CalculateConeSurfaceArea(r, l));
+	printf("Objêtoœæ tego sto¿ka wynosi: %f\n", CalculateConeVolume(r, l));
+
+	_getch();
+	return 0;
+}
+
+void flushKeyBoard()
+{
+	int ch;
+	while ((ch = getc(stdin)) != EOF && ch != '\n');
+}
+
+double CalculateConeVolume(double r, double l)
+{
+	double h;
+	h = sqrt((l * l) - (r * r));
+	return (M_PI * (r * r) * h) / 3.0;
+}
+
+double CalculateConeSurfaceArea(double r, double l)
+{
+	return M_PI * r * (r + l);
+}
+
+Zadanie 2
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#include <stdlib.h>
+#include<string.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+
+struct user {
+	int id;
+	char name[255];
+	char position[255];
+};
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	//Dodaæ printf z zasadami dzia³ania programu
+
+	FILE* fp = fopen("dane.txt", "r");
+	if (fp == NULL) {
+		printf("Nie mozna otworzyc pliku dane.txt\n");
+		_getch();
+		return -1;
+	}
+
+	int len = 0, isFound = 0;
+	char name[255];
+	user person;
+
+	printf("Podaj nazwisko do sprawdzenia: ");
+	scanf("%s", name);
+
+	while (fscanf(fp, "%d %s %s", &person.id, person.name, person.position) == 3)
+	{
+		if (strcmp(person.name, name) == 0)
+		{
+			printf("Znaleziono osobê: %d %s %s", person.id, person.name, person.position);
+			isFound++;
+		}
+	}
+	if (!isFound) {
+		printf("Nie znaleziono osoby o nazwisku: %s\n", name);
+	}
+
+	_getch();
+	return 0;
+}
+
+Zadanie 3
+
+#include <stdio.h>
+#include <conio.h>
+#include <locale.h>
+#include <stdlib.h>
+#include <malloc.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+
+int maxIndex(double *x, int len);
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	//Dodaæ printf z zasadami dzia³ania programu
+	double* tab = (double*)malloc(sizeof(double)*10000);
+	double tmp;
+	int len = 0;
+	do{
+		printf("Podaj ci¹g %d liczbê: ",len+1);
+		scanf("%le", &tmp);
+		tab[len++]=tmp;
+	}while(tmp!=0.0);
+	
+	printf("Najwiêksza jest %d liczba", maxIndex(tab,len));
+
+	_getch();
+	return 0;
+}
+
+int maxIndex(double* x, int len)
+{
+	int index = 0;
+	double max = 0.0;
+
+	for (int i = 0; i < len; i++) {
+		if (x[i] > max) {
+			max = x[i];
+			index = i+1;
+		}
+	}
+
+	
+	return index;
+}
+
+
+Zadanie 4
+
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+//projekt -> wlasciwosci nazwa_projektu -> wlasciwosci konfiguracji -> debugowanie -> argumenty polecenia
+int main(int argc, char* argv[])
+{
+    setlocale(LC_ALL, "");
+    if (argc < 2) {
+        printf("Nie podano sciezki do pliku\n");
+        _getch();
+        return -1;
+    }
+
+    FILE* plik = fopen(argv[1], "r");
+
+    if (plik == NULL) {
+        printf("nie udalo sie otworzyc pliku: %s\n", argv[1]);
+        _getch();
+        return -1;
+    }
+
+    char tekst;
+    while ((tekst = fgetc(plik)) != EOF) {
+        printf("%c", tekst);
+    }
+
+    fclose(plik);
+
+    _getch();
+}
+
+Zadanie 5
+
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <locale.h>
+#pragma warning(disable : 4996)
+#define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
+
+void calculate(double tab[6]);
+
+int main()
+{
+    setlocale(LC_ALL, "");
+
+    double coefficients[6];
+    printf("Podaj wartosci wspolczynnikow dla ukladu rownan:\n");
+    printf("a11x1 + a12x2 = b1\n");
+    printf("a21x1 + a22x2 = b2\n");
+
+    printf("\na11 = ");
+    if (!scanf("%lf", &coefficients[0])) {
+        printf("blad, nie podales liczby");
+        _getch();
+        return -1;
+    }
+    printf("a12 = ");
+    if (!scanf("%lf", &coefficients[1])) {
+        printf("blad, nie podales liczby");
+        _getch();
+        return -1;
+    }
+    printf("b1 = ");
+    if (!scanf("%lf", &coefficients[4])) {
+        printf("blad, nie podales liczby");
+        _getch();
+        return -1;
+    }
+
+    printf("a21 = ");
+    if (!scanf("%lf", &coefficients[2])) {
+        printf("blad, nie podales liczby");
+        _getch();
+        return -1;
+    }
+    printf("a22 = ");
+    if (!scanf("%lf", &coefficients[3])) {
+        printf("blad, nie podales liczby");
+        _getch();
+        return -1;
+    }
+    printf("b2 = ");
+    if (!scanf("%lf", &coefficients[5])) {
+        printf("blad, nie podales liczby");
+        _getch();
+        return -1;
+    }
+
+    calculate(coefficients);
+    _getch();
+    return 0;
+}
+
+void calculate(double tab[6]) {
+    double x1, x2;
+    double wyznacznik = tab[0] * tab[3] - tab[1] * tab[2];
+    if (wyznacznik != 0) {
+        x1 = (tab[4] * tab[3] - tab[5] * tab[1]) / wyznacznik;
+        x2 = (tab[5] * tab[0] - tab[4] * tab[2]) / wyznacznik;
+        printf("Rozwiazanie ukladu rownan: x1 = %lf, x2 = %lf\n", x1, x2);
+    }
+    else {
+        printf("Uklad sprzeczny/nieoznaczony \n");
+    }
+}
