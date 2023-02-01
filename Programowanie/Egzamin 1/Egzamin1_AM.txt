@@ -1,4 +1,4 @@
-Egzamin z programowania I nst Andrzej Manderla 29.01.2023
+Egzamin z Programowania I nst Andrzej Manderla 29.01.2023
 
 Zadanie 1
 
@@ -18,7 +18,9 @@ double CalculateConeSurfaceArea(double r, double l);
 int main()
 {
 	setlocale(LC_ALL, "");
-	//Dodaæ printf z zasadami dzia³ania programu
+	printf("Obliczaniepola powierzchni i objêtoœci sto¿ka\n");
+	printf("Podane przez ciebie l musi byæ wiêksze od r oraz obie wartoœci wiêksze od 0\n");
+
 	double r, l;
 	int i = 0;
 	do {
@@ -83,7 +85,6 @@ struct user {
 int main()
 {
 	setlocale(LC_ALL, "");
-	//Dodaæ printf z zasadami dzia³ania programu
 
 	FILE* fp = fopen("dane.txt", "r");
 	if (fp == NULL) {
@@ -130,7 +131,6 @@ int maxIndex(double *x, int len);
 int main()
 {
 	setlocale(LC_ALL, "");
-	//Dodaæ printf z zasadami dzia³ania programu
 	double* tab = (double*)malloc(sizeof(double)*10000);
 	double tmp;
 	int len = 0;
@@ -173,32 +173,35 @@ Zadanie 4
 #define _CRT_SECURE_NO_WARNINGS
 #define _USE_MATH_DEFINES
 
-//projekt -> wlasciwosci nazwa_projektu -> wlasciwosci konfiguracji -> debugowanie -> argumenty polecenia
 int main(int argc, char* argv[])
 {
-    setlocale(LC_ALL, "");
-    if (argc < 2) {
-        printf("Nie podano sciezki do pliku\n");
-        _getch();
-        return -1;
-    }
+	setlocale(LC_ALL, "");
 
-    FILE* plik = fopen(argv[1], "r");
+	if (argc < 2)
+	{
+		printf("Nie podano œcie¿ki do pliku\n");
+		_getch();
+		return -1;
+	}
 
-    if (plik == NULL) {
-        printf("nie udalo sie otworzyc pliku: %s\n", argv[1]);
-        _getch();
-        return -1;
-    }
+	FILE* fp = fopen(argv[1], "r");
 
-    char tekst;
-    while ((tekst = fgetc(plik)) != EOF) {
-        printf("%c", tekst);
-    }
+	if (fp == NULL)
+	{
+		printf("Nie uda³o siê otworzyæ pliku: %s\n", argv[1]);
+		_getch();
+		return -1;
+	}
 
-    fclose(plik);
+	char tmp;
+	while ((tmp = fgetc(fp)) != EOF)
+	{
+		printf("%c", tmp);
+	}
 
-    _getch();
+	fclose(fp);
+
+	_getch();
 }
 
 Zadanie 5
@@ -211,69 +214,49 @@ Zadanie 5
 #define _CRT_SECURE_NO_WARNINGS
 #define _USE_MATH_DEFINES
 
-void calculate(double tab[6]);
+void calculate(double a[3][3], double b[3]);
 
 int main()
 {
-    setlocale(LC_ALL, "");
+	setlocale(LC_ALL, "");
 
-    double coefficients[6];
-    printf("Podaj wartosci wspolczynnikow dla ukladu rownan:\n");
-    printf("a11x1 + a12x2 = b1\n");
-    printf("a21x1 + a22x2 = b2\n");
+	double a[3][3], b[3];
+	printf("Podaj wartosci wspolczynnikow dla ukladu rownan:\n");
+	printf("a11*x1 + a12*x2 = b1\n");
+	printf("a21*x1 + a22*x2 = b2\n");
 
-    printf("\na11 = ");
-    if (!scanf("%lf", &coefficients[0])) {
-        printf("blad, nie podales liczby");
-        _getch();
-        return -1;
-    }
-    printf("a12 = ");
-    if (!scanf("%lf", &coefficients[1])) {
-        printf("blad, nie podales liczby");
-        _getch();
-        return -1;
-    }
-    printf("b1 = ");
-    if (!scanf("%lf", &coefficients[4])) {
-        printf("blad, nie podales liczby");
-        _getch();
-        return -1;
-    }
+	for (int i = 1; i < 3; i++)
+	{
+		for (int j = 1; j < 3; j++) {
+			printf("a%d%d = ", i, j);
+			if (!scanf("%lf", &a[i][j])) {
+				printf("B³¹d, nie poda³eœ liczby!");
+				_getch();
+				return -1;
+			}
+		}
+		printf("b%d = ", i);
+		if (!scanf("%lf", &b[i])) {
+			printf("B³¹d, nie poda³eœ liczby!");
+			_getch();
+			return -1;
+		}
+	}
 
-    printf("a21 = ");
-    if (!scanf("%lf", &coefficients[2])) {
-        printf("blad, nie podales liczby");
-        _getch();
-        return -1;
-    }
-    printf("a22 = ");
-    if (!scanf("%lf", &coefficients[3])) {
-        printf("blad, nie podales liczby");
-        _getch();
-        return -1;
-    }
-    printf("b2 = ");
-    if (!scanf("%lf", &coefficients[5])) {
-        printf("blad, nie podales liczby");
-        _getch();
-        return -1;
-    }
-
-    calculate(coefficients);
-    _getch();
-    return 0;
+	calculate(a, b);
+	_getch();
+	return 0;
 }
 
-void calculate(double tab[6]) {
-    double x1, x2;
-    double wyznacznik = tab[0] * tab[3] - tab[1] * tab[2];
-    if (wyznacznik != 0) {
-        x1 = (tab[4] * tab[3] - tab[5] * tab[1]) / wyznacznik;
-        x2 = (tab[5] * tab[0] - tab[4] * tab[2]) / wyznacznik;
-        printf("Rozwiazanie ukladu rownan: x1 = %lf, x2 = %lf\n", x1, x2);
-    }
-    else {
-        printf("Uklad sprzeczny/nieoznaczony \n");
-    }
+void calculate(double a[3][3], double b[3]) {
+	double x[3];
+	double wyznacznik = a[1][1] * a[2][2] - a[1][2] * a[2][1];
+	if (wyznacznik != 0) {
+		x[1] = (b[1] * a[2][2] - b[2] * a[1][2]) / wyznacznik;
+		x[2] = (b[2] * a[1][1] - b[1] * a[2][1]) / wyznacznik;
+		printf("Rozwiazanie ukladu rownan: x1 = %lf, x2 = %lf\n", x[1], x[2]);
+	}
+	else {
+		printf("Uklad sprzeczny/nieoznaczony \n");
+	}
 }

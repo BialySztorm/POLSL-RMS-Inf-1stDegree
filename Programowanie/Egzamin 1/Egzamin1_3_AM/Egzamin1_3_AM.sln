@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32929.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Egzamin1_3_AM", "Egzamin1_3_AM.vcxproj", "{2B1538F0-D3E8-4EBF-B618-CF74188BE6DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B1538F0-D3E8-4EBF-B618-CF74188BE6DB}.Debug|x64.ActiveCfg = Debug|x64
+		{2B1538F0-D3E8-4EBF-B618-CF74188BE6DB}.Debug|x64.Build.0 = Debug|x64
+		{2B1538F0-D3E8-4EBF-B618-CF74188BE6DB}.Debug|x86.ActiveCfg = Debug|Win32
+		{2B1538F0-D3E8-4EBF-B618-CF74188BE6DB}.Debug|x86.Build.0 = Debug|Win32
+		{2B1538F0-D3E8-4EBF-B618-CF74188BE6DB}.Release|x64.ActiveCfg = Release|x64
+		{2B1538F0-D3E8-4EBF-B618-CF74188BE6DB}.Release|x64.Build.0 = Release|x64
+		{2B1538F0-D3E8-4EBF-B618-CF74188BE6DB}.Release|x86.ActiveCfg = Release|Win32
+		{2B1538F0-D3E8-4EBF-B618-CF74188BE6DB}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DAA55D83-6999-4A83-B7FE-914EA6301444}
+	EndGlobalSection
+EndGlobal
