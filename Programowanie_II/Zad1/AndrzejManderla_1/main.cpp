@@ -4,8 +4,11 @@
 #include "car.h"
 #include <iostream>
 
+Car car0;
+
 int main()
 {
+    std::cout << "Entered Main\n";
     // Creating object using default constructor
     Car car1;
     std::cout << "Object car1 created using default constructor" << std::endl;
@@ -14,7 +17,7 @@ int main()
     {
         // Creating object using parametric constructor
         Car car2("Honda", "Civic", 2011);
-        std::cout << "\nObject car2 created using parametric constructor" << std::endl;
+        std::cout << "\nObject car2 created using parametric constructor in scope" << std::endl;
         car2.displayInfo();
     }
 
@@ -29,5 +32,9 @@ int main()
     std::cout << "\nObject car4 created using parametric constructor with dot operator" << std::endl;
     car4.displayInfo();
 
+    std::cout << "Exiting Main\n";
+
     return 0;
 }
+
+Car car5;

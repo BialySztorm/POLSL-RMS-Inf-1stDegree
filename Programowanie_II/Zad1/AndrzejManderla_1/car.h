@@ -3,9 +3,11 @@
 
 class Car {
 private:
+    static int ID;
     std::string make;
     std::string model;
     int year;
+    int id;
 
 public:
     // Default constructor
@@ -19,3 +21,4 @@ public:
 
     void displayInfo();
 };
+
