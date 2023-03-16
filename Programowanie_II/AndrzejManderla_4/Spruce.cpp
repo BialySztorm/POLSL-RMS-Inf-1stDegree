@@ -20,13 +20,13 @@ void Spruce::Build()
 		std::cout<<std::string((Width-(tmp/2)),' ')<<std::string(tmp,'*')<<std::endl;
 	}
 	// Build 2 block
-	tmp-=4;
+	tmp-=4; // -2 for reduce and -2 after the loop
 	for (int i = 0; i < Height+2; i++, tmp += 2)
 	{
 		std::cout << std::string((Width - (tmp / 2)), ' ') << std::string(tmp, '*') << std::endl;
 	}
 	// Build 3 block
-	tmp -=8;
+	tmp -=8; // -6 for reduce and -2 after the loop
 	for (int i = 0; i < Height+2; i++, tmp += 2)
 	{
 		std::cout << std::string((Width - (tmp / 2)), ' ') << std::string(tmp, '*') << std::endl;
