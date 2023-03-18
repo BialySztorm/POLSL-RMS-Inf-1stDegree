@@ -26,5 +26,5 @@ int main() {
 //Odpowiedzi na pytania :
 //
 //Nie, funkcja zaprzyjaŸniona nie jest kopiowana wraz z kopi¹ obiektu.Funkcja zaprzyjaŸniona jest jedynie zaprzyjaŸniona z klas¹ i ma dostêp do jej prywatnych sk³adowych, ale nie jest jej czêœci¹.
-//Tak, kopiowanie obiektu wymaga utworzenia w klasie konstruktora kopiuj¹cego.W przeciwnym wypadku, jeœli konstruktor kopiuj¹cy nie zostanie zdefiniowany, kompilator utworzy dla nas domyœlny konstruktor kopiuj¹cy, który skopiuje wszystkie sk³adowe obiektu.
-//Tak, dla tworzonego obiektu, bêd¹cego kopi¹ innego obiektu, uruchamiany jest konstruktor kopiuj¹cy.
+//Nie, !(kopiowanie obiektu wymaga utworzenia w klasie konstruktora kopiuj¹cego.W przeciwnym wypadku), jeœli konstruktor kopiuj¹cy nie zostanie zdefiniowany, kompilator utworzy dla nas domyœlny konstruktor kopiuj¹cy, który skopiuje wszystkie sk³adowe obiektu.
+//Nie, !(dla tworzonego obiektu, bêd¹cego kopi¹ innego obiektu, uruchamiany jest konstruktor kopiuj¹cy) chyba ¿e jest kopiuj¹cy.
