@@ -1,40 +1,21 @@
 #include <iostream>
-
-double divide(double a, double b) {
-    if (b == 0) {
-        throw "Nie mozna dzielic przez zero";
-    }
-    return a / b;
-}
-
-int modulo(int a, int b) {
-    if (b == 0) {
-        throw "Nie mozna dzielic przez zero";
-    }
-    else if (a == b || a % b == 0 || b % a == 0) {
-        throw "Nieprawidlowe dane";
-    }
-    return a % b;
-}
+#include "Zero.h"
 
 int main() {
+    double a, b;
+    std::cout << "Podaj dwie liczby do dzielenia i modulo: ";
+    std::cin >> a >> b;
+    Zero zero(a,b);
+    
     try {
-        double a, b;
-        std::cout << "Podaj dwie liczby do podzielenia: ";
-        std::cin >> a >> b;
-        double result = divide(a, b);
-        std::cout << "Wynik dzielenia: " << result << std::endl;
+        std::cout << "Wynik dzielenia: " << zero.Divide() << std::endl;
     }
     catch (const char* msg) {
         std::cerr << "Blad: " << msg << std::endl;
     }
 
     try {
-        int a, b;
-        std::cout << "Podaj dwie liczby do operacji modulo: ";
-        std::cin >> a >> b;
-        int result = modulo(a, b);
-        std::cout << "Wynik operacji modulo: " << result << std::endl;
+        std::cout << "Wynik operacji modulo: " << zero.Modulo() << std::endl;
     }
     catch (const char* msg) {
         std::cerr << "Blad: " << msg << std::endl;
