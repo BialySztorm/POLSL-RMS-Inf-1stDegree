@@ -3,11 +3,12 @@
 
 class Square : public Figure
 {
-private:
+protected:
     double a;
 public:
     Square(double a, std::string name);
     virtual double CalculateArea() const;
 
+    ~Square();
 };
 

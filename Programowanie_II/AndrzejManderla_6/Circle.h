@@ -8,5 +8,6 @@ protected:
 public:
     Circle(double r, std::string name); // konstruktor
     virtual double CalculateArea() const;
+    ~Circle();
 };
 
