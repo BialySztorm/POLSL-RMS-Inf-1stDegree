@@ -1,12 +1,13 @@
 #pragma once
 class Spruce
 {
-private:
-	int Height, Width, Margin;
-
-
 public:
 	Spruce();
 	void Build();
+
+private:
+	int Height, Width, Margin;
+	int Branch(int x, int y, int tmp);
+	void Trunk(int x, int y);
 };
 

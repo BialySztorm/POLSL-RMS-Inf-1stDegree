@@ -1,25 +1,25 @@
 #pragma once
 #include <string>
 
-class Vector {
-private:
-    double x, y, z;
+class Vector1 {
 public:
+    double x, y, z;
 
-    Vector(double x = 0, double y = 0, double z = 0);
+    Vector1(double x = 0, double y = 0, double z = 0);
 
     // Przeci¹¿enie operatora dwuargumentowego (-)
-    Vector operator-(const Vector& v) const;
+    Vector1 operator-(const Vector1& v) const;
 
     // Przeci¹¿enie operatora dwuargumentowego (+)
-    Vector operator+(const Vector& v) const;
+    friend Vector1 operator+(const Vector1& v, const Vector1& v1);
 
     // Przeci¹¿enie operatora jednoargumentowego (--)
-    Vector operator--();
+    Vector1 operator--();
 
     // Przeci¹¿enie operatora jednoargumentowego (++)
-    Vector operator++();
+    friend Vector1 operator++(const Vector1& v);
 
     std::string GetVector();
+
 
 };

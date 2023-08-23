@@ -6,21 +6,25 @@ int main()
 {
     double r1 = 5, r2 = 2, a1 = 4, h = 5, a2 = 3;
 
-    std::cout<<"Creating Circle with r = "<<r1<<std::endl;
+    // Creating Circle
     Circle circle(r1, "Circle");
-    std::cout << "Creating Square with a = " << a1 << std::endl;
+    //Creating Square
     Square square(a1, "Square");
-    std::cout << "Creating Cyllinder with r = " << r2 << " and h = " << h << std::endl;
+    // Creating Cyllinder
     Cylinder cylinder(r2, h, "Cylinder");
-    std::cout << "Creating Cube with a = " << a2 << std::endl;
+    // Creating Cube
     Cube cube(a2, "Cube");
+
+    std::cout << "\n-------------------\n\n";
 
     Figure* figures[] = { &circle, &square, &cylinder, &cube }; // tablica wskaŸników na figury
 
     for (int i = 0; i < 4; i++) {
-        std::cout << "Area of "<< figures[i]->GetName()<<": " << figures[i]->CalculateArea() << std::endl;
+        std::cout << "Method   | Area of "<< figures[i]->GetName()<<": " << figures[i]->CalculateArea() << std::endl;
+        std::cout << "Function | Area of " << figures[i]->GetName() << ": " << Calculate(figures[i]) << std::endl;
     }
 
+    std::cout << "\n-------------------\n\n";
 
     return 0;
 }

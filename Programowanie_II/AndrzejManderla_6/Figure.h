@@ -9,5 +9,7 @@ public:
     Figure(std::string name);
     std::string GetName();
     virtual double CalculateArea() const = 0;
+    ~Figure();
 };
 
+double Calculate(Figure* wsk);
