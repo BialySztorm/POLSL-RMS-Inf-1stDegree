@@ -1,5 +1,5 @@
 ## Pliki ze studiów I stopnia informatyka praktyczna PŚ 
-
+[![DeepSource](https://app.deepsource.com/gh/BialySztorm/Studia.svg/?label=active+issues&show_trend=true&token=ij5XHrukce-xJZTnMn3GQNj8)](https://app.deepsource.com/gh/BialySztorm/Studia/?ref=repository-badge)
 
 ## Linki
 
