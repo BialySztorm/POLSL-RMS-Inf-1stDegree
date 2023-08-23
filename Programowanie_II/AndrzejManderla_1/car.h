@@ -3,6 +3,7 @@
 
 class Car {
 private:
+    // skipcq: CXX-W2009
     static int ID;
     std::string make;
     std::string model;

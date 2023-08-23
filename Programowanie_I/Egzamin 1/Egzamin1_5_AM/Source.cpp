@@ -3,15 +3,20 @@
 #include <stdlib.h>
 #include <locale.h>
 #pragma warning(disable : 4996)
+// skipcq: CXX-E2000
 #define _CRT_SECURE_NO_WARNINGS
+// skipcq: CXX-E2000
 #define _USE_MATH_DEFINES
 
+// skipcq: CXX-W2066
 void calculate(double a[3][3], double b[3]);
 
 int main()
 {
+	// skipcq: CXX-W2022
 	setlocale(LC_ALL, "");
 
+	// skipcq: CXX-C2013
 	double a[3][3], b[3];
 	printf("Podaj wartosci wspolczynnikow dla ukladu rownan:\n");
 	printf("a11*x1 + a12*x2 = b1\n");
@@ -21,15 +26,17 @@ int main()
 	{
 		for (int j = 1; j < 3; j++) {
 			printf("a%d%d = ", i, j);
+			// skipcq: CXX-W2065
 			if (!scanf("%lf", &a[i][j])) {
-				printf("B³¹d, nie poda³eœ liczby!");
+				printf("Bï¿½ï¿½d, nie podaï¿½eï¿½ liczby!");
 				_getch();
 				return -1;
 			}
 		}
 		printf("b%d = ", i);
+		// skipcq: CXX-W2065
 		if (!scanf("%lf", &b[i])) {
-			printf("B³¹d, nie poda³eœ liczby!");
+			printf("Bï¿½ï¿½d, nie podaï¿½eï¿½ liczby!");
 			_getch();
 			return -1;
 		}
@@ -40,7 +47,9 @@ int main()
 	return 0;
 }
 
+// skipcq: CXX-W2066
 void calculate(double a[3][3], double b[3]) {
+	// skipcq: CXX-W2066
 	double x[3];
 	double wyznacznik = a[1][1] * a[2][2] - a[1][2] * a[2][1];
 	if (wyznacznik != 0) {

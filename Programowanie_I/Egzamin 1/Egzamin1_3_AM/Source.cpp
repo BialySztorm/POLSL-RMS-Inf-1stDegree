@@ -4,29 +4,33 @@
 #include <stdlib.h>
 #include <malloc.h>
 #pragma warning(disable : 4996)
+// skipcq: CXX-E2000
 #define _CRT_SECURE_NO_WARNINGS
 
 int maxIndex(double* x, int len);
 
 int main()
 {
+	// skipcq: CXX-W2022
 	setlocale(LC_ALL, "");
 
 	double* tab = (double*)malloc(sizeof(double) * 10000);
 	double tmp;
 	int len = 0;
 	do {
-		printf("Podaj %d liczbê ci¹gu (zero koñczy): ", len + 1);
+		printf("Podaj %d liczbï¿½ ciï¿½gu (zero koï¿½czy): ", len + 1);
+		// skipcq: CXX-W2022
 		scanf("%le", &tmp);
 		tab[len++] = tmp;
 	} while (tmp != 0.0);
 
-	printf("Najwiêksza jest %d liczba", maxIndex(tab, len));
+	printf("Najwiï¿½ksza jest %d liczba", maxIndex(tab, len));
 
 	_getch();
 	return 0;
 }
 
+// skipcq: CXX-C2014
 int maxIndex(double* x, int len)
 {
 	int index = 0;

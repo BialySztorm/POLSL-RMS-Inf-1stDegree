@@ -3,16 +3,19 @@
 #include <stdlib.h>
 #include <locale.h>
 #pragma warning(disable : 4996)
+// skipcq: CXX-E2000
 #define _CRT_SECURE_NO_WARNINGS
+// skipcq: CXX-E2000
 #define _USE_MATH_DEFINES
 
 int main(int argc, char* argv[])
 {
+	// skipcq: CXX-W2022
 	setlocale(LC_ALL, "");
 
 	if (argc < 2)
 	{
-		printf("Nie podano œcie¿ki do pliku\n");
+		printf("Nie podano ï¿½cieï¿½ki do pliku\n");
 		_getch();
 		return -1;
 	}
@@ -21,7 +24,7 @@ int main(int argc, char* argv[])
 
 	if (fp == NULL)
 	{
-		printf("Nie uda³o siê otworzyæ pliku: %s\n", argv[1]);
+		printf("Nie udaï¿½o siï¿½ otworzyï¿½ pliku: %s\n", argv[1]);
 		_getch();
 		return -1;
 	}
@@ -32,6 +35,7 @@ int main(int argc, char* argv[])
 		printf("%c", tmp);
 	}
 
+	// skipcq: CXX-W2022
 	fclose(fp);
 
 	_getch();

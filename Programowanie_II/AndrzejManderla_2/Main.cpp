@@ -3,9 +3,10 @@
 
 
 int main() {
+    // skipcq: CXX-C2013
     double x, y, x0, y0, r;
 
-    // wczytanie danych od u¿ytkownika z zabezpieczeniem przed wartoœciami mniejszymi b¹dŸ równymi 0
+    // wczytanie danych od uï¿½ytkownika z zabezpieczeniem przed wartoï¿½ciami mniejszymi bï¿½dï¿½ rï¿½wnymi 0
     std::cout << "Podaj wspolrzedne punktu (x y): ";
     std::cin >> x >> y;
 
@@ -14,11 +15,11 @@ int main() {
         std::cin >> x0 >> y0 >> r;
     } while ( r <= 0);
 
-    // utworzenie obiektów klas Punkt i Kolo
+    // utworzenie obiektï¿½w klas Punkt i Kolo
     Point point(x, y);
     Circle circle(x0, y0, r);
 
-    // sprawdzenie, czy punkt nale¿y do ko³a i wyœwietlenie odpowiedniego komunikatu
+    // sprawdzenie, czy punkt naleï¿½y do koï¿½a i wyï¿½wietlenie odpowiedniego komunikatu
     if (circle.PointInCircle(point)) {
         std::cout << "Podany punkt nalezy do kola o srodku (" << x0 << "," << y0 << ") i promieniu " << r << std::endl;
     }

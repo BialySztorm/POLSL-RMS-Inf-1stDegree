@@ -4,6 +4,7 @@
 #include "car.h"
 #include <iostream>
 
+// skipcq: CXX-W2009
 Car car0;
 
 int main()

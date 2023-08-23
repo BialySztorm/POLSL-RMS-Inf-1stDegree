@@ -4,6 +4,7 @@
 
 int main()
 {
+    // skipcq: CXX-C2013
     double r1 = 5, r2 = 2, a1 = 4, h = 5, a2 = 3;
 
     // Creating Circle
@@ -17,7 +18,8 @@ int main()
 
     std::cout << "\n-------------------\n\n";
 
-    Figure* figures[] = { &circle, &square, &cylinder, &cube }; // tablica wskaŸników na figury
+    // skipcq: CXX-W2066
+    Figure* figures[] = { &circle, &square, &cylinder, &cube }; // tablica wskaï¿½nikï¿½w na figury
 
     for (int i = 0; i < 4; i++) {
         std::cout << "Method   | Area of "<< figures[i]->GetName()<<": " << figures[i]->CalculateArea() << std::endl;

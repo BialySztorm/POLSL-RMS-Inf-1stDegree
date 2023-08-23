@@ -1,31 +1,37 @@
 #include <iostream>
+// skipcq: CXX-W2030
 #include <locale.h>
 #include "Cylinder.h"
 #include "Max.h"
 
 
 int main() {
+    // skipcq: CXX-W2022
     std::setlocale(LC_ALL, "");
 
-    std::cout<<"1) wywo³aj szablon funkcji max().\n";
+    std::cout<<"1) wywoï¿½aj szablon funkcji max().\n";
     {
+        // skipcq: CXX-C2013
         int a = 5, b = 10;
+        // skipcq: CXX-C2013
         double c = 7.5, d = 9.2;
 
-        std::cout << std::max(a, b) << std::endl; // wywo³anie szablonu dla int
-        std::cout << std::max(c, d) << std::endl; // wywo³anie szablonu dla double
+        std::cout << std::max(a, b) << std::endl; // wywoï¿½anie szablonu dla int
+        std::cout << std::max(c, d) << std::endl; // wywoï¿½anie szablonu dla double
     }
 
-    std::cout << "\n2) Na jego podstawie zbuduj szablon zwracaj¹cy wartoœæ najwiêksz¹ z trzech podanych argumentów.\n";
+    std::cout << "\n2) Na jego podstawie zbuduj szablon zwracajï¿½cy wartoï¿½ï¿½ najwiï¿½kszï¿½ z trzech podanych argumentï¿½w.\n";
     {
+        // skipcq: CXX-C2013
         int x = 5, y = 10, z = 3;
+        // skipcq: CXX-C2013
         double a = 7.5, b = 9.2, c = 4.6;
 
-        std::cout << max3(x, y, z) << std::endl; // wywo³anie szablonu dla int
-        std::cout << max3(a, b, c) << std::endl; // wywo³anie szablonu dla double
+        std::cout << max3(x, y, z) << std::endl; // wywoï¿½anie szablonu dla int
+        std::cout << max3(a, b, c) << std::endl; // wywoï¿½anie szablonu dla double
     }
 
-    std::cout << "\n3) Zbuduj szablon klasy walec i utwórz w nim szablon metody obliczaj¹cej pole powierzchni dla ró¿nych typów danych.Cia³o metody powinno znaleŸæ siê poza klas¹.\n";
+    std::cout << "\n3) Zbuduj szablon klasy walec i utwï¿½rz w nim szablon metody obliczajï¿½cej pole powierzchni dla rï¿½nych typï¿½w danych.Ciaï¿½o metody powinno znaleï¿½ï¿½ siï¿½ poza klasï¿½.\n";
     {
         Cylinder<int> cylinder1(3, 5);
         std::cout << "Pole powierzchni walca (typ int): " << cylinder1.CalculateArea() << std::endl;

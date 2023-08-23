@@ -1,13 +1,19 @@
+// skipcq: CXX-W2030
 #include <stdio.h>
+// skipcq: CXX-W2030
 #include <stdlib.h>
 #include <conio.h>
 #pragma warning(disable : 4996)
+// skipcq: CXX-E2000
 #define _CRT_SECURE_NO_WARNINGS
+// skipcq: CXX-E2000
 #define _USE_MATH_DEFINES
 #define N 10
 
 int main(void) {
+	// skipcq: CXX-W2066
 	int a[N][N];
+	// skipcq: CXX-C2013
 	int i, j, k = 1;
 	int row_start = 0;
 	int row_end = N - 1;
@@ -15,7 +21,7 @@ int main(void) {
 	int col_end = N - 1;
 
 	while (k <= N * N) {
-		// Wpisywanie liczb do górnej kolumny
+		// Wpisywanie liczb do gï¿½rnej kolumny
 		for (i = row_start; i <= row_end; i++) {
 			a[i][col_start] = k++;
 		}

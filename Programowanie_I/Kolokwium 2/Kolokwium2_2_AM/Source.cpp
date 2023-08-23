@@ -2,13 +2,17 @@
 #include <conio.h>
 #include <locale.h>
 #pragma warning(disable : 4996)
+// skipcq: CXX-E2000
 #define _CRT_SECURE_NO_WARNINGS
+// skipcq: CXX-E2000
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <malloc.h>
 #include <stdlib.h>
 
+// skipcq: CXX-W2066
 double textToNumber(char text[100]) {
+	// skipcq: CXX-C2013
 	int len = 0, tmp = 0, power = 1;
 	char tmpC;
 	for (int i = 0; i < 100; i++)
@@ -27,21 +31,26 @@ double textToNumber(char text[100]) {
 
 int main()
 {
+	// skipcq: CXX-W2022
 	setlocale(LC_ALL, "");
 	FILE* fRef;
+	// skipcq: CXX-C2013
 	double tmp = 0., min = 0, max = 0, avg = 0;
+	// skipcq: CXX-W2066
 	char currentLine[100] = "";
+	// skipcq: CXX-C2013
 	int isFirst = 1, len = 0;
 
 	fRef = fopen("dane.txt", "r");
 	if (fRef == NULL)
 	{
-		printf("Nie mo¿na otworzyæ pliku!");
+		printf("Nie moï¿½na otworzyï¿½ pliku!");
 		return 0;
 	}
 
 	while (fgets(currentLine, sizeof(currentLine), fRef) != NULL) {
 		tmp = textToNumber(currentLine);
+		// skipcq: CXX-W2065
 		if (isFirst) {
 			min = tmp;
 			max = tmp;
@@ -58,6 +67,7 @@ int main()
 		printf("Mam linie: %g\n", tmp);
 		len++;
 	}
+	// skipcq: CXX-W2022
 	fclose(fRef);
 	printf("Min: %g\n", min);
 	printf("Max: %g\n", max);

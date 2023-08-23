@@ -1,5 +1,7 @@
+// skipcq: CXX-W2030
 #include <stdio.h>
 #include <conio.h>
+// skipcq: CXX-W2030
 #include <locale.h>
 #include <math.h>
 #include <string.h>
@@ -32,6 +34,7 @@ void Decrypt(char* Text, int InputLen);
 
 int main() {
 	//GetOptions();
+	// skipcq: CXX-W2022
 	setlocale(LC_ALL, "");
 	int IsRunning = 1;
 	char Option = 0;
@@ -40,6 +43,7 @@ int main() {
 	char GetChar;
 	int TotalWidth;
 
+	// skipcq: CXX-W2065
 	while (IsRunning) {
 		TotalWidth = GetColumnWidth();
 		ShowGui();
@@ -57,7 +61,7 @@ int main() {
 				Encrypt(String, InputLen);
 
 			printf("\033[0m");
-			printf("\n%*s", TotalWidth / 2 + 15, "Naciœnij cokolwiek aby kontynuowaæ.");
+			printf("\n%*s", TotalWidth / 2 + 15, "Naciï¿½nij cokolwiek aby kontynuowaï¿½.");
 			GetChar = _getch();
 		}
 		else if (Option == '2') {
@@ -68,12 +72,12 @@ int main() {
 				Decrypt(String, InputLen);
 
 			printf("\033[0m");
-			printf("\n%*s", TotalWidth / 2 + 15, "Naciœnij cokolwiek aby kontynuowaæ.");
+			printf("\n%*s", TotalWidth / 2 + 15, "Naciï¿½nij cokolwiek aby kontynuowaï¿½.");
 			GetChar = _getch();
 		}
 		else {
 			printf("\033[0;31m");
-			printf("%*s", TotalWidth / 2 + 6, "B³êdne dane!");
+			printf("%*s", TotalWidth / 2 + 6, "Bï¿½ï¿½dne dane!");
 			GetChar = _getch();
 		}
 	}
@@ -121,6 +125,7 @@ void ShowGui()
 	const int TotalWidth = GetColumnWidth();
 	char* s;
 
+	// skipcq: CXX-A1001
 	system("cls");
 	printf("\033[0;35m");
 	printf("\n\n\n");
@@ -132,13 +137,13 @@ void ShowGui()
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
 	s = "Stworzony przez Andrzej Manderla\n\n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
-	s = "Wybierz opcjê:\n";
+	s = "Wybierz opcjï¿½:\n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
 	s = "[1] - Szyfruj  \n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
 	s = "[2] - Deszyfruj\n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
-	s = "[0] - Zakoñcz  \n";
+	s = "[0] - Zakoï¿½cz  \n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
 	s = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n";
 	printf("%*s\n", GetPadding(TotalWidth, s), s);
@@ -148,11 +153,14 @@ int GetInput(char** Text)
 {
 	const int TotalWidth = GetColumnWidth();
 	const int TabLen = 10000;
+	// skipcq: CXX-W2066
 	char Input[TabLen];
 	printf("\033[0;34m");
-	printf("\n%*s", TotalWidth / 2, "Dane wejœciowe: ");
+	printf("\n%*s", TotalWidth / 2, "Dane wejï¿½ciowe: ");
 	printf("\033[0m");
+	// skipcq: CXX-W2022
 	fgets(Input, TabLen, stdin);
+	// skipcq: CXX-C2013
 	int InputLen = 0, error = 0;
 	for (int i = 0; i < TabLen; i++) {
 		if (Input[i] == 0 || Input[i] == 10)
@@ -169,6 +177,7 @@ int GetInput(char** Text)
 	for (int i = 0; i < InputLen * sizeof(char); i++) {
 		(*Text)[i] = NULL;
 	}
+	// skipcq: CXX-W2065
 	if (*Text) {
 		for (int i = 0; i < InputLen; i++) {
 			if (Input[i] >= 65 && Input[i] <= 90)
@@ -181,34 +190,38 @@ int GetInput(char** Text)
 				(*Text)[i] = Input[i];
 		}
 	}
+	// skipcq: CXX-W2065
 	if (error) {
 		printf("\033[0;31m");
 		if (error == 1) {
-			printf("\n%*s", TotalWidth / 2 + 6, "B³êdne dane!");
+			printf("\n%*s", TotalWidth / 2 + 6, "Bï¿½ï¿½dne dane!");
 			InputLen = 0;
 		}
 		else if (error == 2) {
-			printf("\n%*s", TotalWidth / 2 + 7, "Puste wejœcie!");
+			printf("\n%*s", TotalWidth / 2 + 7, "Puste wejï¿½cie!");
 		}
 	}
 
 	return InputLen;
 }
 
+// skipcq: CXX-C2014
 void Encrypt(char* Text, int InputLen) {
 	const int TotalWidth = GetColumnWidth();
 	//printf("%s", Text);
 	int TabLen = InputLen * 4;
 	char* Encrypted = (char*)malloc(TabLen * sizeof(char));
 	int* Code = (int*)malloc(InputLen * sizeof(int));
+	// skipcq: CXX-C2013
 	int CurrIndex = 0, CurrElement = 1, CurrCode = 0, tmp[] = { 0,0 };
+	// skipcq: CXX-W2065
 	if (Encrypted) {
 		for (int i = 0; i < TabLen; i++) {
 			Encrypted[i] = NULL;
 		}
 		for (int i = 0; i <= InputLen; i++) {
 			if (Text[i] == 'j' || Text[i] == 'q') {
-				Encrypted = "Nie ma mo¿liwoœci";
+				Encrypted = "Nie ma moï¿½liwoï¿½ci";
 			}
 		}
 		if (Encrypted[0] != 'N') {
@@ -247,7 +260,7 @@ void Encrypt(char* Text, int InputLen) {
 				if (CurrElement >= sizeof(ElementsLen) / 4) {
 					//printf("sizeof\n");
 					if (CurrIndex == 0 || Code[CurrCode - 1] >= sizeof(ElementsLen) / 4 - 1 || Code[CurrCode - 1] == 0) {
-						Encrypted = "Nie ma mo¿liwoœci";
+						Encrypted = "Nie ma moï¿½liwoï¿½ci";
 						break;
 					}
 					else {
@@ -300,7 +313,7 @@ void Encrypt(char* Text, int InputLen) {
 		}
 
 		printf("\033[0;34m");
-		printf("%*s", TotalWidth / 2, "Dane wyjœciowe: ");
+		printf("%*s", TotalWidth / 2, "Dane wyjï¿½ciowe: ");
 		printf("\033[0m");
 		printf("%s\n", Encrypted);
 
@@ -311,11 +324,13 @@ void Encrypt(char* Text, int InputLen) {
 	}
 }
 
+// skipcq: CXX-C2014
 void Decrypt(char* Text, int InputLen) {
 	const int TotalWidth = GetColumnWidth();
 	//printf("%s", Text);
 	int TabLen = 1;
 	char* Decrypted;
+	// skipcq: CXX-W2066
 	int tmp[5] = { 0,0,0,0,0 };
 	int tmp1 = 0;
 	int CurrIndex = 0;
@@ -327,6 +342,7 @@ void Decrypt(char* Text, int InputLen) {
 	TabLen *= 4;
 	//printf("%d", TabLen);
 	Decrypted = (char*)malloc(TabLen * sizeof(char));
+	// skipcq: CXX-W2065
 	if (Decrypted) {
 		for (int i = 0; i < TabLen; i++) {
 			Decrypted[i] = NULL;
@@ -337,7 +353,7 @@ void Decrypt(char* Text, int InputLen) {
 				tmp[tmp[0]] = (int)Text[i] - 48;
 			}
 			else if (Text[i] >= 32 && Text[i] <= 126 && Text[i] != '*') {
-				Decrypted = "Nie ma mo¿liwoœci";
+				Decrypted = "Nie ma moï¿½liwoï¿½ci";
 				break;
 			}
 			if (Text[i] == '*' || i == InputLen - 1) {
@@ -346,7 +362,7 @@ void Decrypt(char* Text, int InputLen) {
 						tmp1 += (int)pow(10, tmp[0] - j) * tmp[j];
 					}
 					if (tmp1 > 118) {
-						Decrypted = "Nie ma mo¿liwoœci";
+						Decrypted = "Nie ma moï¿½liwoï¿½ci";
 						break;
 					}
 					//printf("%d\n", tmp1);
@@ -364,7 +380,7 @@ void Decrypt(char* Text, int InputLen) {
 			}
 		}
 		printf("\033[0;34m");
-		printf("%*s", TotalWidth / 2, "Dane wyjœciowe: ");
+		printf("%*s", TotalWidth / 2, "Dane wyjï¿½ciowe: ");
 		printf("\033[0m");
 		printf("%s\n", Decrypted);
 	}

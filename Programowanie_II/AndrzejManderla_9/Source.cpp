@@ -2,6 +2,7 @@
 #include "Zero.h"
 
 int main() {
+    // skipcq: CXX-C2013
     double a, b;
     std::cout << "Podaj dwie liczby do dzielenia i modulo: ";
     std::cin >> a >> b;

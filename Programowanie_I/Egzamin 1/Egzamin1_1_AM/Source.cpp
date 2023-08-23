@@ -3,7 +3,9 @@
 #include <locale.h>
 #include <stdlib.h>
 #pragma warning(disable : 4996)
+// skipcq: CXX-E2000
 #define _CRT_SECURE_NO_WARNINGS
+// skipcq: CXX-E2000
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -13,32 +15,37 @@ double CalculateConeSurfaceArea(double r, double l);
 
 int main()
 {
+	// skipcq: CXX-W2022
 	setlocale(LC_ALL, "");
-	printf("Obliczaniepola powierzchni i objêtoœci sto¿ka\n");
-	printf("Podane przez ciebie l musi byæ wiêksze od r oraz obie wartoœci wiêksze od 0\n");
+	printf("Obliczaniepola powierzchni i objï¿½toï¿½ci stoï¿½ka\n");
+	printf("Podane przez ciebie l musi byï¿½ wiï¿½ksze od r oraz obie wartoï¿½ci wiï¿½ksze od 0\n");
 
+	// skipcq: CXX-C2013
 	double r, l;
 	int i = 0;
 	do {
+		// skipcq: CXX-W2065
 		if (i)
-			printf("\nWprowadzono b³êdne dane!\n");
+			printf("\nWprowadzono bï¿½ï¿½dne dane!\n");
 		i++;
-		printf("Podaj tworz¹c¹ sto¿ka: ");
+		printf("Podaj tworzï¿½cï¿½ stoï¿½ka: ");
+		// skipcq: CXX-W2065
 		while (!scanf("%le", &l))
 		{
 			flushKeyBoard();
-			printf("\nWprowadzono b³êdne dane!\nPodaj tworz¹c¹ sto¿ka: ");
+			printf("\nWprowadzono bï¿½ï¿½dne dane!\nPodaj tworzï¿½cï¿½ stoï¿½ka: ");
 		}
-		printf("Podaj promieñ sto¿ka: ");
+		printf("Podaj promieï¿½ stoï¿½ka: ");
+		// skipcq: CXX-W2065
 		while (!scanf("%le", &r))
 		{
 			flushKeyBoard();
-			printf("\nWprowadzono b³êdne dane!\nPodaj promieñ sto¿ka: ");
+			printf("\nWprowadzono bï¿½ï¿½dne dane!\nPodaj promieï¿½ stoï¿½ka: ");
 		}
 	} while (r >= l && l > 0 && r > 0);
 
-	printf("Pole powierzchni tego sto¿ka wynosi: %f\n", CalculateConeSurfaceArea(r, l));
-	printf("Objêtoœæ tego sto¿ka wynosi: %f\n", CalculateConeVolume(r, l));
+	printf("Pole powierzchni tego stoï¿½ka wynosi: %f\n", CalculateConeSurfaceArea(r, l));
+	printf("Objï¿½toï¿½ï¿½ tego stoï¿½ka wynosi: %f\n", CalculateConeVolume(r, l));
 
 	_getch();
 	return 0;

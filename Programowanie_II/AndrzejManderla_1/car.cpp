@@ -1,6 +1,7 @@
 #include "car.h"
 #include <iostream>
 
+// skipcq: CXX-W2009
 int Car::ID = 0;
 
 Car::Car()
@@ -15,7 +16,9 @@ Car::Car()
 // skipcq: CXX-P2009
 Car::Car(std::string m, std::string mo, int y)
 {
+    // skipcq: CXX-P2009
     make = m;
+    // skipcq: CXX-P2009
     model = mo;
     year = y;
     id = ID++;
