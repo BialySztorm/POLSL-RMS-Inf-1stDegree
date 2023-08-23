@@ -52,7 +52,7 @@ int main()
 }
 
 // skipcq: CXX-W2066
-void calculate(double a[3][3], double b[3]) {
+void calculate(const double a[3][3], const double b[3]) {
 	// skipcq: CXX-W2066
 	double x[3];
 	double wyznacznik = a[1][1] * a[2][2] - a[1][2] * a[2][1];
