@@ -1,6 +1,7 @@
 #include "Square.h"
 #include <iostream>
 
+// skipcq: CXX-P2009
 Square::Square(double a, std::string name) : a(a), Figure(name) 
 {
     std::cout << "Constructing Square with a = " << a << std::endl;

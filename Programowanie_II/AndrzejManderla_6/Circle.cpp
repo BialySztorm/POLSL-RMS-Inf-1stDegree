@@ -2,6 +2,7 @@
 #define M_PI 3.14159265358979323846
 #include <iostream>
 
+// skipcq: CXX-P2009
 Circle::Circle(double r, std::string name) : r(r), Figure(name) 
 {
     std::cout << "Constructing Circle with r = " << r << std::endl;

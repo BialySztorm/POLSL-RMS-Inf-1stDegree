@@ -1,6 +1,7 @@
 #include "Cube.h"
 #include <iostream>
 
+// skipcq: CXX-P2009
 Cube::Cube(double a, std::string name) : Square(a, name) 
 {
     std::cout << "Constructing Cube with a = " << a << std::endl;
