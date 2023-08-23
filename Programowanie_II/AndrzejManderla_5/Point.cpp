@@ -7,6 +7,7 @@ Point::Point()
 	name = "";
 }
 
+// skipcq: CXX-P2009
 Point::Point(std::string name)
 {
 	std::cout << "Constructor Point " << name << std::endl;

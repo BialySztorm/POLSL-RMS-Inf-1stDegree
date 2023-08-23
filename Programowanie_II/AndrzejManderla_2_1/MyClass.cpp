@@ -1,6 +1,7 @@
 #include "MyClass.h"
 #include <iostream>
 
+// skipcq: CXX-P2009
 void friendFunction(MyClass obj) {
     std::cout << "Friend function called" << std::endl;
 }

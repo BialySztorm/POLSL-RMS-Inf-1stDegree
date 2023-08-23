@@ -7,6 +7,7 @@ Cylinder::Cylinder()
 	name = "";
 }
 
+// skipcq: CXX-P2009
 Cylinder::Cylinder(std::string name):Circle(name)
 {
 	std::cout << "Constructor Cylinder " << name << std::endl;

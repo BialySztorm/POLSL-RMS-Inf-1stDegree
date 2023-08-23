@@ -37,4 +37,5 @@ int main()
     return 0;
 }
 
+// skipcq: CXX-W2009
 Car car5;

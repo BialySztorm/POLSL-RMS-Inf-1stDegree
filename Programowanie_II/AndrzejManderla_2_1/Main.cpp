@@ -1,23 +1,24 @@
 #include "MyClass.h"
 
 int main() {
-    // Tworzenie obiektu z wywo³aniem konstruktora
+    // Tworzenie obiektu z wywoï¿½aniem konstruktora
     MyClass obj1;
 
     // Tworzenie obiektu poprzez kopiowanie
+    // skipcq: CXX-P2005
     MyClass obj2 = obj1;
 
-    // Tworzenie obiektu za pomoc¹ operatora przypisania
+    // Tworzenie obiektu za pomocï¿½ operatora przypisania
     MyClass obj3;
     obj3 = obj1;
 
-    // Tworzenie obiektu za pomoc¹ operatora new
+    // Tworzenie obiektu za pomocï¿½ operatora new
     MyClass* obj4 = new MyClass;
 
-    // Wywo³anie zaprzyjaŸnionej funkcji
+    // Wywoï¿½anie zaprzyjaï¿½nionej funkcji
     friendFunction(obj1);
 
-    // Usuniêcie obiektu stworzonego przez operator new
+    // Usuniï¿½cie obiektu stworzonego przez operator new
     delete obj4;
 
     return 0;
@@ -25,6 +26,6 @@ int main() {
 
 //Odpowiedzi na pytania :
 //
-//Nie, funkcja zaprzyjaŸniona nie jest kopiowana wraz z kopi¹ obiektu.Funkcja zaprzyjaŸniona jest jedynie zaprzyjaŸniona z klas¹ i ma dostêp do jej prywatnych sk³adowych, ale nie jest jej czêœci¹.
-//Nie, !(kopiowanie obiektu wymaga utworzenia w klasie konstruktora kopiuj¹cego.W przeciwnym wypadku), jeœli konstruktor kopiuj¹cy nie zostanie zdefiniowany, kompilator utworzy dla nas domyœlny konstruktor kopiuj¹cy, który skopiuje wszystkie sk³adowe obiektu.
-//Nie, !(dla tworzonego obiektu, bêd¹cego kopi¹ innego obiektu, uruchamiany jest konstruktor kopiuj¹cy) chyba ¿e jest kopiuj¹cy.
+//Nie, funkcja zaprzyjaï¿½niona nie jest kopiowana wraz z kopiï¿½ obiektu.Funkcja zaprzyjaï¿½niona jest jedynie zaprzyjaï¿½niona z klasï¿½ i ma dostï¿½p do jej prywatnych skï¿½adowych, ale nie jest jej czï¿½ciï¿½.
+//Nie, !(kopiowanie obiektu wymaga utworzenia w klasie konstruktora kopiujï¿½cego.W przeciwnym wypadku), jeï¿½li konstruktor kopiujï¿½cy nie zostanie zdefiniowany, kompilator utworzy dla nas domyï¿½lny konstruktor kopiujï¿½cy, ktï¿½ry skopiuje wszystkie skï¿½adowe obiektu.
+//Nie, !(dla tworzonego obiektu, bï¿½dï¿½cego kopiï¿½ innego obiektu, uruchamiany jest konstruktor kopiujï¿½cy) chyba ï¿½e jest kopiujï¿½cy.

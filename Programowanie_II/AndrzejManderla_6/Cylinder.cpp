@@ -1,6 +1,7 @@
 #include "Cylinder.h"
 #define M_PI 3.14159265358979323846
 
+// skipcq: CXX-P2009
 Cylinder::Cylinder(double r, double h, std::string name) : Circle(r, name), h(h) {} // konstruktor
 
 double Cylinder::CalculateArea() const

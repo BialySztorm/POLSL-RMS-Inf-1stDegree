@@ -12,6 +12,7 @@ Car::Car()
     std::cout << id <<" Default constructor called" << std::endl;
 }
 
+// skipcq: CXX-P2009
 Car::Car(std::string m, std::string mo, int y)
 {
     make = m;

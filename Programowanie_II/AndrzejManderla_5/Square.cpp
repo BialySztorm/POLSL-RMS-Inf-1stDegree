@@ -7,6 +7,7 @@ Square::Square()
 	name = "";
 }
 
+// skipcq: CXX-P2009
 Square::Square(std::string name):Point(name)
 {
 	std::cout << "Constructor Square " << name << std::endl;

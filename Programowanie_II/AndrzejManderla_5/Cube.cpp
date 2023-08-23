@@ -7,6 +7,7 @@ Cube::Cube()
 	name = "";
 }
 
+// skipcq: CXX-P2009
 Cube::Cube(std::string name):Square(name)
 {
 	std::cout<<"Constructor Cube "<<name<<std::endl;
