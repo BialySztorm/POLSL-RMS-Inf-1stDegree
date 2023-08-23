@@ -1,3 +1,4 @@
+// skipcq: CXX-W2030
 #include <stdio.h>
 #include <conio.h>
 // skipcq: CXX-W2030
