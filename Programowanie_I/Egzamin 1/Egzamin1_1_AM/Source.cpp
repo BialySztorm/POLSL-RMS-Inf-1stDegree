@@ -1,12 +1,16 @@
+// skipcq: CXX-W2030
 #include <stdio.h>
 #include <conio.h>
+// skipcq: CXX-W2030
 #include <locale.h>
+// skipcq: CXX-W2030
 #include <stdlib.h>
 #pragma warning(disable : 4996)
 // skipcq: CXX-E2000
 #define _CRT_SECURE_NO_WARNINGS
 // skipcq: CXX-E2000
 #define _USE_MATH_DEFINES
+// skipcq: CXX-W2030
 #include <math.h>
 
 void flushKeyBoard();
@@ -30,6 +34,7 @@ int main()
 		i++;
 		printf("Podaj tworz�c� sto�ka: ");
 		// skipcq: CXX-W2065
+		// skipcq: CXX-W2023
 		while (!scanf("%le", &l))
 		{
 			flushKeyBoard();

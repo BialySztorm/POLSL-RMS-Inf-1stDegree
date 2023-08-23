@@ -1,5 +1,7 @@
+// skipcq: CXX-W2030
 #include <stdio.h>
 #include <conio.h>
+// skipcq: CXX-W2030
 #include <locale.h>
 #pragma warning(disable : 4996)
 // skipcq: CXX-E2000

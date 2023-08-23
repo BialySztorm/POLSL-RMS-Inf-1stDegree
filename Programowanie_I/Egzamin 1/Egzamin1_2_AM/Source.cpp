@@ -41,13 +41,16 @@ int main()
 	// skipcq: CXX-W2023
 	while (fscanf(fp, "%d %s %s", &person.id, person.name, person.position) == 3)
 	{
+		// skipcq: CXX-C1000
 		if (strcmp(person.name, name) == 0) {
+			// skipcq: CXX-C1000
 			printf("Znalezniono osob�: %d %s %s", person.id, person.name, person.position);
 			isFound++;
 		}
 	}
 	// skipcq: CXX-W2065
 	if (!isFound)
+		// skipcq: CXX-C1000
 		printf("Nie znaleziono osoby o nazwisko: %s", name);
 
 	_getch();

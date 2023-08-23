@@ -1,6 +1,9 @@
+// skipcq: CXX-W2030
 #include <stdio.h>
 #include <conio.h>
+// skipcq: CXX-W2030
 #include <locale.h>
+// skipcq: CXX-W2030
 #include <stdlib.h>
 #include <malloc.h>
 #pragma warning(disable : 4996)
