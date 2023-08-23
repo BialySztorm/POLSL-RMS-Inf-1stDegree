@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <conio.h>
+// skipcq: CXX-W2030
 #include <locale.h>
 #pragma warning(disable : 4996)
 // skipcq: CXX-E2000
 #define _CRT_SECURE_NO_WARNINGS
 // skipcq: CXX-E2000
 #define _USE_MATH_DEFINES
+// skipcq: CXX-W2030
 #include <math.h>
 #include <malloc.h>
 
@@ -43,7 +45,7 @@ int main()
 }
 
 // skipcq: CXX-W2066
-int polynomial(int tab[], int n, int x) {
+int polynomial(const int tab[], const int n, const int x) {
 	double tmp = 0;
 	for (int i = 0; i < n; i++) {
 		tmp += tab[i] * pow(x, i);

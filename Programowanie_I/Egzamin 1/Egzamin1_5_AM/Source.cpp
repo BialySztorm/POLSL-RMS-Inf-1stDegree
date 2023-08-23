@@ -45,6 +45,7 @@ int main()
 		}
 	}
 
+	// skipcq: CXX-C1000
 	calculate(a, b);
 	_getch();
 	return 0;

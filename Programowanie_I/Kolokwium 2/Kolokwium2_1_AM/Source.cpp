@@ -47,7 +47,7 @@ int main()
 }
 
 // skipcq: CXX-W2066
-double VectorProduct(double vector1[2], double vector2[2], int n) {
+double VectorProduct(const double vector1[2], const double vector2[2], int n) {
 	double tmp = 0;
 	for (int i = 0; i < n; i++) {
 		tmp += vector1[i] * vector2[i];

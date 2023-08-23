@@ -15,7 +15,7 @@
 #include <stdlib.h>
 
 // skipcq: CXX-W2066
-double textToNumber(char text[100]) {
+double textToNumber(const char text[100]) {
 	// skipcq: CXX-C2013
 	int len = 0, tmp = 0, power = 1;
 	char tmpC;
