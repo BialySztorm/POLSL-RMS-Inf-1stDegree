@@ -1,0 +1,154 @@
+Andrzej Manderla Laboratorium 1
+Zad 1.
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Andrzej, 21");
+    }
+}
+
+Zad 2.
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("X X\n X\nX X");
+    }
+}
+
+Zad 3.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Podaj pierwszą liczbę: ");
+        double liczba1 = scanner.nextDouble();
+
+        System.out.print("Podaj drugą liczbę: ");
+        double liczba2 = scanner.nextDouble();
+
+        double suma = liczba1 + liczba2;
+        double roznica = liczba1 - liczba2;
+        double iloczyn = liczba1 * liczba2;
+        double iloraz = 0.0;
+
+        if (liczba2 != 0) {
+            iloraz = liczba1 / liczba2;
+        } else {
+            System.out.println("Nie można dzielić przez zero.");
+        }
+
+        System.out.println("Wyniki działań:");
+        System.out.println("Dodawanie: " + suma);
+        System.out.println("Odejmowanie: " + roznica);
+        System.out.println("Mnożenie: " + iloczyn);
+
+        if (liczba2 != 0) {
+            System.out.println("Dzielenie: " + iloraz);
+        }
+
+        scanner.close();
+    }
+}
+
+Zad 4.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Podaj promień koła: ");
+        double radius = scanner.nextDouble();
+        double area = Math.PI * Math.pow(radius, 2);
+        System.out.println("Powierzchnia koła wynosi: " + area);
+    }
+}
+
+Zad 5.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Podaj kąt w stopniach: ");
+        double degrees = scanner.nextDouble();
+        double radians = Math.toRadians(degrees);
+        System.out.println("Kąt w radianach wynosi: " + radians);
+    }
+}
+
+Zad 6.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Podaj wartość 𝑥: ");
+        double x = scanner.nextDouble();
+        System.out.print("Podaj wartość 𝑎: ");
+        double a = scanner.nextDouble();
+        System.out.print("Podaj wartość 𝑏: ");
+        double b = scanner.nextDouble();
+        System.out.print("Podaj wartość 𝑐: ");
+        double c = scanner.nextDouble();
+        System.out.print("Podaj wartość 𝑑: ");
+        double d = scanner.nextDouble();
+        double result1 = a * Math.pow(x, 2) + b * x + c;
+        double result2 = a * Math.pow(x, 3) + b * Math.pow(x, 2) + c * x + d;
+        System.out.println("Wynik dla 𝐴(𝑥) = 𝑎𝑥^2 + 𝑏𝑥 + 𝑐: " + result1);
+        System.out.println("Wynik dla 𝐵(𝑥) = 𝑎𝑥^3 + 𝑏𝑥^2 + 𝑐𝑥 + 𝑑: " + result2);
+    }
+}
+
+Zad 7.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Podaj wartość 𝑥: ");
+        double x = scanner.nextDouble();
+        System.out.print("Podaj wartość 𝑎: ");
+        double a = scanner.nextDouble();
+        System.out.print("Podaj wartość 𝑏: ");
+        double b = scanner.nextDouble();
+        System.out.print("Podaj wartość 𝑐: ");
+        double c = scanner.nextDouble();
+        System.out.print("Podaj wartość 𝑑: ");
+        double d = scanner.nextDouble();
+        double result1 = horner(x, a, b, c);
+        double result2 = horner(x, a, b, c, d);
+        System.out.println("Wynik dla 𝐴(𝑥) = 𝑎𝑥^2 + 𝑏𝑥 + 𝑐: " + result1);
+        System.out.println("Wynik dla 𝐵(𝑥) = 𝑎𝑥^3 + 𝑏𝑥^2 + 𝑐𝑥 + 𝑑: " + result2);
+    }
+
+    public static double horner(double x, double... coefficients) {
+        double result = coefficients[coefficients.length - 1];
+        for (int i = coefficients.length - 2; i >= 0; i--) {
+            result = result * x + coefficients[i];
+        }
+        return result;
+    }
+}
+
+Zad 8.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Podaj promień podstawy walca: ");
+        double promienPodstawy = scanner.nextDouble();
+
+        System.out.print("Podaj wysokość walca: ");
+        double wysokosc = scanner.nextDouble();
+
+        double polePowierzchniBocznej = 2 * Math.PI * promienPodstawy * wysokosc;
+        double objetoscWalca = Math.PI * promienPodstawy * promienPodstawy * wysokosc;
+
+        System.out.println("Pole powierzchni bocznej walca: " + polePowierzchniBocznej);
+        System.out.println("Objętość walca: " + objetoscWalca);
+
+        scanner.close();
+    }
+}

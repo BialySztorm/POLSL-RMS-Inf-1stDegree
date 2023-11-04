@@ -1,0 +1,160 @@
+Andrzej Manderla Laboratorium 2
+Zad 1.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String line;
+        do {
+            System.out.print("Wpisz linijkę tekstu (lub 'quit' aby zakończyć): ");
+            line = scanner.nextLine();
+            if (!line.equals("quit")) {
+                System.out.println(line);
+            }
+        } while (!line.equals("quit"));
+    }
+}
+
+Zad 2.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Wpisz tekst: ");
+        String text = scanner.nextLine();
+        int count = 0;
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (c == 'a') {
+                count++;
+            }
+        }
+        System.out.println("Liczba znaków małej litery 'a': " + count);
+    }
+}
+
+Zad 3.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        StringBuilder output = new StringBuilder();
+
+        String line = scanner.nextLine();
+        String replacedLine = line.replaceAll("\\s+", " "); // Zamienia ciągi spacji na pojedynczy znak spacji
+        output.append(replacedLine).append("\n");
+
+        System.out.println(output.toString());
+    }
+}
+
+Zad 4.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Wprowadź tekst:");
+        String inputText = scanner.nextLine();
+
+        int occurrences = countAbOccurrences(inputText);
+
+        System.out.println("Ilość wystąpień dwuznaku 'ab': " + occurrences);
+    }
+
+    public static int countAbOccurrences(String text) {
+        int count = 0;
+
+        for (int i = 0; i < text.length() - 1; i++) {
+            if (text.charAt(i) == 'a' && text.charAt(i + 1) == 'b') {
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
+
+Zad 5.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Wprowadź tekst:");
+        String inputText = scanner.nextLine();
+
+        int wordCount = countWords(inputText);
+
+        System.out.println("Ilość słów w tekście: " + wordCount);
+    }
+
+    public static int countWords(String text) {
+        String[] words = text.split("\\s+"); // Dzielimy tekst na słowa (rozdzielone spacjami lub innymi białymi znakami)
+        return words.length;
+    }
+}
+
+Zad 6.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Wprowadź tekst:");
+        String inputText = scanner.nextLine();
+
+        printWordsSeparately(inputText);
+    }
+
+    public static void printWordsSeparately(String text) {
+        String[] words = text.split("\\s+"); // Dzielimy tekst na słowa (rozdzielone spacjami lub innymi białymi znakami)
+
+        for (String word : words) {
+            System.out.println(word); // Wypisujemy każde słowo w osobnym wierszu
+        }
+    }
+}
+
+Zad 7.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Wprowadź tekst (aby zakończyć, wpisz 'koniec'):");
+        StringBuilder textBuilder = new StringBuilder();
+        String line;
+
+        while (true) {
+            line = scanner.nextLine();
+            if (line.equals("koniec")) {
+                break;
+            }
+            textBuilder.append(line).append("\n");
+        }
+
+        String modifiedText = removeLeadingSpacesAndTabs(textBuilder.toString());
+        System.out.println("Tekst po usunięciu początkowych spacji i tabulacji:");
+        System.out.println(modifiedText);
+    }
+
+    public static String removeLeadingSpacesAndTabs(String text) {
+        String[] lines = text.split("\n");
+        StringBuilder resultBuilder = new StringBuilder();
+
+        for (String line : lines) {
+            String trimmedLine = line.replaceAll("^[ \t]+", ""); // Usuwanie początkowych spacji i tabulacji
+            resultBuilder.append(trimmedLine).append("\n");
+        }
+
+        return resultBuilder.toString().trim(); // Usunięcie nadmiarowych znaków nowego wiersza na końcu
+    }
+}
