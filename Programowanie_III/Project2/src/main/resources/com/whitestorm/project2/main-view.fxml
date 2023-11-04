@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<!--  <Label fx:id="welcomeText"/>-->
+<?import javafx.scene.control.Button?>
+
+<?import javafx.scene.control.TextField?>
+<VBox xmlns="http://javafx.com/javafx"
+      stylesheets="@Style.css"
+      styleClass="dark_mode"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.whitestorm.project2.Controller"
+      spacing="10" >
+  <Label>Szyfrator Mendelejewa</Label>
+  <Label>v.1.2.0</Label>
+  <Label></Label>
+
+  <TextField promptText="Wprowadź tekst" fx:id="textfield"></TextField>
+  <Button text="Szyfruj" onAction="#onEncryptButtonClick" />
+  <Button text="Deszyfruj" onAction="#onDecryptButtonClick"/>
+  <Button text="Wyjście" onAction="#onExitButtonClick"/>
+</VBox>
