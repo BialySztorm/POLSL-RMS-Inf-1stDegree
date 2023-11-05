@@ -1,5 +1,4 @@
 from random import randint
-import time
 
 
 def build_bad_char_table(pattern):

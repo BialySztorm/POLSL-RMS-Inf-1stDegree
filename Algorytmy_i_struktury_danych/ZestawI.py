@@ -1,3 +1,4 @@
+# skipcq: PYL-W0622
 def max(tab):
     max = tab[0]
     for i in range(1, len(tab)):
@@ -6,6 +7,7 @@ def max(tab):
     return max
 
 
+# skipcq: PYL-W0622
 def min_and_max(tab):
     min = tab[0]
     max = tab[0]
@@ -20,7 +22,7 @@ def min_and_max(tab):
 class Queue:
     def __init__(self, size):
         self.size = size
-        self.queue = [None] * size
+        self.queueTab = [None] * size
         self.head = 0
         self.tail = 0
         self.count = 0
@@ -33,7 +35,7 @@ class Queue:
 
     def enqueue(self, item):
         if not self.is_full():
-            self.queue[self.tail] = item
+            self.queueTab[self.tail] = item
             self.tail = (self.tail + 1) % self.size
             self.count += 1
         else:
@@ -41,20 +43,20 @@ class Queue:
 
     def dequeue(self):
         if not self.is_empty():
-            item = self.queue[self.head]
-            self.queue[self.head] = None
+            item = self.queueTab[self.head]
+            self.queueTab[self.head] = None
             self.head = (self.head + 1) % self.size
             self.count -= 1
             return item
-        else:
-            print("Queue is empty. Cannot dequeue.")
+        print("Queue is empty. Cannot dequeue.")
+        return None
 
     def display(self):
         if not self.is_empty():
             current = self.head
             items = []
             for _ in range(self.count):
-                items.append(self.queue[current])
+                items.append(self.queueTab[current])
                 current = (current + 1) % self.size
             print("Queue:", items)
         else:
