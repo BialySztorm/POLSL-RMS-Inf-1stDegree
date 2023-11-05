@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='styles.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='styles.css') }}"
+        />
+        <title>Text Operations</title>
+    </head>
+    <body>
+        <h1>Text Operations</h1>
+        <textarea id="inputText" rows="4" cols="50"></textarea>
+        <br />
+        <button onclick="checkPalindrome()">Check Palindrome</button>
+        <button onclick="encryptText()">Encrypt with Caesar Cipher</button>
+        <button onclick="decryptText()">Decrypt with Caesar Cipher</button>
+        <br />
+        <div id="output"></div>
+
+        <script>
+            function checkPalindrome() {
+                const text = document.getElementById("inputText").value
+                const reversedText = text.split("").reverse().join("")
+                if (text === reversedText) {
+                    document.getElementById("output").innerHTML =
+                        "It's a palindrome!"
+                } else {
+                    document.getElementById("output").innerHTML =
+                        "It's not a palindrome."
+                }
+            }
+
+            function encryptText() {
+                const text = document.getElementById("inputText").value
+                var encryptedText = ""
+                const shift = 3 // Przesunięcie w algorytmie Cezara
+
+                for (var i = 0; i < text.length; i++) {
+                    var charCode = text.charCodeAt(i)
+                    if (charCode >= 65 && charCode <= 90) {
+                        encryptedText += String.fromCharCode(
+                            ((charCode - 65 + shift) % 26) + 65
+                        )
+                    } else if (charCode >= 97 && charCode <= 122) {
+                        encryptedText += String.fromCharCode(
+                            ((charCode - 97 + shift) % 26) + 97
+                        )
+                    } else {
+                        encryptedText += text[i]
+                    }
+                }
+
+                document.getElementById("inputText").value = encryptedText
+                document.getElementById("output").innerHTML = "Zaszyfrowano tekst.";
+            }
+
+            function decryptText() {
+                const text = document.getElementById("inputText").value;
+                var decryptedText = '';
+                const shift = 3; // Przesunięcie w algorytmie Cezara
+
+                for (var i = 0; i < text.length; i++) {
+                    var charCode = text.charCodeAt(i);
+                    if (charCode >= 65 && charCode <= 90) {
+                        decryptedText += String.fromCharCode(((charCode - 65 - shift + 26) % 26) + 65);
+                    } else if (charCode >= 97 && charCode <= 122) {
+                        decryptedText += String.fromCharCode(((charCode - 97 - shift + 26) % 26) + 97);
+                    } else {
+                        decryptedText += text[i];
+                    }
+                }
+
+                document.getElementById("inputText").value = decryptedText;
+                document.getElementById("output").innerHTML = "Odszyfrowano tekst.";
+            }
+        </script>
+    </body>
+</html>

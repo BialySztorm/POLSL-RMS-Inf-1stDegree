@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Kalkulator</title>
+</head>
+<body>
+    <h1>Kalkulator</h1>
+    <form action="/calculate" method="post">
+        <label for="num1">Liczba 1:</label>
+        <input type="number" name="num1" required><br>
+
+        <label for="operator">Operator (+, -, *, /):</label>
+        <input type="text" name="operator" required><br>
+
+        <label for="num2">Liczba 2:</label>
+        <input type="number" name="num2" required><br>
+
+        <button type="submit">Oblicz</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if result %}
+        <p>Wynik: {{ result }}</p>
+    {% endif %}
+</body>
+</html>
