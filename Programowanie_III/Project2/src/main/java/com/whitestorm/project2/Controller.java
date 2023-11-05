@@ -20,7 +20,7 @@ public class Controller {
     }
     @FXML
     protected void onEncryptButtonClick() {
-
+        textfield.setText(encryptor.Encrypt(textfield.getText().toLowerCase()));
     }
     @FXML
     protected void onDecryptButtonClick()  {
