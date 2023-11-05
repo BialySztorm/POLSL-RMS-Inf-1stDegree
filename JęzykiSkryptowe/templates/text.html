@@ -11,15 +11,19 @@
             rel="stylesheet"
             href="{{ url_for('static', filename='styles.css') }}"
         />
-        <title>Text Operations</title>
+        <title>Operacje na tekście</title>
+        <link
+            rel="shortcut icon"
+            href="{{ url_for('static', filename='favicon.ico') }}"
+        />
     </head>
     <body>
-        <h1>Text Operations</h1>
+        <h1>Operacje na tekście</h1>
         <textarea id="inputText" rows="4" cols="50"></textarea>
         <br />
-        <button onclick="checkPalindrome()">Check Palindrome</button>
-        <button onclick="encryptText()">Encrypt with Caesar Cipher</button>
-        <button onclick="decryptText()">Decrypt with Caesar Cipher</button>
+        <button onclick="checkPalindrome()">Sprawdź palindrom</button>
+        <button onclick="encryptText()">Zaszyfruj szyfrem Cezara</button>
+        <button onclick="decryptText()">Odszyfruj szyfrem Cezara</button>
         <br />
         <div id="output"></div>
 
@@ -29,10 +33,10 @@
                 const reversedText = text.split("").reverse().join("")
                 if (text === reversedText) {
                     document.getElementById("output").innerHTML =
-                        "It's a palindrome!"
+                        "To jest palindrom!"
                 } else {
                     document.getElementById("output").innerHTML =
-                        "It's not a palindrome."
+                        "To nie jest palindrom."
                 }
             }
 
@@ -57,27 +61,33 @@
                 }
 
                 document.getElementById("inputText").value = encryptedText
-                document.getElementById("output").innerHTML = "Zaszyfrowano tekst.";
+                document.getElementById("output").innerHTML =
+                    "Zaszyfrowano tekst."
             }
 
             function decryptText() {
-                const text = document.getElementById("inputText").value;
-                var decryptedText = '';
-                const shift = 3; // Przesunięcie w algorytmie Cezara
+                const text = document.getElementById("inputText").value
+                var decryptedText = ""
+                const shift = 3 // Przesunięcie w algorytmie Cezara
 
                 for (var i = 0; i < text.length; i++) {
-                    var charCode = text.charCodeAt(i);
+                    var charCode = text.charCodeAt(i)
                     if (charCode >= 65 && charCode <= 90) {
-                        decryptedText += String.fromCharCode(((charCode - 65 - shift + 26) % 26) + 65);
+                        decryptedText += String.fromCharCode(
+                            ((charCode - 65 - shift + 26) % 26) + 65
+                        )
                     } else if (charCode >= 97 && charCode <= 122) {
-                        decryptedText += String.fromCharCode(((charCode - 97 - shift + 26) % 26) + 97);
+                        decryptedText += String.fromCharCode(
+                            ((charCode - 97 - shift + 26) % 26) + 97
+                        )
                     } else {
-                        decryptedText += text[i];
+                        decryptedText += text[i]
                     }
                 }
 
-                document.getElementById("inputText").value = decryptedText;
-                document.getElementById("output").innerHTML = "Odszyfrowano tekst.";
+                document.getElementById("inputText").value = decryptedText
+                document.getElementById("output").innerHTML =
+                    "Odszyfrowano tekst."
             }
         </script>
     </body>

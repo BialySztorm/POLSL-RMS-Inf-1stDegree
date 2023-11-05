@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Choose a Page</title>
-</head>
-<body>
-    <h1>Choose a Page</h1>
-    <a href="/calculator">Calculator</a>
-    <a href="/text">Text</a>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='styles.css') }}"
+        />
+        <title>Wybór strony</title>
+        <link
+            rel="shortcut icon"
+            href="{{ url_for('static', filename='favicon.ico') }}"
+        />
+    </head>
+    <body>
+        <h1>Wybierz stronę</h1>
+        <div class="container">
+            <a href="/calculator"><div class="link">Kalkulator</div></a>
+            <a href="/text"><div class="link">Operacje na tekście</div></a>
+        </div>
+    </body>
 </html>

@@ -1,10 +1,10 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-}
-
-h1 {
-    color: #333;
+    justify-content: center;
+    align-items: center;
+    background-color: #b5e48c;
+    color: #184e77;
 }
 
 label {
@@ -16,10 +16,23 @@ input {
     width: 100%;
     padding: 10px;
     margin-bottom: 16px;
+    background-color: #d9ed92;
+}
+select {
+    font-size: 2em;
+    background-color: #d9ed92;
+    height: 1.2em;
+}
+
+textarea{
+    background-color: #d9ed92;
+    padding: 10px;
+    min-width: 30%;
+    min-height: 50px;
 }
 
 button {
-    background-color: #007BFF;
+    background-color: #52b69a;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -27,9 +40,43 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #76c893;
+}
+p {
+    color: #34a0a4;
 }
 
 .error {
     color: #ff0000;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+a:visited {
+    color: black;
+}
+a:hover {
+    color: #75030f;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.link {
+    margin: 0 10px;
+}
+form {
+    width: 60%;
+    margin: auto;
+}
+.flex {
+    display: flex;
+}
+
+@media screen and (max-width: 500px) {
+    form {
+        width: 90%;
+    }
 }
