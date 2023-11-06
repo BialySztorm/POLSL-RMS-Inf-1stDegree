@@ -20,6 +20,6 @@ Some texts cannot be encrypted using this algorithm, in which case the program p
 
 ## Links
 
-- [Block scheme](https://polslpl-my.sharepoint.com/:u:/g/personal/am305303_student_polsl_pl/ERJuhPZykthGkGuDxxxPou0BPFmR0rWmMqeSchDLREi78A?e=1PXQ6W)
-- [Documentation](https://polslpl-my.sharepoint.com/:b:/g/personal/am305303_student_polsl_pl/ET3wlJDJBmhFg9LqGE2iWjkBUjpTZpK_KFBbiqip9qhujA?e=viCzvN)
+- [Block scheme](https://polslpl-my.sharepoint.com/:u:/g/personal/am305303_student_polsl_pl/ESbZDRXl_dRMpy2N1rciZ6ABGaXCqfjGVVqDB-kB4wKdAg?e=hdTwVr)
+- [Documentation](https://polslpl-my.sharepoint.com/:w:/g/personal/am305303_student_polsl_pl/EbMjbJqM5iRFgrNI7uX01z8BhBumBn9AZUQN06fPOebudQ?e=YOMyZ8)
 
