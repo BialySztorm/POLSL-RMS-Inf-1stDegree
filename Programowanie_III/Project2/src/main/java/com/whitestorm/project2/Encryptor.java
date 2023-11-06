@@ -86,7 +86,7 @@ public class Encryptor {
             try {
                 if(element.isEmpty())
                     decrypted.append(" ");
-                else if(Integer.parseInt(element) > 0 && Integer.parseInt(element) < 118)
+                else if(Integer.parseInt(element) > 0 && Integer.parseInt(element) < 119)
                     decrypted.append(elements[Integer.parseInt(element)]);
                 else
                     return "Wrong input!";
