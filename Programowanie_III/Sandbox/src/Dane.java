@@ -1,3 +1,6 @@
+import java.text.Collator;
+import java.util.Locale;
+
 class Dane implements Comparable<Dane> {
     private String nazwisko;
     private String numerTelefonu;
@@ -14,7 +17,10 @@ class Dane implements Comparable<Dane> {
 
     @Override
     public int compareTo(Dane o) {
-        return this.nazwisko.compareTo(o.nazwisko);
+        Locale locale = new Locale("pl","PL");
+        Collator col = Collator.getInstance(locale);
+        col.setStrength(Collator.PRIMARY);
+        return col.compare(this.nazwisko, o.nazwisko);
     }
 
     public String getNazwisko() {

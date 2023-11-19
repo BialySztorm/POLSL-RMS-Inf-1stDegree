@@ -63,6 +63,7 @@ class Dane implements Comparable<Dane> {
 
 Zad 3.
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
@@ -72,13 +73,16 @@ public class Main {
                 new Dane("Smith", "555-123-456")
         };
 
-        Arrays.sort(spisTelefonow, (o1, o2) -> o2.getNazwisko().compareTo(o1.getNazwisko()));
+        Arrays.sort(spisTelefonow, Comparator.reverseOrder());
 
         for (Dane d : spisTelefonow) {
             System.out.println(d);
         }
     }
 }
+
+import java.text.Collator;
+import java.util.Locale;
 
 class Dane implements Comparable<Dane> {
     private String nazwisko;
@@ -96,13 +100,17 @@ class Dane implements Comparable<Dane> {
 
     @Override
     public int compareTo(Dane o) {
-        return this.nazwisko.compareTo(o.nazwisko);
+        Locale locale = new Locale("pl","PL");
+        Collator col = Collator.getInstance(locale);
+        col.setStrength(Collator.PRIMARY);
+        return col.compare(this.nazwisko, o.nazwisko);
     }
 
     public String getNazwisko() {
         return nazwisko;
     }
 }
+
 Zad 4.
 import java.util.Arrays;
 
