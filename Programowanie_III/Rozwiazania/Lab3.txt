@@ -1,4 +1,4 @@
-Andrzej Manderla Laboratorium 2
+Andrzej Manderla Laboratorium 3
 Zad 1.
 import java.util.Scanner;
 

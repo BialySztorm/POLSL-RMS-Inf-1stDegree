@@ -1,0 +1,349 @@
+Andrzej Manderla Laboratorium 4
+Zad 1.
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Utwórz buforowany czytnik wejścia
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+            // Wczytaj dane z konsoli
+            System.out.println("Enter two real numbers separated by spaces:");
+            String input = reader.readLine();
+
+            // Zamknij buforowany czytnik wejścia
+            reader.close();
+
+            // Przetwórz dane wejściowe
+            String[] numbers = input.trim().split("\\s+");
+
+            if (numbers.length == 2) {
+                try {
+                    // Konwertuj wprowadzone ciągi znaków na liczby rzeczywiste
+                    double number1 = Double.parseDouble(numbers[0]);
+                    double number2 = Double.parseDouble(numbers[1]);
+
+                    // Oblicz sumę liczb
+                    double sum = number1 + number2;
+
+                    // Wyświetl wyniki
+                    System.out.println("Entered numbers: " + number1 + " and " + number2);
+                    System.out.println("Sum: " + sum);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter valid real numbers.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter two real numbers separated by spaces.");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+Zad 2.
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Utwórz buforowany czytnik wejścia
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+            // Wczytaj dane z konsoli
+            System.out.println("Enter numbers separated by spaces:");
+            String input = reader.readLine();
+
+            // Zamknij buforowany czytnik wejścia
+            reader.close();
+
+            // Przetwórz dane wejściowe
+            String[] numbers = input.trim().split("\\s+");
+
+            double sum = 0;
+
+            // Oblicz sumę liczb
+            for (String number : numbers) {
+                try {
+                    double parsedNumber = Double.parseDouble(number);
+                    sum += parsedNumber;
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input: " + number + " is not a valid number.");
+                    return;
+                }
+            }
+
+            // Wyświetl wynik
+            System.out.println("Sum of entered numbers: " + sum);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+Zad 3.
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Zdefiniuj imię i zdrobnienie w programie
+            String[] name = {"John"};
+            String[] nickname = {"Johnny"};
+
+            // Utwórz buforowany czytnik wejścia
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+            // Wczytuj wprowadzone wiersze i sprawdzaj, czy zawierają imię lub zdrobnienie
+            while (true) {
+                System.out.println("Enter a sentence:");
+                String input = reader.readLine();
+
+                // Zamknij program, jeśli użytkownik wpisze "exit"
+                if (input.equalsIgnoreCase("exit")) {
+                    System.out.println("Exiting the program.");
+                    break;
+                }
+
+                // Sprawdź, czy wprowadzony wiersz zawiera imię lub zdrobnienie
+                if (findIndex(nickname, input)>=0){
+                    System.out.println("Repeated: " + name[findIndex(nickname, input)]);
+                } else if (findIndex(name, input)>=0) {
+                    System.out.println("Repeated: " + nickname[findIndex(name, input)]);
+                } else {
+                    System.out.println("Does not contain the name or nickname.");
+                }
+            }
+
+            // Zamknij buforowany czytnik wejścia
+            reader.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static int findIndex(String[] array, String target) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].toLowerCase().equals(target.toLowerCase())) {
+                return i; // Zwraca indeks, jeśli element został znaleziony
+            }
+        }
+        return -1; // Zwraca -1, jeśli element nie został znaleziony
+    }
+}
+
+Zad 4.
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Main {
+    public static void main(String[] args) {
+        String text = "This is a sample text with some words.";
+
+        int wordCount = countWords(text);
+        System.out.println("Ciąg: " + text);
+        System.out.println("Liczba słów: " + wordCount);
+    }
+
+    private static int countWords(String text) {
+        // Wyrażenie regularne do zliczania słów
+        String wordRegex = "\\b\\w+\\b";
+        Pattern pattern = Pattern.compile(wordRegex);
+        Matcher matcher = pattern.matcher(text);
+
+        int count = 0;
+
+        // Szukaj pasujących słów
+        while (matcher.find()) {
+            count++;
+        }
+
+        return count;
+    }
+}
+
+Zad 5.
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Main {
+    public static void main(String[] args) {
+        String date1 = "2024-02-29";
+        String date2 = "11/19/2023";
+        String date3 = "2023/11/19";
+        String date4 = "19.11.2023";
+
+        System.out.println("Date 1 is valid: " + isValidDate(date1));
+        System.out.println("Date 2 is valid: " + isValidDate(date2));
+        System.out.println("Date 3 is valid: " + isValidDate(date3));
+        System.out.println("Date 4 is valid: " + isValidDate(date4));
+    }
+
+    private static boolean isValidDate(String date) {
+        // Wyrażenie regularne do sprawdzenia poprawności daty w formacie YYYY-MM-DD
+        String dateRegex = "\\d{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])";
+
+        // Kompiluj wyrażenie regularne
+        Pattern pattern = Pattern.compile(dateRegex);
+
+        // Utwórz obiekt Matcher
+        Matcher matcher = pattern.matcher(date);
+
+        // Sprawdź, czy łańcuch pasuje do wyrażenia regularnego
+        if (matcher.matches()) {
+            int year = Integer.parseInt(date.substring(0, 4));
+            int month = Integer.parseInt(date.substring(5, 7));
+            int day = Integer.parseInt(date.substring(8, 10));
+
+            // Sprawdź poprawność miesiąca (1-12)
+            if (month < 1 || month > 12) {
+                return false;
+            }
+
+            // Sprawdź poprawność dnia w zależności od miesiąca
+            if (day < 1 || day > daysInMonth(year, month)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private static int daysInMonth(int year, int month) {
+        if (month == 2) {
+            // Luty - sprawdź, czy rok przestępny
+            return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) ? 29 : 28;
+        } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+            // Kwiecień, Czerwiec, Wrzesień, Listopad
+            return 30;
+        } else {
+            // Pozostałe miesiące
+            return 31;
+        }
+    }
+}
+
+Zad 6.
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the word to search for: ");
+        String targetWord = scanner.nextLine().trim();
+
+        System.out.println("Enter text (type 'exit' to end input):");
+
+        // Bez użycia wyrażeń regularnych
+        repeatLinesWithoutRegex(targetWord);
+
+        // Za pomocą wyrażeń regularnych
+        repeatLinesWithRegex(targetWord);
+
+        scanner.close();
+    }
+
+    private static void repeatLinesWithoutRegex(String targetWord) {
+        String line;
+        System.out.println("Lines containing '" + targetWord + "' (without regex):");
+        while (!(line = new Scanner(System.in).nextLine()).equalsIgnoreCase("exit")) {
+            if (line.contains(targetWord)) {
+                System.out.println(line);
+            }
+        }
+    }
+
+    private static void repeatLinesWithRegex(String targetWord) {
+        String regex = "\\b" + Pattern.quote(targetWord) + "\\b";
+        Pattern pattern = Pattern.compile(regex);
+
+        String line;
+        System.out.println("Lines containing '" + targetWord + "' (with regex):");
+        while (!(line = new Scanner(System.in).nextLine()).equalsIgnoreCase("exit")) {
+            Matcher matcher = pattern.matcher(line);
+            if (matcher.find()) {
+                System.out.println(line);
+            }
+        }
+    }
+}
+
+Zad 7.
+public class Main {
+    public static void main(String[] args) {
+        int countBelow20 = 0;
+        int totalNumbers = 0;
+
+        while (countBelow20 < 10) {
+            double randomNumber = Math.random() * 100; // Losuje liczbę z zakresu 0-100
+            int roundedNumber = (int) randomNumber; // Zaokrągla do liczby całkowitej
+
+            System.out.println("Generated number: " + roundedNumber);
+
+            if (roundedNumber < 20) {
+                countBelow20++;
+            }
+
+            totalNumbers++;
+
+            // Dodaj warunek przerwania, gdy liczba spełniających warunek osiągnie 10
+            if (countBelow20 == 10) {
+                System.out.println("Found 10 numbers less than 20. Stopping.");
+                break;
+            }
+        }
+
+        System.out.println("Total numbers generated: " + totalNumbers);
+    }
+}
+
+Zad 8.
+public class Main {
+    public static void main(String[] args) {
+        int rows = 5; // Określ ilość wierszy
+
+        int[][] triangularArray = createTriangularArray(rows);
+
+        displayTriangularArray(triangularArray);
+    }
+
+    private static int[][] createTriangularArray(int rows) {
+        int[][] array = new int[rows][];
+
+        int startValue = 10;
+        for (int i = 0; i < rows; i++) {
+            array[i] = new int[i + 1]; // Każdy kolejny wiersz ma o jeden więcej elementów
+            for (int j = 0; j <= i; j++) {
+                array[i][j] = startValue;
+                startValue += 2; // Przechodzimy do kolejnej liczby parzystej
+            }
+        }
+
+        return array;
+    }
+
+    private static void displayTriangularArray(int[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
