@@ -1,0 +1,199 @@
+Andrzej Manderla Laboratorium 5
+Zad 1.
+public class Main {
+    public static void main(String[] args) {
+        int n = 10; // Możesz zmienić tę wartość na dowolną dodatnią liczbę naturalną
+
+        // Pętla for wypisująca kolejne liczby naturalne od 1 do n
+        for (int i = 1; i <= n; i++) {
+            System.out.println(i);
+        }
+    }
+}
+
+Zad 2.
+public class Main {
+    public static void main(String[] args) {
+        int n = 10; // Możesz zmienić tę wartość na dowolną dodatnią liczbę
+
+        // Pętla zagnieżdżona wypisująca tabliczkę mnożenia
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                System.out.print(i * j + "\t");
+            }
+            System.out.println();
+        }
+    }
+}
+
+Zad 3.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Podaj liczbę elementów tablicy: ");
+        int n = scanner.nextInt();
+
+        int[] array = new int[n];
+
+        System.out.println("Podaj elementy tablicy:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        int min = array[0];
+        int max = array[0];
+
+        for (int i = 1; i < n; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+
+        System.out.println("Najmniejszy element: " + min);
+        System.out.println("Największy element: " + max);
+    }
+}
+
+Zad 4.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Podaj liczbę elementów tablicy: ");
+        int n = scanner.nextInt();
+
+        int[] array = new int[n];
+
+        System.out.println("Podaj elementy tablicy:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        Algorithm algorithm = new Algorithm();
+        int minIndex = algorithm.findMinIndex(array);
+        double average = algorithm.calculateAverage(array);
+
+        System.out.println("Najmniejszy element znajduje się pod indeksem: " + minIndex);
+        System.out.println("Średnia arytmetyczna elementów tablicy: " + average);
+    }
+}
+
+public class Algorithm {
+    public int findMinIndex(int[] array) {
+        if (array.length == 0) {
+            throw new IllegalArgumentException("Array is empty");
+        }
+
+        int minIndex = 0;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < array[minIndex]) {
+                minIndex = i;
+            }
+        }
+        return minIndex;
+    }
+
+    public double calculateAverage(int[] array) {
+        if (array.length == 0) {
+            throw new IllegalArgumentException("Array is empty");
+        }
+
+        int sum = 0;
+        for (int value : array) {
+            sum += value;
+        }
+        return (double) sum / array.length;
+    }
+}
+
+Zad 5.
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] array = {5, 2, 8, 1, 7}; // Przykładowa tablica, możesz ją zmienić
+
+        System.out.println("Tablica przed sortowaniem: " + Arrays.toString(array));
+
+        Arrays.sort(array);
+
+        System.out.println("Tablica po sortowaniu: " + Arrays.toString(array));
+    }
+}
+
+Zad 6.
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] array = {5, 2, 8, 1, 7}; // Przykładowa tablica, możesz ją zmienić
+
+        System.out.println("Tablica przed sortowaniem: " + Arrays.toString(array));
+
+        Arrays.sort(array);
+        reverseArray(array);
+
+        System.out.println("Tablica po sortowaniu malejącym: " + Arrays.toString(array));
+    }
+
+    private static void reverseArray(int[] array) {
+        int left = 0;
+        int right = array.length - 1;
+
+        while (left < right) {
+            int temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+
+            left++;
+            right--;
+        }
+    }
+}
+
+Zad  7.
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("dane.txt"))) {
+            String line;
+            int[] numbers = new int[0];
+
+            while ((line = reader.readLine()) != null) {
+                try {
+                    int number = Integer.parseInt(line);
+
+                    // Rozszerzanie tablicy o kolejny element
+                    int[] newArray = new int[numbers.length + 1];
+                    System.arraycopy(numbers, 0, newArray, 0, numbers.length);
+                    newArray[numbers.length] = number;
+                    numbers = newArray;
+                } catch (NumberFormatException e) {
+                    System.err.println("Błąd: " + e.getMessage());
+                }
+            }
+
+            Arrays.sort(numbers);
+
+            System.out.println("Posortowane liczby od najmniejszej do największej:");
+            for (int num : numbers) {
+                System.out.println(num);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

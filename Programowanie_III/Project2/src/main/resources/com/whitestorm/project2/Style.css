@@ -1,0 +1,32 @@
+VBox{
+    -fx-alignment: center;
+}
+Label{
+    -fx-font-size: 3em;
+}
+Button{
+    -fx-font-size: 2em;
+    -fx-min-width: 200px;
+}
+TextField{
+    -fx-max-width: 500px;
+    -fx-font-size: 2em;
+}
+.dark_mode {
+    -fx-background-color: #343A40;
+}
+.dark_mode > Button {
+    -fx-background-color: #ADB5BD;
+    -fx-text-fill: #212529;
+}
+.dark_mode > Label {
+    -fx-text-fill: #ADB5BD;
+}
+.dark_mode > TextField {
+    -fx-background-color: #DEE2E6;
+    -fx-text-fill: #343A40;
+}
+
+.light_mode{
+    -fx-background-color: #E9D8A6;
+}

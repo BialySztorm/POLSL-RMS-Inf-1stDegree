@@ -11,15 +11,15 @@ int main() {
 
     Vector1 v3 = --v1;
     Vector1 v4 = ++v2;
-    Vector1 v5 = v3+v4;
-    Vector1 v6 = v3-v4;
+    Vector1 v5 = v1+v2;
+    Vector1 v6 = v1-v2;
 
     std::cout << "v1 = " << v1.GetVector() << "\n";
     std::cout << "v2 = " << v2.GetVector() << "\n";
     std::cout << "v3(--v1) = " << v3.GetVector() << "\n";
     std::cout << "v4(++v2) = " << v4.GetVector() << "\n";
-    std::cout << "v5(v3+v4) = " << v5.GetVector() << "\n";
-    std::cout << "v6(v3-v4) = " << v6.GetVector() << "\n";
+    std::cout << "v5(v1+v2) = " << v5.GetVector() << "\n";
+    std::cout << "v6(v1-v2) = " << v6.GetVector() << "\n";
 
     return 0;
 }

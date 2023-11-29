@@ -16,7 +16,7 @@ int Zero::Modulo()
         throw "(Modulo) Nie mozna dzielic przez zero";
     else if((int)a == (int)b)
         throw "(Modulo) Nieprawidlowe dane, liczby sa takie same";
-    else if ((int)a % (int)b == 0 || (int)b % (int)a == 0)
+    else if (a!=0 && ((int)a % (int)b == 0 || (int)b % (int)a == 0 ))
         throw "(Modulo) Nieprawidlowe dane, jedna z liczb jest wielokrotnoscia drugiej";
     return (int)a % (int)b;
 }

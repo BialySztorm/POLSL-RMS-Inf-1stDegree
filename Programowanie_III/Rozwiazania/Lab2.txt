@@ -1,0 +1,209 @@
+Andrzej Manderla Laboratorium 2
+Zad 1.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Podaj pierwszą liczbę rzeczywistą: ");
+        double num1 = scanner.nextDouble();
+        System.out.print("Podaj drugą liczbę rzeczywistą: ");
+        double num2 = scanner.nextDouble();
+        if (num2 == 0) {
+            System.out.println("Nie można dzielić przez zero!");
+        } else {
+            double sum = num1 + num2;
+            double quotient = sum / num2;
+            System.out.println("Suma: " + sum);
+            System.out.println("Iloraz: " + quotient);
+        }
+    }
+}
+
+Zad 2.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Podaj zmienną a funkcji liniowej: ");
+        double a = scanner.nextDouble();
+        if (a == 0) {
+            System.out.println("Nie można obliczyć współrzędnej punktu przecięcia, ponieważ a = 0.");
+        } else {
+            System.out.print("Podaj zmienną b funkcji liniowej: ");
+            double b = scanner.nextDouble();
+            double x = (0-b)/a;
+            System.out.println("Współrzędna x punktu przecięcia wynosi: " + x);
+        }
+    }
+}
+
+Zad 3.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        double promienPodstawy, wysokosc;
+
+        while (true) {
+            System.out.print("Podaj promień podstawy walca: ");
+            if (scanner.hasNextDouble()) {
+                promienPodstawy = scanner.nextDouble();
+                if (promienPodstawy > 0) {
+                    break;
+                } else {
+                    System.out.println("Promień musi być liczbą dodatnią.");
+                }
+            } else {
+                System.out.println("Nieprawidłowy format. Podaj liczbę dodatnią.");
+                scanner.next();
+            }
+        }
+
+        while (true) {
+            System.out.print("Podaj wysokość walca: ");
+            if (scanner.hasNextDouble()) {
+                wysokosc = scanner.nextDouble();
+                if (wysokosc > 0) {
+                    break;
+                } else {
+                    System.out.println("Wysokość musi być liczbą dodatnią.");
+                }
+            } else {
+                System.out.println("Nieprawidłowy format. Podaj liczbę dodatnią.");
+                scanner.next();
+            }
+        }
+
+        double polePowierzchniBocznej = 2 * Math.PI * promienPodstawy * wysokosc;
+        double objetoscWalca = Math.PI * promienPodstawy * promienPodstawy * wysokosc;
+
+        System.out.println("Pole powierzchni bocznej walca: " + polePowierzchniBocznej);
+        System.out.println("Objętość walca: " + objetoscWalca);
+
+        scanner.close();
+    }
+}
+
+Zad 4.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        double a, b, c;
+
+        while (true) {
+            System.out.print("Podaj współczynnik a: ");
+            if (scanner.hasNextDouble()) {
+                a = scanner.nextDouble();
+                if (a != 0) {
+                    break;
+                } else {
+                    System.out.println("Współczynnik a nie może być równy zero. Podaj inną wartość.");
+                }
+            } else {
+                System.out.println("Nieprawidłowy format. Podaj liczbę różną od zera.");
+                scanner.next();
+            }
+        }
+
+        System.out.print("Podaj współczynnik b: ");
+        b = scanner.nextDouble();
+
+        System.out.print("Podaj współczynnik c: ");
+        c = scanner.nextDouble();
+
+        double delta = b * b - 4 * a * c;
+
+        if (delta > 0) {
+            double x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            double x2 = (-b - Math.sqrt(delta)) / (2 * a);
+            System.out.println("Pierwiastki równania kwadratowego: x1 = " + x1 + ", x2 = " + x2);
+        } else if (delta == 0) {
+            double x = -b / (2 * a);
+            System.out.println("Jeden pierwiastek równania kwadratowego: x = " + x);
+        } else {
+            System.out.println("Równanie kwadratowe nie ma pierwiastków rzeczywistych.");
+        }
+
+        scanner.close();
+    }
+}
+
+Zad 5.
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        double[][] a = new double[3][3];
+        double[] b = new double[3];
+
+        try {
+            for(int i = 0; i < 3; i++) {
+                for(int j = 0; j < 3; j++) {
+                    System.out.print("a[" + i + "][" + j + "] = ");
+                    a[i][j] = in.nextDouble();
+                }
+
+                System.out.print("b[" + i + "] = ");
+                b[i] = in.nextDouble();
+            }
+
+        } catch(InputMismatchException  e) {
+            System.out.println(e);
+            return;
+        }
+
+        double[] result = new double[3];
+
+        try {
+            result = Algorytm.solve(a, b);
+        } catch(ArithmeticException e) {
+            System.out.println(e);
+            return;
+        }
+
+        System.out.println("x1 = " + result[0]);
+        System.out.println("x2 = " + result[1]);
+        System.out.println("x3 = " + result[2]);
+    }
+}
+
+public class Algorytm {
+    public static double[] solve(double[][] a, double[] b) {
+        double[] result = new double[3];
+        double det = a[0][0] * (a[1][1] * a[2][2] - a[1][2] * a[2][1]) -
+                a[0][1] * (a[1][0] * a[2][2] - a[1][2] * a[2][0]) +
+                a[0][2] * (a[1][0] * a[2][1] - a[1][1] * a[2][0]);
+
+        if (det == 0) {
+            throw new ArithmeticException("Wyznacznik równy 0, brak rozwiązań");
+        }
+
+        double detX = b[0] * (a[1][1] * a[2][2] - a[1][2] * a[2][1]) -
+                a[0][1] * (b[1] * a[2][2] - a[1][2] * b[2]) +
+                a[0][2] * (b[1] * a[2][1] - a[1][1] * b[2]);
+
+        double detY = a[0][0] * (b[1] * a[2][2] - a[1][2] * b[2]) -
+                b[0] * (a[1][0] * a[2][2] - a[1][2] * a[2][0]) +
+                a[0][2] * (a[1][0] * b[2] - b[1] * a[2][0]);
+
+        double detZ = a[0][0] * (a[1][1] * b[2] - b[1] * a[2][1]) -
+                a[0][1] * (a[1][0] * b[2] - b[1] * a[2][0]) +
+                b[0] * (a[1][0] * a[2][1] - a[1][1] * a[2][0]);
+
+        result[0] = detX / det;
+        result[1] = detY / det;
+        result[2] = detZ / det;
+
+        return result;
+    }
+}
+

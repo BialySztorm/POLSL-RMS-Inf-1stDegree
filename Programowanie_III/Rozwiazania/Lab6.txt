@@ -1,0 +1,224 @@
+Andrzej Manderla Laboratorium 6
+Zad 1.
+public class Main {
+    public static void main(String[] args) {
+        Dane telefon = new Dane("Kowalski", "123-456-789");
+        System.out.println(telefon);
+    }
+}
+
+public class Dane {
+    private String nazwisko;
+    private String numerTelefonu;
+
+    public Dane(String nazwisko, String numerTelefonu) {
+        this.nazwisko = nazwisko;
+        this.numerTelefonu = numerTelefonu;
+    }
+
+    @Override
+    public String toString() {
+        return "Nazwisko: " + nazwisko + ", Numer telefonu: " + numerTelefonu;
+    }
+}
+
+Zad 2.
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Dane[] spisTelefonow = {
+                new Dane("Nowak", "987-654-321"),
+                new Dane("Kowalski", "123-456-789"),
+                new Dane("Smith", "555-123-456")
+        };
+
+        Arrays.sort(spisTelefonow);
+
+        for (Dane d : spisTelefonow) {
+            System.out.println(d);
+        }
+    }
+}
+
+class Dane implements Comparable<Dane> {
+    private String nazwisko;
+    private String numerTelefonu;
+
+    public Dane(String nazwisko, String numerTelefonu) {
+        this.nazwisko = nazwisko;
+        this.numerTelefonu = numerTelefonu;
+    }
+
+    @Override
+    public String toString() {
+        return "Nazwisko: " + nazwisko + ", Numer telefonu: " + numerTelefonu;
+    }
+
+    @Override
+    public int compareTo(Dane o) {
+        return this.nazwisko.compareTo(o.nazwisko);
+    }
+}
+
+Zad 3.
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class Main {
+    public static void main(String[] args) {
+        Dane[] spisTelefonow = {
+                new Dane("Nowak", "987-654-321"),
+                new Dane("Kowalski", "123-456-789"),
+                new Dane("Smith", "555-123-456")
+        };
+
+        Arrays.sort(spisTelefonow, Comparator.reverseOrder());
+
+        for (Dane d : spisTelefonow) {
+            System.out.println(d);
+        }
+    }
+}
+
+import java.text.Collator;
+import java.util.Locale;
+
+class Dane implements Comparable<Dane> {
+    private String nazwisko;
+    private String numerTelefonu;
+
+    public Dane(String nazwisko, String numerTelefonu) {
+        this.nazwisko = nazwisko;
+        this.numerTelefonu = numerTelefonu;
+    }
+
+    @Override
+    public String toString() {
+        return "Nazwisko: " + nazwisko + ", Numer telefonu: " + numerTelefonu;
+    }
+
+    @Override
+    public int compareTo(Dane o) {
+        Locale locale = new Locale("pl","PL");
+        Collator col = Collator.getInstance(locale);
+        col.setStrength(Collator.PRIMARY);
+        return col.compare(this.nazwisko, o.nazwisko);
+    }
+
+    public String getNazwisko() {
+        return nazwisko;
+    }
+}
+
+Zad 4.
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Pracownik[] spisPracownikow = {
+                new Pracownik(1, "Nowak", "Programista"),
+                new Pracownik(2, "Kowalski", "Analityk"),
+                new Pracownik(3, "Smith", "Programista")
+        };
+
+        Arrays.sort(spisPracownikow);
+
+        for (Pracownik p : spisPracownikow) {
+            System.out.println(p);
+        }
+    }
+}
+
+class Pracownik implements Comparable<Pracownik> {
+    private int idPracownika;
+    private String nazwisko;
+    private String stanowisko;
+
+    public Pracownik(int idPracownika, String nazwisko, String stanowisko) {
+        this.idPracownika = idPracownika;
+        this.nazwisko = nazwisko;
+        this.stanowisko = stanowisko;
+    }
+
+    @Override
+    public int compareTo(Pracownik o) {
+        int result = this.stanowisko.compareTo(o.stanowisko);
+        if (result == 0) {
+            return this.nazwisko.compareTo(o.nazwisko);
+        }
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + idPracownika + ", Nazwisko: " + nazwisko + ", Stanowisko: " + stanowisko;
+    }
+}
+
+Zad 5.
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Ksiazka[] spisKsiazek = {
+                new Ksiazka("Java in Action"),
+                new Ksiazka("Clean Code"),
+                new Ksiazka("Design Patterns")
+        };
+
+        for (Ksiazka k : spisKsiazek) {
+            System.out.println(k);
+        }
+    }
+}
+
+class Ksiazka implements Comparable<Ksiazka> {
+    private String tytul;
+
+    public Ksiazka(String tytul) {
+        this.tytul = tytul;
+    }
+
+    @Override
+    public String toString() {
+        return "Tytuł: " + tytul;
+    }
+}
+
+Zad 6.
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Ksiazka[] spisKsiazek = {
+                new Ksiazka("Java in Action"),
+                new Ksiazka("Clean Code"),
+                new Ksiazka("Design Patterns")
+        };
+
+        Arrays.sort(spisKsiazek);
+
+        for (Ksiazka k : spisKsiazek) {
+            System.out.println(k);
+        }
+    }
+}
+
+class Ksiazka implements Comparable<Ksiazka> {
+    private String tytul;
+
+    public Ksiazka(String tytul) {
+        this.tytul = tytul;
+    }
+
+    @Override
+    public int compareTo(Ksiazka o) {
+        return this.tytul.compareTo(o.tytul);
+    }
+
+    @Override
+    public String toString() {
+        return "Tytuł: " + tytul;
+    }
+}
