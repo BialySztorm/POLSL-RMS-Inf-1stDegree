@@ -1,0 +1,216 @@
+Andrzej Manderla AM305303 Egzamin1
+Zad 1.
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double a = 0, h = 0;
+        try {
+            System.out.print("a: ");
+            a = scanner.nextDouble();
+            System.out.print("h: ");
+            h = scanner.nextDouble();
+        }
+        catch (InputMismatchException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        if(h <=0 || a <= 0)
+        {
+            System.out.println("h and a cannot be smaller or equal to 0.");
+            return;
+        }
+        System.out.println("The lateral surface area of a regular quadrilateral cuboid: " + 4 * a * h);
+        System.out.println("Volume of a regular quadrilateral cuboid: " + a * a * h);
+    }
+}
+
+Zad 2.
+import javax.swing.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Frame frame = new Frame("Test");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+
+}
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Frame extends JFrame {
+    private static final int WIDTH = 500;
+    private static final int HEIGHT = 500;
+    public Frame(String name)
+    {
+        setTitle(name);
+        setSize(WIDTH, HEIGHT);
+
+        Panel panel = new Panel();
+        panel.setBackground(Color.yellow);
+        Container content = getContentPane();
+        content.add(panel);
+    }
+}
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
+
+public class Panel extends JPanel {
+    @Override
+    public void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+        double screenSize = 500.0;
+        double halfA = 125.0;
+
+        Graphics2D g2 = (Graphics2D)g;
+        Rectangle2D rect = new Rectangle2D.Double(screenSize/2 -halfA, screenSize/2 -halfA, screenSize/2, screenSize/2);
+        g2.draw(rect);
+
+        double x1 = screenSize/2-halfA;
+        double y1 = screenSize/2-halfA;
+        double x2 = x1 + screenSize/2;
+        double y2 = y1 + screenSize/2;
+        g2.draw(new Line2D.Double(x1,y1,x2,y2));
+        g2.draw(new Line2D.Double(x2,y1,x1,y2));
+    }
+}
+
+Zad 3.
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Ksiazka> shelf = new ArrayList<Ksiazka>();
+        shelf.add(new Ksiazka("Aąbc"));
+        shelf.add(new Ksiazka("Aząbc"));
+        shelf.add(new Ksiazka("Aądc"));
+        shelf.add(new Ksiazka("Aąbćc"));
+        shelf.add(new Ksiazka("Aąebc"));
+        shelf.add(new Ksiazka("Aązbc"));
+        Collections.sort(shelf);
+        for (Ksiazka book : shelf)
+            System.out.println(book.toString());
+    }
+}
+
+import java.text.Collator;
+import java.util.Locale;
+import java.io.Serializable;
+
+public class Ksiazka implements Comparable<Ksiazka>, Serializable {
+    private String title;
+    Ksiazka(String title)
+    {
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return title;
+    }
+
+    @Override
+    public int compareTo(Ksiazka o) {
+        Collator cl = Collator.getInstance(new Locale("pl", "PL"));
+        return cl.compare(this.title, o.title);
+    }
+}
+
+Zad 4.
+public class Main {
+    public static void main(String[] args) {
+        Punkt2DKolor param = new Punkt2DKolor(5,10, 255, 192, 203);
+        System.out.println(param.toString());
+        System.out.println("-------------------------------");
+        Punkt2DKolor non_param = new Punkt2DKolor();
+        System.out.println(non_param.toString());
+    }
+}
+
+public class Punkt2D {
+    double x,y;
+    Punkt2D()
+    {
+        System.out.println("The default constructor of the class Punkt2D");
+        x = y = 0.0;
+    }
+    Punkt2D(double x,double y)
+    {
+        System.out.println("Parametric class constructor Punkt2D");
+        this.x = x;
+        this.y = y;
+    }
+    @Override
+    public String toString() {
+        return "Punkt2D(" + "x: " + x + ", y: " + y+")";
+    }
+}
+
+public class Punkt2DKolor extends Punkt2D{
+    int r, g, b;
+    Punkt2DKolor()
+    {
+        System.out.println("The default constructor of the class Punkt2DKolor");
+        r = g = b = 0;
+    }
+    Punkt2DKolor(double x,double y, int r, int g, int b)
+    {
+        super(x,y);
+        System.out.println("Parametric class constructor Punkt2DKolor");
+        //wywołanie konstruktora klasy nadrzędnej konieczne w przypadku konstruktora parametrycznego
+        this.r = r;
+        this.g = g;
+        this.b = b;
+    }
+    @Override
+    public String toString() {
+        String positon = "x: " + x + ", y: " + y;
+        String color = "R: " + r + ", G: " + g + ", B: " + b;
+        return "Punkt2DKolor("+ positon + ", "+ color + ")";
+    }
+}
+
+Zad 5.
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        String filename = "Ksiazka.ser";
+        serialize(filename);
+        deserialize(filename);
+    }
+    public static void serialize(String filename) {
+        Ksiazka book= new Ksiazka("abc");
+        File file = new File(filename);
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))) {
+            System.out.println("Object saved to: " + file.getAbsolutePath());
+            objectOutputStream.writeObject(book);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void deserialize(String filename)
+    {
+        File file = new File(filename);
+        try(ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))){
+            Ksiazka book = (Ksiazka) objectInputStream.readObject();
+            System.out.println("Object readed from: " + file.getAbsolutePath());
+            System.out.println(book);
+        }
+        catch (IOException | ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    }
+}
