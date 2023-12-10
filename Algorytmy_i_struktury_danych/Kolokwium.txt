@@ -1,0 +1,23 @@
+Quicksort z medianą 3 el jako pivot:
+quicksort time:  3.7627944946289062
+quicksort time:  3.7460193634033203
+quicksort time:  3.7387912273406982
+quicksort time:  3.7462315559387207
+quicksort time:  3.7346951961517334
+quicksort time:  3.968057870864868
+quicksort time:  3.9064981937408447
+quicksort time:  3.779522657394409
+quicksort time:  3.737534284591675
+quicksort time:  3.7574946880340576
+
+Quicksort z pivotem jako posortowany element:
+quicksort time:  2.7400870323181152
+quicksort time:  2.9044342041015625
+quicksort time:  2.706010103225708
+quicksort time:  2.778737783432007
+quicksort time:  2.7594971656799316
+quicksort time:  2.8044345378875732
+quicksort time:  2.658747434616089
+quicksort time:  2.525383949279785
+quicksort time:  2.8117263317108154
+quicksort time:  2.7053821086883545

@@ -1,4 +1,5 @@
 from random import randint
+import time
 
 
 def build_bad_char_table(pattern):
@@ -152,22 +153,30 @@ def quicksort(tab, left, right):
     return tab
 
 
-tab1 = ""
-size1 = 5
-for i in range(20):
-    tab1 += str(chr(ord('A') + randint(1, size1) - 1))
+# tab1 = ""
+# size1 = 5
+# for i in range(20):
+#     tab1 += str(chr(ord('A') + randint(1, size1) - 1))
 
-print(tab1)
-print(boyer_moore(tab1, "AB"))
-print(rabin_karp(tab1, "AB"))
-tab2 = []
-size2 = 30
-for i in range(20):
-    tab2.append(randint(1, size2))
+# print(tab1)
+# print(boyer_moore(tab1, "AB"))
+# print(rabin_karp(tab1, "AB"))
+# tab2 = []
+# size2 = 30
+# for i in range(20):
+#     tab2.append(randint(1, size2))
 
-print(tab2)
-print(bubblesort(tab2))
-print(quicksort(tab2, 0, len(tab2) - 1))
+# print(tab2)
+# print(bubblesort(tab2))
+# print(quicksort(tab2, 0, len(tab2) - 1))
+for i in range(10):
+    tab = [randint(0, 1000000) for _ in range(1000000)]
+    start_time = time.time()
+    # print(quicksort(tab))
+    quicksort(tab, 0, len(tab) - 1)
+    quicksort_time = time.time() - start_time
+    print("quicksort time: ", quicksort_time)
+
 
 # Pobierz aktualny czas przed wykonaniem funkcji main
 # start_time = time.time()
