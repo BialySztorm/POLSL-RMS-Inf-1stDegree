@@ -1,0 +1,346 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13177,        338]
+NotebookOptionsPosition[     11035,        295]
+NotebookOutlinePosition[     11505,        312]
+CellTagsIndexPosition[     11462,        309]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[StyleBox["Metody numeryczne, Informatyka NS sem. III, \
+2023/2024", "Title",
+ FontSize->32]], "Department",
+ CellChangeTimes->{{3.868432840720064*^9, 3.8684328697757263`*^9}, 
+   3.8697199849750853`*^9, {3.8797466531630974`*^9, 3.8797466534911165`*^9}, {
+   3.898836949992958*^9, 3.8988369513068957`*^9}},
+ Background->RGBColor[
+  0.3176470588235294, 0.792156862745098, 
+   0.38823529411764707`],ExpressionUUID->"3ecdf458-2a6b-44bb-9565-\
+9724cb61e3d2"],
+
+Cell[CellGroupData[{
+
+Cell["Projekt 3 \[Dash] metoda bisekcji", "Title",
+ CellChangeTimes->{
+  3.8697142668080516`*^9, 3.869717346319167*^9, 3.8702756410925226`*^9, 
+   3.871097930819407*^9, {3.8714472123754215`*^9, 3.8714472260462036`*^9}, 
+   3.8797466506349525`*^9},
+ Background->RGBColor[
+  0.24705882352941178`, 0.8627450980392157, 
+   0.13725490196078433`],ExpressionUUID->"ef2da835-16bd-4bb6-b48d-\
+e0e621a4805f"],
+
+Cell["Napisz program, kt\[OAcute]ry dla argument\[OAcute]w \
+wej\:015bciowych:", "Text",
+ CellChangeTimes->{{3.871447287767734*^9, 
+  3.8714473063837986`*^9}},ExpressionUUID->"867bd96c-1d1b-47bd-8155-\
+a686c54958f9"],
+
+Cell[TextData[{
+ StyleBox["f \[Dash]",
+  FontSlant->"Italic"],
+ " funkcja, kt\[OAcute]rej pierwiastka poszukujemy,"
+}], "Item",
+ CellChangeTimes->{{3.871447320430602*^9, 3.8714473806150446`*^9}, 
+   3.8714474926314516`*^9, {3.8714475896460004`*^9, 3.871447612127286*^9}, {
+   3.871448128078797*^9, 
+   3.871448128222805*^9}},ExpressionUUID->"e3c8d3fb-63d5-4d22-8c99-\
+7fbc63edd265"],
+
+Cell[TextData[{
+ StyleBox["a \[Dash] ",
+  FontSlant->"Italic"],
+ "lewy koniec przedzia\[LSlash]u ",
+ "izolacji poszukiwanego pierwiastka,"
+}], "Item",
+ CellChangeTimes->{{3.871447320430602*^9, 3.871447442847604*^9}, 
+   3.871447493967528*^9},ExpressionUUID->"98a6277e-6d13-4077-b793-\
+753ccae6cca1"],
+
+Cell[TextData[{
+ StyleBox["b \[Dash] ",
+  FontSlant->"Italic"],
+ "prawy koniec przedzia\[LSlash]u ",
+ "izolacji poszukiwanego pierwiastka,"
+}], "Item",
+ CellChangeTimes->{{3.871447320430602*^9, 3.87144745343921*^9}, 
+   3.871447495159596*^9},ExpressionUUID->"61fe7b42-fc41-4c97-84cd-\
+b568b3c7b2f2"],
+
+Cell[TextData[{
+ "\[CurlyEpsilon]",
+ StyleBox[" \[Dash] ",
+  FontSlant->"Italic"],
+ "dok\[LSlash]adno\:015b\[CAcute], z jak\:0105 ",
+ "poszukiwany jest pierwiastek,"
+}], "Item",
+ CellChangeTimes->{{3.871447320430602*^9, 3.8714474963116617`*^9}, {
+  3.871449549439094*^9, 
+  3.871449550143134*^9}},ExpressionUUID->"97bc5170-4642-468b-9d95-\
+e1d6d9a5b47d"],
+
+Cell[TextData[{
+ "metod\:0105 bisekcji poszukiwa\[LSlash] b\:0119dzie w przedziale ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"[", 
+    RowBox[{"a", ",", "b"}]}], TraditionalForm]],ExpressionUUID->
+  "3ee168b9-ae70-4ac8-8cfd-16958b6aa45e"],
+ "] miejsca zerowego funkcji ",
+ StyleBox["f",
+  FontSlant->"Italic"],
+ " ",
+ ". Program wypisze, jaki jest to pierwiastek i za kt\[OAcute]rym razem zosta\
+\[LSlash] on znaleziony (ile po\[LSlash]owie\:0144 zosta\[LSlash]o \
+wykonanych).\nJako warunek stopu przyjmij warto\:015b\[CAcute] funkcji w \
+wyznaczonym pierwiastku, kt\[OAcute]ra to warto\:015b\[CAcute] musi by\
+\[CAcute] odleg\[LSlash]a od zera o mniej ni\:017c \[CurlyEpsilon]."
+}], "Text",
+ CellChangeTimes->{{3.8714475018949814`*^9, 3.8714475793314104`*^9}, {
+  3.8714482085754013`*^9, 3.8714482943433065`*^9}, {3.871448325976116*^9, 
+  3.871448338847852*^9}, {3.8714483819433174`*^9, 3.8714484066557302`*^9}, {
+  3.871449593671624*^9, 
+  3.871449603135165*^9}},ExpressionUUID->"c78f0f99-99af-4713-8e3e-\
+831db212afc6"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Przyk\[LSlash]ady",
+ FontColor->GrayLevel[0]]], "Section",
+ CellChangeTimes->{{3.8697154978304434`*^9, 3.869715505718895*^9}, 
+   3.869716190792079*^9, 3.869716461095539*^9, 3.8697166061348352`*^9, {
+   3.869716675999831*^9, 3.869716721422429*^9}, {3.8714486128875265`*^9, 
+   3.871448617230775*^9}},
+ Background->RGBColor[
+  1, 0.5, 0.5],ExpressionUUID->"551cbe7d-59fd-4546-8315-55133ac9b132"],
+
+Cell[CellGroupData[{
+
+Cell["Przyk\[LSlash]ad 1.", "Subsection",
+ CellChangeTimes->{{3.8697167693461704`*^9, 3.8697168012149935`*^9}, {
+  3.871448626288293*^9, 
+  3.87144862799139*^9}},ExpressionUUID->"8fa7985c-986e-481d-a979-\
+4cc24fd63161"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", 
+   RowBox[{"x", "^", "3"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"bisekcja", "[", 
+  RowBox[{"f", ",", 
+   RowBox[{"-", "5"}], ",", "5", ",", ".000001"}], "]"}], "\n", 
+ RowBox[{
+  RowBox[{"Pierwiastkiwm", " ", "r\[OAcute]wnania", " ", 
+   SuperscriptBox["x", "3"]}], "=", 
+  RowBox[{
+  "0", " ", "jest", " ", "liczba", " ", "0.", " ", "znaleziona", " ", "po", " \[InvisibleSpace]",
+    "1", "\[InvisibleSpace] ", 
+   RowBox[{"krokach", "."}]}]}]}], "Program",
+ CellChangeTimes->{
+  3.8697168047601957`*^9, {3.8699015362353296`*^9, 3.869901655762166*^9}, {
+   3.8701037352671075`*^9, 3.8701037368175106`*^9}, {3.871014192560913*^9, 
+   3.8710142620168858`*^9}, {3.8711031888751507`*^9, 3.871103214106594*^9}, {
+   3.871107708489658*^9, 3.8711077866741295`*^9}, 3.871108552034906*^9, {
+   3.871448649190603*^9, 3.8714486509427032`*^9}, {3.8714487068409004`*^9, 
+   3.8714487830722604`*^9}, {3.871448965648703*^9, 3.8714490173916626`*^9}, {
+   3.8763810311943564`*^9, 
+   3.8763810351870613`*^9}},ExpressionUUID->"93c030cc-d8e3-481e-bb67-\
+d7a2b2f18e17"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Przyk\[LSlash]ad 2.", "Subsection",
+ CellChangeTimes->{{3.8697167693461704`*^9, 3.8697168012149935`*^9}, 
+   3.871107690394623*^9, 
+   3.8714486313185806`*^9},ExpressionUUID->"8c544699-acad-41b2-95c2-\
+e104a3be057d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"x", "^", "5"}], "+", 
+    RowBox[{"4", 
+     RowBox[{"x", "^", "3"}]}], "+", 
+    RowBox[{"2", "x"}], "-", "8"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"bisekcja", "[", 
+  RowBox[{"f", ",", "0", ",", "2.3", ",", ".001"}], "]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Pierwiastkiwm", " ", "r\[OAcute]wnania"}], " ", "-", "8", "+", 
+   RowBox[{"2", " ", "x"}], "+", 
+   RowBox[{"4", " ", 
+    SuperscriptBox["x", "3"]}], "+", 
+   SuperscriptBox["x", "5"]}], "=", 
+  RowBox[{
+  "0", " ", "jest", " ", "liczba", " ", "1.0496978759765625`", "\[InvisibleSpace] ",
+    "znaleziona", " ", "po", " \[InvisibleSpace]", "15", "\[InvisibleSpace] ", 
+   RowBox[{"krokach", "."}]}]}]}], "Program",
+ CellChangeTimes->{
+  3.8697168047601957`*^9, {3.8699015362353296`*^9, 3.869901655762166*^9}, {
+   3.8701037352671075`*^9, 3.8701037368175106`*^9}, {3.871014192560913*^9, 
+   3.8710142620168858`*^9}, {3.8711031888751507`*^9, 3.871103214106594*^9}, {
+   3.871107708489658*^9, 3.8711077866741295`*^9}, 3.871108552034906*^9, {
+   3.871448649190603*^9, 3.8714486509427032`*^9}, {3.8714487068409004`*^9, 
+   3.8714487830722604`*^9}},ExpressionUUID->"55431feb-8cfc-4617-adb7-\
+679d22c49d76"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Przyk\[LSlash]ad 3.", "Subsection",
+ CellChangeTimes->{{3.8697167693461704`*^9, 3.8697168012149935`*^9}, 
+   3.8697168979185243`*^9, 3.871107691826705*^9, 
+   3.871448632742662*^9},ExpressionUUID->"a5f0ea50-e8d3-4c91-be56-\
+bfc3dec97ef4"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", 
+   RowBox[{"5", "+", 
+    RowBox[{"10", 
+     RowBox[{"Log", "[", "x", "]"}]}], "-", "x"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"bisekcja", "[", 
+  RowBox[{"f", ",", "0.1", ",", "13", ",", ".000001"}], "]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+   "Pierwiastkiwm", " ", "r\[OAcute]wnania", " \[InvisibleSpace]", "5"}], "-",
+    "x", "+", 
+   RowBox[{"10", " ", 
+    RowBox[{"Log", "[", "x", "]"}]}]}], "\[InvisibleSpace]", "=", 
+  RowBox[{
+  "0", " ", "jest", " ", "liczba", " \[InvisibleSpace]", 
+   "0.6470753669738769`", "\[InvisibleSpace] ", "znaleziona", " ", "po", " ", 
+   "20", "\[InvisibleSpace]\[InvisibleSpace]\[InvisibleSpace] ", 
+   RowBox[{"krokach", "."}]}]}]}], "Program",
+ CellChangeTimes->{
+  3.8697168047601957`*^9, {3.8699015362353296`*^9, 3.869901655762166*^9}, {
+   3.8701037352671075`*^9, 3.8701037368175106`*^9}, {3.871014192560913*^9, 
+   3.8710142620168858`*^9}, {3.8711031888751507`*^9, 3.871103214106594*^9}, {
+   3.871107708489658*^9, 3.8711077866741295`*^9}, 3.871108552034906*^9, {
+   3.871448649190603*^9, 3.8714486509427032`*^9}, {3.8714487068409004`*^9, 
+   3.8714487830722604`*^9}, {3.8714490807282853`*^9, 
+   3.8714491261678843`*^9}, {3.871449477288967*^9, 3.87144949586403*^9}, {
+   3.876381047911024*^9, 
+   3.876381056437708*^9}},ExpressionUUID->"589e08d3-d195-4080-8e0e-\
+80c7dab341b5"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Przyk\[LSlash]ad 4.", "Subsection",
+ CellChangeTimes->{{3.8697167693461704`*^9, 3.8697168012149935`*^9}, 
+   3.8697168979185243`*^9, 3.871107691826705*^9, 3.871448632742662*^9, 
+   3.8714491387196026`*^9},ExpressionUUID->"388bffae-0293-4f4f-9ac4-\
+507826303c30"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"E", "^", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "x"}], " ", "x"}], ")"}]}], 
+     RowBox[{"Sin", "[", "x", "]"}]}], "-", 
+    RowBox[{"Cos", "[", "x", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"bisekcja", "[", 
+  RowBox[{"f", ",", "0", ",", "3", ",", ".000001"}], "]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Pierwiastkiwm", " ", "r\[OAcute]wnania"}], " \[InvisibleSpace]", 
+   "-", 
+   RowBox[{"Cos", "[", "x", "]"}], "+", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", 
+      SuperscriptBox["x", "2"]}]], " ", 
+    RowBox[{"Sin", "[", "x", "]"}]}]}], "\[InvisibleSpace]", "=", 
+  RowBox[{
+  "0", " ", "jest", " ", "liczba", " ", "1.4488449096679688`", "\[InvisibleSpace] ",
+    "znaleziona", " ", "po", " ", "17", "\[InvisibleSpace]\[InvisibleSpace] ", 
+   RowBox[{"krokach", "."}]}]}]}], "Program",
+ CellChangeTimes->{
+  3.8697168047601957`*^9, {3.8699015362353296`*^9, 3.869901655762166*^9}, {
+   3.8701037352671075`*^9, 3.8701037368175106`*^9}, {3.871014192560913*^9, 
+   3.8710142620168858`*^9}, {3.8711031888751507`*^9, 3.871103214106594*^9}, {
+   3.871107708489658*^9, 3.8711077866741295`*^9}, 3.871108552034906*^9, {
+   3.871448649190603*^9, 3.8714486509427032`*^9}, {3.8714487068409004`*^9, 
+   3.8714487830722604`*^9}, {3.8714490807282853`*^9, 3.8714491261678843`*^9}, 
+   3.8714494616090703`*^9, {3.876381050357723*^9, 
+   3.8763810538939867`*^9}},ExpressionUUID->"00f1357f-ffb7-4514-ac63-\
+362317f5eb16"]
+}, Closed]]
+}, Closed]]
+}, Open  ]]
+},
+WindowSize->{1428, 825.75},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"13.3 for Microsoft Windows (64-bit) (June 3, 2023)",
+StyleDefinitions->FrontEnd`FileName[{"Report"}, "StandardReport.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"01b97bc8-55c3-44b6-a5b2-e468602eec89"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 467, 9, 92, "Department",ExpressionUUID->"3ecdf458-2a6b-44bb-9565-9724cb61e3d2"],
+Cell[CellGroupData[{
+Cell[1050, 33, 398, 8, 155, "Title",ExpressionUUID->"ef2da835-16bd-4bb6-b48d-e0e621a4805f"],
+Cell[1451, 43, 216, 4, 51, "Text",ExpressionUUID->"867bd96c-1d1b-47bd-8155-a686c54958f9"],
+Cell[1670, 49, 382, 9, 42, "Item",ExpressionUUID->"e3c8d3fb-63d5-4d22-8c99-7fbc63edd265"],
+Cell[2055, 60, 299, 8, 42, "Item",ExpressionUUID->"98a6277e-6d13-4077-b793-753ccae6cca1"],
+Cell[2357, 70, 299, 8, 42, "Item",ExpressionUUID->"61fe7b42-fc41-4c97-84cd-b568b3c7b2f2"],
+Cell[2659, 80, 354, 10, 42, "Item",ExpressionUUID->"97bc5170-4642-468b-9d95-e1d6d9a5b47d"],
+Cell[3016, 92, 1021, 22, 120, "Text",ExpressionUUID->"c78f0f99-99af-4713-8e3e-831db212afc6"],
+Cell[CellGroupData[{
+Cell[4062, 118, 418, 7, 115, "Section",ExpressionUUID->"551cbe7d-59fd-4546-8315-55133ac9b132"],
+Cell[CellGroupData[{
+Cell[4505, 129, 219, 4, 66, "Subsection",ExpressionUUID->"8fa7985c-986e-481d-a979-4cc24fd63161"],
+Cell[4727, 135, 1134, 24, 77, "Program",ExpressionUUID->"93c030cc-d8e3-481e-bb67-d7a2b2f18e17"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[5898, 164, 222, 4, 62, "Subsection",ExpressionUUID->"8c544699-acad-41b2-95c2-e104a3be057d"],
+Cell[6123, 170, 1277, 29, 77, "Program",ExpressionUUID->"55431feb-8cfc-4617-adb7-679d22c49d76"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[7437, 204, 244, 4, 62, "Subsection",ExpressionUUID->"a5f0ea50-e8d3-4c91-be56-bfc3dec97ef4"],
+Cell[7684, 210, 1417, 32, 77, "Program",ExpressionUUID->"589e08d3-d195-4080-8e0e-80c7dab341b5"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[9138, 247, 268, 4, 62, "Subsection",ExpressionUUID->"388bffae-0293-4f4f-9ac4-507826303c30"],
+Cell[9409, 253, 1586, 37, 81, "Program",ExpressionUUID->"00f1357f-ffb7-4514-ac63-362317f5eb16"]
+}, Closed]]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
