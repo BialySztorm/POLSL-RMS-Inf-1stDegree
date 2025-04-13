@@ -1,8 +1,8 @@
-[🇵🇱 Wersja polska](#pliki-ze-studiow-i-stopnia---informatyka-praktyczna-ps) | [🇬🇧 English version](#files-from-bachelors-studies---practical-computer-science-at-sut)
+[🇵🇱 Wersja polska](#pliki-ze-studiow-i-stopnia---informatyka-praktyczna-polsl) | [🇬🇧 English version](#files-from-bachelors-studies---practical-computer-science-polsl)
 
 ---
 
-# 📚 Pliki ze studiów I stopnia - Informatyka Praktyczna POLSL
+# Pliki ze studiów I stopnia - Informatyka Praktyczna POLSL
 
 Repozytorium zawiera materiały i pliki związane ze studiami na kierunku Informatyka Praktyczna na Politechnice Śląskiej.
 
@@ -38,7 +38,7 @@ W razie pytań lub sugestii proszę o kontakt:
 
 ---
 
-# 📚 Files from Bachelor's Studies - Practical Computer Science POLSL
+# Files from Bachelor's Studies - Practical Computer Science POLSL
 
 This repository contains materials and files related to studies in Practical Computer Science at the Silesian University of Technology.
 
