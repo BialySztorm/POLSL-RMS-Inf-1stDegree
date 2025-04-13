@@ -1,4 +1,4 @@
-[🇵🇱 Wersja polska](#pliki-ze-studiow-i-stopnia---informatyka-praktyczna-polsl) | [🇬🇧 English version](#files-from-bachelors-studies---practical-computer-science-polsl)
+[🇵🇱 Wersja polska](#pliki-ze-studiów-i-stopnia---informatyka-praktyczna-polsl) | [🇬🇧 English version](#files-from-bachelors-studies---practical-computer-science-polsl)
 
 ---
 
