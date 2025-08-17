@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  mini-linux:
+    image: dorowu/ubuntu-desktop-lxde-vnc
+    container_name: mini-linux
+    ports:
+      - "8082:80"      # Dostęp przez przeglądarkę: http://localhost:8080
+      - "5901:5901"    # VNC (opcjonalnie, np. do połączenia przez VNC viewer)
+    environment:
+      - VNC_PASSWORD=mojehaslo
+    volumes:
+      - mini-linux-data:/config
+    restart: unless-stopped
+    dns:
+      - 172.18.0.2 # Adres IP serwera DNS (np. AdGuard Home)
+      - 8.8.8.8
+
+volumes:
+  mini-linux-data:

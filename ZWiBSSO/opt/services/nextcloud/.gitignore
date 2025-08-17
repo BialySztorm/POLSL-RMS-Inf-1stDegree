@@ -1,0 +1,4 @@
+/db
+
+/html/*
+!/html/config/

@@ -1,0 +1,15 @@
+version: '3'
+services:
+  npm:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "81:81"  # panel zarządzania
+      - "443:443"
+    environment:
+      DB_SQLITE_FILE: "/data/database.sqlite"
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt

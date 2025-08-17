@@ -117,3 +117,5 @@ dmypy.json
 
 # DataSpell
 .idea/
+
+.virtual_documents
